@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+<div class="min-h-screen max-w-screen-xl container mx-auto flex flex-col md:flex-row">
+    <!-- Sidebar Navigation -->
+    <div class="w-full md:w-1/4 bg-white shadow-md">
+        <div class="p-6">
+            <h2 class="text-xl font-semibold mb-6">User Dashboard</h2>
+            <ul>
+                <li class="mb-4">
+                    <a href="#" class="block py-2 text-gray-700 hover:text-blue-600">Profile Information</a>
+                </li>
+                <li class="mb-4">
+                    <a href="#" class="block py-2 text-gray-700 hover:text-blue-600">Address Management</a>
+                </li>
+                <li class="mb-4">
+                    <a href="#" class="block py-2 text-gray-700 hover:text-blue-600">Password Management</a>
+                </li>
+                <li class="mb-4">
+                    <a href="#" class="block py-2 text-gray-700 hover:text-blue-600 font-semibold">Orders</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 p-6">
+        <h1 class="text-3xl font-bold mb-6">Order Details</h1>
+
+        <div class="overflow-x-auto">
+            <table class="w-full bg-white shadow-md rounded-lg">
+                <thead class="bg-gray-100">
+                    <tr>
+                        <th class="py-3 px-4 text-left font-semibold text-gray-600">Order</th>
+                        <th class="py-3 px-4 text-left font-semibold text-gray-600">Purchased Date</th>
+                        <th class="py-3 px-4 text-left font-semibold text-gray-600">Status</th>
+                        <th class="py-3 px-4 text-left font-semibold text-gray-600">Total</th>
+                        <th class="py-3 px-4 text-left font-semibold text-gray-600">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="orderTableBody">
+                    <!-- Rows will be generated here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex items-center justify-center mt-4">
+            <button class="px-4 py-2 text-gray-700 hover:text-blue-600" onclick="previousPage()">Prev</button>
+            <div id="pagination" class="flex space-x-2"></div>
+            <button class="px-4 py-2 text-gray-700 hover:text-blue-600" onclick="nextPage()">Next</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Sample data for orders
+    const orders = [
+        { id: '#172615261525611', date: '21 May 2024', status: 'In Progress', total: '₹1300' },
+        { id: '#172615261525612', date: '21 May 2024', status: 'Canceled', total: '₹1300' },
+        { id: '#172615261525613', date: '21 May 2024', status: 'Delivered', total: '₹1300' },
+        { id: '#172615261525614', date: '21 May 2024', status: 'Delayed', total: '₹1300' },
+        { id: '#172615261525615', date: '21 May 2024', status: 'Returned', total: '₹1300' },
+        { id: '#172615261525611', date: '21 May 2024', status: 'In Progress', total: '₹1300' },
+        { id: '#172615261525612', date: '21 May 2024', status: 'Canceled', total: '₹1300' },
+        { id: '#172615261525613', date: '21 May 2024', status: 'Delivered', total: '₹1300' },
+        { id: '#172615261525614', date: '21 May 2024', status: 'Delayed', total: '₹1300' },
+        { id: '#172615261525615', date: '21 May 2024', status: 'Returned', total: '₹1300' },
+        { id: '#172615261525611', date: '21 May 2024', status: 'In Progress', total: '₹1300' },
+        { id: '#172615261525612', date: '21 May 2024', status: 'Canceled', total: '₹1300' },
+        { id: '#172615261525613', date: '21 May 2024', status: 'Delivered', total: '₹1300' },
+        { id: '#172615261525614', date: '21 May 2024', status: 'Delayed', total: '₹1300' },
+        { id: '#172615261525615', date: '21 May 2024', status: 'Returned', total: '₹1300' },
+        { id: '#172615261525611', date: '21 May 2024', status: 'In Progress', total: '₹1300' },
+        { id: '#172615261525612', date: '21 May 2024', status: 'Canceled', total: '₹1300' },
+        { id: '#172615261525613', date: '21 May 2024', status: 'Delivered', total: '₹1300' },
+        { id: '#172615261525614', date: '21 May 2024', status: 'Delayed', total: '₹1300' },
+        { id: '#172615261525615', date: '21 May 2024', status: 'Returned', total: '₹1300' },
+    ];
+
+    const statusColors = {
+        'In Progress': 'bg-blue-500 text-white',
+        'Canceled': 'bg-red-500 text-white',
+        'Delivered': 'bg-green-500 text-white',
+        'Delayed': 'bg-yellow-500 text-white',
+        'Returned': 'bg-red-500 text-white',
+    };
+
+    let currentPage = 1;
+    const itemsPerPage = 10;
+
+    // Function to render orders based on the page
+    function renderOrders() {
+        const start = (currentPage - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        const paginatedOrders = orders.slice(start, end);
+        const orderTableBody = document.getElementById('orderTableBody');
+        orderTableBody.innerHTML = paginatedOrders.map(order => `
+            <tr class="border-b text-nowrap">
+                <td class="py-3 px-4">${order.id}</td>
+                <td class="py-3 px-4">${order.date}</td>
+                <td class="py-3 px-4">
+                    <span class="px-2 py-1 rounded ${statusColors[order.status]}">${order.status}</span>
+                </td>
+                <td class="py-3 px-4">${order.total}</td>
+                <td class="py-3 px-4 text-blue-600 hover:underline cursor-pointer">View</td>
+            </tr>
+        `).join('');
+        renderPagination();
+    }
+
+    // Pagination
+    function renderPagination() {
+        const totalPages = Math.ceil(orders.length / itemsPerPage);
+        const pagination = document.getElementById('pagination');
+        pagination.innerHTML = Array.from({ length: totalPages }, (_, i) => `
+            <button class="px-3 py-1 ${i + 1 === currentPage ? 'text-blue-600 font-bold' : 'text-gray-700'}" onclick="goToPage(${i + 1})">
+                ${i + 1}
+            </button>
+        `).join('');
+    }
+
+    function goToPage(page) {
+        currentPage = page;
+        renderOrders();
+    }
+
+    function previousPage() {
+        if (currentPage > 1) {
+            currentPage--;
+            renderOrders();
+        }
+    }
+
+    function nextPage() {
+        const totalPages = Math.ceil(orders.length / itemsPerPage);
+        if (currentPage < totalPages) {
+            currentPage++;
+            renderOrders();
+        }
+    }
+
+    // Initial render
+    renderOrders();
+</script>
+
+</body>
+</html>

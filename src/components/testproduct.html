@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Layout</title>
+    <link href="../../dist/styles/output.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="max-w-screen-xl mx-auto container flex flex-col md:flex-row gap-4 px-4 md:px-0">
+
+        <!-- Filter Sidebar -->
+        <div class="relative">
+            <button id="filterToggle" class="md:hidden bg-primaryLight px-4 py-2 text-white font-bold rounded-lg mb-4">
+                Show Filters
+            </button>
+            <aside id="filterSidebar"
+                class="fixed top-0 right-0 h-full w-64 bg-white p-6 border-l-2 border-gray-800 rounded-lg shadow-lg space-y-6 z-50 transition-transform transform translate-x-full md:translate-x-0 md:static md:flex md:w-auto md:border-none hidden md:block">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-primaryLight text-lg font-bold">Filters</span>
+                    <button class="border px-4 py-2 text-gray-600 rounded-2xl hover:bg-gray-100">Clear All</button>
+                </div>
+
+                <!-- Category Filter -->
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Category</h3>
+                    <ul class="space-y-2">
+                        <li><input type="checkbox" id="category1" class="mr-2"><label for="category1">Lorem</label></li>
+                        <li><input type="checkbox" id="category2" class="mr-2"><label for="category2">Lorem</label></li>
+                        <li><input type="checkbox" id="category3" class="mr-2"><label for="category3">Lorem</label></li>
+                        <li><input type="checkbox" id="category4" class="mr-2"><label for="category4">Lorem</label></li>
+                        <li><input type="checkbox" id="category5" class="mr-2"><label for="category5">Lorem</label></li>
+                        <li><a href="#" class="text-blue-500 text-sm">Show more</a></li>
+                    </ul>
+                </div>
+
+                <!-- Additional filters (e.g., Ratings, Brand, Price) -->
+                <!-- Add similar sections as the Category Filter above for Ratings, Brand, Price, and Size -->
+            </aside>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1">
+            <div class="flex justify-between items-center mb-6 border-2 border-gray-700 rounded-lg p-4">
+                <div class="flex space-x-4 items-center">
+                    <select class="p-2 bg-gray-100 rounded-lg outline-none">
+                        <option>Sort by Features</option>
+                        <option>Price: Low to High</option>
+                        <option>Price: High to Low</option>
+                    </select>
+                    <span>Showing 1-20 of 30 results</span>
+                </div>
+                <div class="flex space-x-2">
+                    <button class="p-2 bg-gray-200 rounded-lg">Grid Icon</button>
+                    <button class="p-2 bg-gray-200 rounded-lg">List Icon</button>
+                </div>
+            </div>
+
+            <!-- Product Cards Section -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Product Card Example -->
+                <div class="bg-white border border-gray-200 rounded-lg p-4 shadow">
+                    <!-- Product details go here -->
+                    <h2 class="font-bold text-lg">Product Name</h2>
+                    <p class="text-gray-500">Product Description</p>
+                </div>
+                <!-- Add more product cards as needed -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const filterToggle = document.getElementById('filterToggle');
+        const filterSidebar = document.getElementById('filterSidebar');
+
+        filterToggle.addEventListener('click', () => {
+            filterSidebar.classList.toggle('translate-x-full');
+        });
+    </script>
+</body>
+
+</html>

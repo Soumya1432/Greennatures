@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore our vibrant garden care services and discover the best plants for your oasis.">
+    <meta name="keywords" content="garden, plants, garden care, flowers, trees, shrubs, herbs, cacti, vines">
+    <link href="../../dist/styles/output.css" rel="stylesheet">
+    <title>Product List - Garden Care Services</title>
+</head>
+
+<body class="font-Marcellus border-0 border-yellow-500">
+
+    <!-- Product Listing Page -->
+
+    <main class=" flex flex-col justify-center  lg:grid lg:grid-cols-6 max-w-screen-xl mx-auto gap-8 p-8 bg-white rounded-lg ">
+       
+        <!-- Main Content Section -->
+        <section class="col-span-1 lg:col-span-4">
+            <!-- Title -->
+            <h1 class="text-3xl font-bold text-gray-800 mb-4">
+                Garden into a vibrant oasis with our expert garden care services
+            </h1>
+
+            <!-- Author and Date Section -->
+            <div class="flex items-center space-x-4 mb-6">
+                <div class="flex items-center space-x-2 text-gray-600">
+                    <!-- User Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A3.88 3.88 0 018 16h8a3.88 3.88 0 012.879 1.804m-11.758 0A3.88 3.88 0 005 16m8 0h8m0 0a3.88 3.88 0 01-2.879 1.804M8 16a3.88 3.88 0 01-2.879 1.804" />
+                    </svg>
+                    <span>User</span>
+                </div>
+                <span class="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-sm">
+                    12 Jan 2024
+                </span>
+            </div>
+
+            <!-- Blog Image -->
+            <div class="w-full mb-6">
+                <img src="https://picsum.photos/id/237/200/300" alt="A vibrant garden" class="w-full aspect-video rounded-lg shadow-md object-cover">
+            </div>
+
+            <!-- Main Content Text -->
+            <article class="text-gray-700 space-y-4 mb-6">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+            </article>
+
+            <!-- Bulleted List -->
+            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</li>
+                <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</li>
+                <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</li>
+            </ul>
+
+            <!-- Tags Section -->
+            <div class="flex space-x-2 overflow-x-auto p-4 bg-white">
+                <button class="flex items-center px-4 py-2 text-white bg-gray-800 rounded-full">
+                    <span class="mr-2">✔️</span> Plant
+                </button>
+                <button class="flex items-center px-4 py-2 text-gray-800 bg-gray-200 rounded-full">Flowers</button>
+                <button class="flex items-center px-4 py-2 text-gray-800 bg-gray-200 rounded-full">Trees</button>
+                <button class="flex items-center px-4 py-2 text-gray-800 bg-gray-200 rounded-full">Shrubs</button>
+                <button class="flex items-center px-4 py-2 text-gray-800 bg-gray-200 rounded-full">Herbs</button>
+                <button class="flex items-center px-4 py-2 text-gray-800 bg-gray-200 rounded-full">Cacti</button>
+                <button class="flex items-center px-4 py-2 text-gray-800 bg-gray-200 rounded-full">Vines</button>
+            </div>
+            <div class=" bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold mb-4">Comments</h2>
+        
+                <!-- Comment Card Start -->
+                <div class="space-y-6">
+                    <div class="flex space-x-4">
+                        <img src="https://i.pravatar.cc/40?img=1" alt="User Avatar" class="w-10 h-10 rounded-full">
+                        <div class="flex-1">
+                            <p class="text-gray-700">This is amazing product I have.</p>
+                            <p class="text-sm text-gray-500">July 2, 2020 1:04 PM</p>
+                            <div class="flex items-center space-x-2 mt-2">
+                                <button onclick="handleLike(this)" class="flex items-center space-x-1 text-gray-600 hover:text-blue-600 transition">
+                                    <span class="material-icons">👍</span>
+                                    <span class="like-count">82</span>
+                                </button>
+                                <button onclick="handleDislike(this)" class="flex items-center space-x-1 text-gray-600 hover:text-red-600 transition">
+                                    <span class="material-icons">👎</span>
+                                    <span class="dislike-count">0</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                  
+                </div>
+                <!-- Comment Card End -->
+            </div>
+        </section>
+
+        <!-- Sidebar Section -->
+        <aside class="lg:col-span-2 w-full">
+            <!-- Search Section -->
+            <div class="mb-6">
+                <h2 class="text-xl font-semibold text-gray-700 mb-2">Search</h2>
+                <input type="text" placeholder="Search..." class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-green-600" aria-label="Search input">
+            </div>
+
+            <!-- Category Filter Section -->
+            <div class="bg-white p-4 rounded-lg shadow mb-6">
+                <h3 class="text-xl font-semibold text-green-800 mb-4">Category</h3>
+                <div class="space-y-2">
+                    <label class="flex items-center space-x-2 text-gray-700">
+                        <input type="checkbox" class="text-green-600 rounded" aria-label="Filter by Lorem">
+                        <span>Lorem</span>
+                        <span class="ml-auto text-gray-400">(18)</span>
+                    </label>
+                    <label class="flex items-center space-x-2 text-gray-700">
+                        <input type="checkbox" class="text-green-600 rounded" checked aria-label="Filter by Lorem (selected)">
+                        <span>Lorem</span>
+                        <span class="ml-auto text-gray-400">(18)</span>
+                    </label>
+                    <label class="flex items-center space-x-2 text-gray-700">
+                        <input type="checkbox" class="text-green-600 rounded" aria-label="Filter by Lorem">
+                        <span>Lorem</span>
+                        <span class="ml-auto text-gray-400">(18)</span>
+                    </label>
+                    <label class="flex items-center space-x-2 text-gray-700">
+                        <input type="checkbox" class="text-green-600 rounded" aria-label="Filter by Lorem">
+                        <span>Lorem</span>
+                        <span class="ml-auto text-gray-400">(18)</span>
+                    </label>
+                    <label class="flex items-center space-x-2 text-gray-700">
+                        <input type="checkbox" class="text-green-600 rounded" checked aria-label="Filter by Lorem (selected)">
+                        <span>Lorem</span>
+                        <span class="ml-auto text-gray-400">(18)</span>
+                    </label>
+                </div>
+                <button class="mt-4 text-green-600 hover:underline" aria-label="Show more categories">Show more</button>
+            </div>
+
+            <!-- Recent Post Section -->
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Recent Posts</h3>
+                <div class="space-y-4">
+                    <div class="flex items-center">
+                        <img src="https://via.placeholder.com/50" alt="Post image" class="w-12 h-12 rounded-md mr-4">
+                        <p class="text-gray-700">Lorem Ipsum is simple dummy text</p>
+                    </div>
+                    <div class="flex items-center">
+                        <img src="https://via.placeholder.com/50" alt="Post image" class="w-12 h-12 rounded-md mr-4">
+                        <p class="text-gray-700">Lorem Ipsum is simple dummy text</p>
+                    </div>
+                </div>
+                <button class="mt-4 text-green-600 hover:underline" aria-label="See more recent posts">See more</button>
+            </div>
+        </aside>
+
+    </main>
+
+    <script>
+        function handleLike(button) {
+            const likeCount = button.querySelector('.like-count');
+            let count = parseInt(likeCount.textContent);
+            likeCount.textContent = ++count;
+        }
+        
+        function handleDislike(button) {
+            const dislikeCount = button.querySelector('.dislike-count');
+            let count = parseInt(dislikeCount.textContent);
+            dislikeCount.textContent = ++count;
+        }
+        
+    </script>
+</body>
+
+</html>

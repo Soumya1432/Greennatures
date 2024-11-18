@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link href="../../dist/styles/output.css" rel="stylesheet">
+    <style>
+        .slide-in-left {
+            transform: translateX(0);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .slide-out-left {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Hides scrollbar for a cleaner look */
+        .carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Custom green shadow for the breadcrumb text */
+        .breadcrumb-shadow {
+            text-shadow: 2px 2px 5px rgba(0, 128, 0, 0.7);
+        }
+
+        /* Responsive breadcrumb background image */
+        .breadcrumb-bg {
+            background-image: url('https://images.unsplash.com/photo-1599307690923-8ffea24780e0?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: relative;
+            width: 100%;
+            /* Ensures full width */
+        }
+
+        /* Light green overlay */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 38, 15, 0.758);
+            z-index: 1;
+        }
+
+        /* Breadcrumb text above the overlay */
+        .breadcrumb-content {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+
+<body class="bg-[#F6F6F6]">
+
+    <!-- Navbar -->
+    <header class="inset-x-0 bg-white top-0 z-50 w-full border-0 border-red-500">
+
+        <div class=" mx-auto max-w-screen-xl border-0 border-slate-200 ">
+            <nav class="flex items-center max-w-screen-xl justify-between container mx-auto p-4 lg:py-4  font-marcellus border-0 border-blue-500"
+                aria-label="Global">
+                <!-- Logo -->
+                <div class="border-0 border-blue-500">
+                    <a href="/" class="">
+                        <span class="font-marcellus lg:text-[32px] text-[24px] text-green-700">GreenNatures</span>
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="flex lg:hidden border-0 border-blue-500" id="menu-btn">
+                    <button type="button"
+                        class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                            aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Menu listing and Login/Cart for large screens -->
+                <div
+                    class="hidden lg:flex items-center space-x-8 font-marcellus flex-1 justify-end text-nowrap border-0 border-blue-500">
+                    <a href="/" class="text-lg leading-6 text-gray-900 border-0 border-blue-500">Home</a>
+                    <a href="Aboutus.html" class="text-lg leading-6 text-gray-900 border-0 border-blue-500">About us</a>
+                    <a href="ProductList01.html"
+                        class="text-lg leading-6 text-gray-900 border-0 border-blue-500">Products</a>
+                    <a href="Blog.html" class="text-lg leading-6 text-gray-900 border-0 border-blue-500">Blogs</a>
+                    <a href="Contactus.html" class="text-lg leading-6 text-gray-900 border-0 border-blue-500">Contact
+                        us</a>
+                    <div class="flex justify-center items-center gap-4 border-0 border-blue-500">
+                        <a href="#"
+                            class="text-lg leading font-marcellus text-gray-900 underline border-0 border-red-500">Log
+                            in</a>
+                        <a href="#"
+                            class="flex gap-2 items-center text-lg leading font-marcellus text-gray-900 border-0 border-red-500">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M21.8257 5.96903C21.7562 5.88583 21.6692 5.81891 21.571 5.773C21.4728 5.72709 21.3657 5.7033 21.2573 5.70332H6.32177L5.75887 2.60827C5.72786 2.43761 5.63795 2.28324 5.50479 2.17208C5.37164 2.06093 5.20369 2.00003 5.03024 2H2.74066C2.54423 2 2.35584 2.07803 2.21694 2.21694C2.07803 2.35584 2 2.54423 2 2.74066C2 2.9371 2.07803 3.12549 2.21694 3.26439C2.35584 3.40329 2.54423 3.48133 2.74066 3.48133H4.40716L6.77358 16.4698C6.84328 16.855 7.01352 17.2149 7.26704 17.5132C6.91712 17.84 6.66456 18.2574 6.53736 18.719C6.41016 19.1806 6.41329 19.6684 6.54641 20.1284C6.67952 20.5883 6.93742 21.0024 7.29151 21.3247C7.6456 21.647 8.08203 21.865 8.55243 21.9544C9.02282 22.0438 9.50879 22.0012 9.95644 21.8313C10.4041 21.6614 10.7959 21.3708 11.0885 20.9918C11.3811 20.6128 11.563 20.1601 11.6141 19.684C11.6651 19.208 11.5833 18.727 11.3777 18.2946H15.5828C15.4171 18.6415 15.3314 19.0212 15.3319 19.4056C15.3319 19.9183 15.484 20.4195 15.7688 20.8458C16.0537 21.2721 16.4585 21.6044 16.9322 21.8006C17.4059 21.9968 17.9271 22.0481 18.43 21.9481C18.9329 21.8481 19.3948 21.6012 19.7573 21.2386C20.1199 20.8761 20.3668 20.4142 20.4668 19.9113C20.5668 19.4085 20.5155 18.8872 20.3193 18.4136C20.1231 17.9399 19.7908 17.535 19.3645 17.2502C18.9382 16.9653 18.437 16.8133 17.9243 16.8133H8.95946C8.78601 16.8132 8.61806 16.7523 8.48491 16.6412C8.35176 16.53 8.26184 16.3757 8.23083 16.205L7.93734 14.5913H18.677C19.1973 14.5912 19.7012 14.4085 20.1006 14.075C20.5001 13.7415 20.7698 13.2785 20.8629 12.7665L21.9887 6.57638C22.0077 6.46939 22.003 6.35951 21.9748 6.25455C21.9467 6.14959 21.8958 6.05211 21.8257 5.96903ZM10.1473 19.4056C10.1473 19.6253 10.0821 19.8401 9.96006 20.0228C9.83799 20.2055 9.66447 20.3479 9.46146 20.432C9.25846 20.5161 9.03507 20.5381 8.81956 20.4952C8.60405 20.4524 8.40609 20.3466 8.25071 20.1912C8.09534 20.0358 7.98952 19.8379 7.94666 19.6223C7.90379 19.4068 7.92579 19.1834 8.00988 18.9804C8.09397 18.7774 8.23637 18.6039 8.41907 18.4818C8.60177 18.3598 8.81657 18.2946 9.0363 18.2946C9.33096 18.2946 9.61354 18.4117 9.8219 18.62C10.0302 18.8284 10.1473 19.1109 10.1473 19.4056ZM19.0353 19.4056C19.0353 19.6253 18.9701 19.8401 18.848 20.0228C18.7259 20.2055 18.5524 20.3479 18.3494 20.432C18.1464 20.5161 17.923 20.5381 17.7075 20.4952C17.492 20.4524 17.2941 20.3466 17.1387 20.1912C16.9833 20.0358 16.8775 19.8379 16.8346 19.6223C16.7918 19.4068 16.8138 19.1834 16.8978 18.9804C16.9819 18.7774 17.1243 18.6039 17.307 18.4818C17.4897 18.3598 17.7045 18.2946 17.9243 18.2946C18.2189 18.2946 18.5015 18.4117 18.7099 18.62C18.9182 18.8284 19.0353 19.1109 19.0353 19.4056Z"
+                                    fill="black" style="fill:black;fill-opacity:1;" />
+                            </svg>
+                            Cart
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- mobile menu list section -->
+        <div class="lg:hidden fixed inset-0 z-50 hidden slide-out-left " id="menu-list">
+            <div class="fixed inset-0 bg-gray-900 bg-opacity-25 blur"></div>
+            <div class="fixed inset-y-0 left-0 w-64 bg-white px-6 py-6">
+                <div class="flex items-center justify-between">
+                    <a href="#" class="text-2xl font-regular text-green-700">GreenNatures</a>
+                    <button id="menu-close-btn" type="button" class="-m-2.5 p-2.5 text-gray-700">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="mt-6 space-y-2">
+                    <a href="#"
+                        class="block px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 hover:underline ">Home</a>
+                    <a href="#"
+                        class="block px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 hover:underline ">About
+                        us</a>
+                    <a href="#"
+                        class="block px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 hover:underline ">Products</a>
+                    <a href="#"
+                        class="block px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 hover:underline ">Blogs</a>
+                    <a href="#"
+                        class="block px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 hover:underline ">Contact
+                        us</a>
+                    <a href="#"
+                        class="block px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 hover:underline ">Log
+                        in</a>
+                    <a href="#"
+                        class="flex gap-2 items-center px-3 py-2 text-base font-semibold text-gray-900 hover:underline  hover:bg-gray-50">
+                        <!-- <img src="../assets/Cart.svg" alt=""> -->
+                        Cart
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+   
+    <!-- Hero image -->
+    <div class="w-full mt-[48px] ">
+        <img src="https://plus.unsplash.com/premium_photo-1677756430603-f081a25b0aa7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            class="object-cover w-full lg:h-[512px]" />
+    </div>
+
+    <!-- feature catgories product -->
+    <section
+        class="mt-[48px] px-4 sm:px-8 md:px-12 lg:px-24 py-8 font-marcellus max-w-screen-xl mx-auto container  flex flex-col items-center justify-center">
+
+        <!-- Category Header with Navigation Arrows -->
+        <div class="flex justify-between items-center w-full max-w-5xl py-6">
+            <h1 class="lg:text-4xl md:text-3xl text-xl font-bold">Find Plant category</h1>
+            <div class="flex gap-4">
+                <button id="prevBtn" class="bg-transparent p-2 hover:bg-gray-200 rounded-full leftArrow"
+                    aria-label="Previous category">
+                    <svg width="28" height="28" viewBox="0 0 22 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 13L1 7M1 7L5 1M1 7H21" stroke="black" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <button id="nextBtn" class="bg-transparent p-2 hover:bg-gray-200 rounded-full rightArrow"
+                    aria-label="Next category">
+                    <svg width="28" height="28" viewBox="0 0 22 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17 1L21 7M21 7L17 13M21 7H1" stroke="black" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Category Cards Carousel -->
+        <div class="w-full max-w-6xl rounded-lg  p-2 overflow-hidden">
+            <ul id="categoryList" class="flex overflow-x-auto scroll-smooth carousel gap-6 p-2">
+                <!-- Category Card Template -->
+                <li
+                    class="w-[140px] card sm:w-[180px] md:w-[200px] lg:w-[220px] h-[180px] sm:h-[220px] lg:h-[260px] flex-shrink-0 p-2 ">
+                    <div
+                        class="rounded-lg shadow-lg bg-white overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <h2 class="text-sm sm:text-md md:text-lg font-medium text-center py-2 order-1">Tropical</h2>
+                        <img src="https://picsum.photos/id/228/200/200" alt="Category 1"
+                            class="w-full h-3/4 object-cover rounded-t-lg p-4 order-2" />
+                    </div>
+                </li>
+                <li
+                    class="w-[140px] card sm:w-[180px] md:w-[200px] lg:w-[220px] h-[180px] sm:h-[220px] lg:h-[260px] flex-shrink-0 p-2 ">
+                    <div
+                        class="rounded-lg shadow-lg bg-white overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <h2 class="text-sm sm:text-md md:text-lg font-medium text-center py-2 order-1">Tropical</h2>
+                        <img src="https://picsum.photos/id/228/200/200" alt="Category 1"
+                            class="w-full h-3/4 object-cover rounded-t-lg p-4 order-2" />
+                    </div>
+                </li>
+                <li
+                    class="w-[140px] card sm:w-[180px] md:w-[200px] lg:w-[220px] h-[180px] sm:h-[220px] lg:h-[260px] flex-shrink-0 p-2 ">
+                    <div
+                        class="rounded-lg shadow-lg bg-white overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <h2 class="text-sm sm:text-md md:text-lg font-medium text-center py-2 order-1">Tropical</h2>
+                        <img src="https://picsum.photos/id/228/200/200" alt="Category 1"
+                            class="w-full h-3/4 object-cover rounded-t-lg p-4 order-2" />
+                    </div>
+                </li>
+                <li
+                    class="w-[140px] card sm:w-[180px] md:w-[200px] lg:w-[220px] h-[180px] sm:h-[220px] lg:h-[260px] flex-shrink-0 p-2 ">
+                    <div
+                        class="rounded-lg shadow-lg bg-white overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <h2 class="text-sm sm:text-md md:text-lg font-medium text-center py-2 order-1">Tropical</h2>
+                        <img src="https://picsum.photos/id/228/200/200" alt="Category 1"
+                            class="w-full h-3/4 object-cover rounded-t-lg p-4 order-2" />
+                    </div>
+                </li>
+                <li
+                    class="w-[140px] card sm:w-[180px] md:w-[200px] lg:w-[220px] h-[180px] sm:h-[220px] lg:h-[260px] flex-shrink-0 p-2 ">
+                    <div
+                        class="rounded-lg shadow-lg bg-white overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <h2 class="text-sm sm:text-md md:text-lg font-medium text-center py-2 order-1">Tropical</h2>
+                        <img src="https://picsum.photos/id/228/200/200" alt="Category 1"
+                            class="w-full h-3/4 object-cover rounded-t-lg p-4 order-2" />
+                    </div>
+                </li>
+                <li
+                    class="w-[140px] card sm:w-[180px] md:w-[200px] lg:w-[220px] h-[180px] sm:h-[220px] lg:h-[260px] flex-shrink-0 p-2 ">
+                    <div
+                        class="rounded-lg shadow-lg bg-white overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <h2 class="text-sm sm:text-md md:text-lg font-medium text-center py-2 order-1">Tropical</h2>
+                        <img src="https://picsum.photos/id/228/200/200" alt="Category 1"
+                            class="w-full h-3/4 object-cover rounded-t-lg p-4 order-2" />
+                    </div>
+                </li>
+                <li
+                    class="w-[140px] card sm:w-[180px] md:w-[200px] lg:w-[220px] h-[180px] sm:h-[220px] lg:h-[260px] flex-shrink-0 p-2 ">
+                    <div
+                        class="rounded-lg shadow-lg bg-white overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <h2 class="text-sm sm:text-md md:text-lg font-medium text-center py-2 order-1">Tropical</h2>
+                        <img src="https://picsum.photos/id/228/200/200" alt="Category 1"
+                            class="w-full h-3/4 object-cover rounded-t-lg p-4 order-2" />
+                    </div>
+                </li>
+                <li
+                    class="w-[140px] card sm:w-[180px] md:w-[200px] lg:w-[220px] h-[180px] sm:h-[220px] lg:h-[260px] flex-shrink-0 p-2 ">
+                    <div
+                        class="rounded-lg shadow-lg bg-white overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <h2 class="text-sm sm:text-md md:text-lg font-medium text-center py-2 order-1">Tropical</h2>
+                        <img src="https://picsum.photos/id/228/200/200" alt="Category 1"
+                            class="w-full h-3/4 object-cover rounded-t-lg p-4 order-2" />
+                    </div>
+                </li>
+
+                <li
+                    class="w-[140px] card sm:w-[180px] md:w-[200px] lg:w-[220px] h-[180px] sm:h-[220px] lg:h-[260px] flex-shrink-0 p-2 ">
+                    <div
+                        class="rounded-lg shadow-lg bg-white overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <h2 class="text-sm sm:text-md md:text-lg font-medium text-center py-2 order-1">Tropical</h2>
+                        <img src="https://picsum.photos/id/228/200/200" alt="Category 1"
+                            class="w-full h-3/4 object-cover rounded-t-lg p-4 order-2" />
+                    </div>
+                </li>
+
+                <li
+                    class="w-[140px] card sm:w-[180px] md:w-[200px] lg:w-[220px] h-[180px] sm:h-[220px] lg:h-[260px] flex-shrink-0 p-2 ">
+                    <div
+                        class="rounded-lg shadow-lg bg-white overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <h2 class="text-sm sm:text-md md:text-lg font-medium text-center py-2 order-1">Tropical</h2>
+                        <img src="https://picsum.photos/id/228/200/200" alt="Category 1"
+                            class="w-full h-3/4 object-cover rounded-t-lg p-4 order-2" />
+                    </div>
+                </li>
+
+                <li
+                    class="w-[140px] card sm:w-[180px] md:w-[200px] lg:w-[220px] h-[180px] sm:h-[220px] lg:h-[260px] flex-shrink-0 p-2 ">
+                    <div
+                        class="rounded-lg shadow-lg bg-white overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <h2 class="text-sm sm:text-md md:text-lg font-medium text-center py-2 order-1">Tropical</h2>
+                        <img src="https://picsum.photos/id/228/200/200" alt="Category 1"
+                            class="w-full h-3/4 object-cover rounded-t-lg p-4 order-2" />
+                    </div>
+                </li>
+
+                <li
+                    class="w-[140px] card sm:w-[180px] md:w-[200px] lg:w-[220px] h-[180px] sm:h-[220px] lg:h-[260px] flex-shrink-0 p-2 ">
+                    <div
+                        class="rounded-lg shadow-lg bg-white overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                        <h2 class="text-sm sm:text-md md:text-lg font-medium text-center py-2 order-1">Tropical</h2>
+                        <img src="https://picsum.photos/id/228/200/200" alt="Category 1"
+                            class="w-full h-3/4 object-cover rounded-t-lg p-4 order-2" />
+                    </div>
+                </li>
+
+
+                <!-- Duplicate or dynamically generate additional cards -->
+
+                <!-- More cards can be added similarly -->
+            </ul>
+        </div>
+    </section>
+
+    <!-- Banner image -->
+    <div class="mt-[90px]">
+        <img src="./bannersection.png" class="w-full lg:h-[604px] object-cover " />
+    </div>
+
+
+    <!-- `Most popular menu listing -->
+    <div class="flex flex-col items-center justify-center max-w-screen-xl container mx-auto space-y-[48px] mt-[90px]">
+        <div class="">
+            <h1 class="lg:text-4xl text-2xl  font-marcellus">Most Popular Product</h1>
+        </div>
+        <div class="flex">
+            <ul
+                class="flex items-center justify-center lg:space-x-[92px] md:space-x-[41px] sm:space-x-[20px] space-x-[16px] font-marcellus cursor-pointer">
+                <li class="lg:text-2xl  hover:underline hover:text-primary duration-400 transition transform">Trees</li>
+                <li class="lg:text-2xl hover:underline hover:text-primary duration-400 transition transform">Ferns</li>
+                <li class="lg:text-2xl hover:underline hover:text-primary duration-400 transition transform">Herbs</li>
+                <li class="lg:text-2xl hover:underline hover:text-primary duration-400 transition transform">Shrubs</li>
+                <li class="lg:text-2xl hover:underline hover:text-primary duration-400 transition transform">Vines</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- product card category listing section  -->
+
+    <div class="max-w-screen-xl container mx-auto w-full gap-[16px]  mt-[48px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 place-items-center">
+        <!-- 1st -->
+        <div
+            class=" w-64 sm:w-72 md:w-64 p-2 items-center flex-col bg-white rounded-xl transform  shadow-lg hover:shadow-2xl  mb-4 lg:mt-0">
+            <!-- Product Image -->
+            <img src="https://images.unsplash.com/photo-1729429699438-a368290c581d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw5fHx8ZW58MHx8fHx8"
+                class="h-40  object-cover w-full rounded-xl flex items-center p-2" />
+
+            <div class="p-2">
+                <!-- header text -->
+                <h1 class="font-semibold text-lg  font-marcellus mb-2.4 ">The premeiour plant</h1>
+                <!-- header subtext -->
+                <span class="text-sm text-center text-[#636363] leading-3  font-marcellus">
+                    The organized floder of the iamge that should follow the image recogniton
+                </span>
+
+                <!-- discount pricing section -->
+                <div class="flex items-center gap-2 mt-2">
+                    <span class="text-md opacity-75 flex items-center gap-1 line-through text-[#64748B]">
+                        <svg width="10" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M6.66309 2.48047L6.34863 3.56055H0.00488281L0.319336 2.48047H6.66309ZM3.81934 10L0.203125 5.77539L0.196289 4.92773H1.86426C2.34733 4.92773 2.74609 4.84798 3.06055 4.68848C3.37956 4.52441 3.61882 4.30339 3.77832 4.02539C3.93783 3.7474 4.01758 3.43522 4.01758 3.08887C4.01758 2.7015 3.94238 2.36198 3.79199 2.07031C3.6416 1.77409 3.40462 1.54395 3.08105 1.37988C2.76204 1.21126 2.34277 1.12695 1.82324 1.12695H0.0185547L0.339844 0.046875H1.82324C2.61621 0.046875 3.27018 0.167643 3.78516 0.40918C4.30469 0.646159 4.69206 0.992513 4.94727 1.44824C5.20247 1.90397 5.33008 2.4554 5.33008 3.10254C5.33008 3.65853 5.22298 4.15755 5.00879 4.59961C4.79915 5.03711 4.45052 5.38118 3.96289 5.63184C3.47982 5.88249 2.82812 6.00781 2.00781 6.00781L5.37109 9.91797V10H3.81934ZM6.66309 0.046875L6.34863 1.12695H1.23535L1.5498 0.046875H6.66309Z"
+                                fill="#64748B"
+                                style="fill:#64748B;fill:color(display-p3 0.3922 0.4549 0.5451);fill-opacity:1;" />
+                        </svg>
+
+                        230</span>
+                    <span class="text-sm   text-[#48AD4A] ">50% off</span>
+                </div>
+                <!--  price  -->
+                <div class="flex items-center gap-2 ">
+                    <span class="text-lg  font-bold text-black gap-1  flex items-center">
+                        <svg width="10" height="12" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M6.66309 2.48047L6.34863 3.56055H0.00488281L0.319336 2.48047H6.66309ZM3.81934 10L0.203125 5.77539L0.196289 4.92773H1.86426C2.34733 4.92773 2.74609 4.84798 3.06055 4.68848C3.37956 4.52441 3.61882 4.30339 3.77832 4.02539C3.93783 3.7474 4.01758 3.43522 4.01758 3.08887C4.01758 2.7015 3.94238 2.36198 3.79199 2.07031C3.6416 1.77409 3.40462 1.54395 3.08105 1.37988C2.76204 1.21126 2.34277 1.12695 1.82324 1.12695H0.0185547L0.339844 0.046875H1.82324C2.61621 0.046875 3.27018 0.167643 3.78516 0.40918C4.30469 0.646159 4.69206 0.992513 4.94727 1.44824C5.20247 1.90397 5.33008 2.4554 5.33008 3.10254C5.33008 3.65853 5.22298 4.15755 5.00879 4.59961C4.79915 5.03711 4.45052 5.38118 3.96289 5.63184C3.47982 5.88249 2.82812 6.00781 2.00781 6.00781L5.37109 9.91797V10H3.81934ZM6.66309 0.046875L6.34863 1.12695H1.23535L1.5498 0.046875H6.66309Z"
+                                fill="#64748B"
+                                style="fill:#000205;fill:color(display-p3 0.3922 0.4549 0.5451);fill-opacity:100;" />
+                        </svg>
+                        230</span>
+                </div>
+                <!-- start rating -->
+                <div class="flex items-center mt-2 gap-1 mb-[12px]">
+                    <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+                    </svg>
+                    <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+                    </svg>
+                    <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+                    </svg>
+                    <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+                    </svg>
+                    <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+                    </svg>
+                    <p class="font-bold text-xs ">(20)</p>
+                </div>
+
+                <!-- Add to cart and buy now button  -->
+                <div class="lg:flex items-center justify-center w-full gap-[16px] mt-2 font-marcellus">
+                    <button
+                        class="px-4 py-1 rounded-lg bg-white text-primary border border-green-900 text-nowrap lg:w-1/2 w-full">Buy
+                        Now
+                        <button
+                            class="px-4 py-1 rounded-lg text-white border border-green-900 bg-primary text-nowrap  lg:w-1/2 w-full md:mt-4 mt-4 lg:mt-0">Add
+                            to cart</button>
+                </div>
+
+            </div>
+        </div>
+        
+
+
+    </div>
+
+
+    <!-- Blogcard -->
+
+    <div class="mt-[90px] px-4 max-w-screen-xl container mx-auto">
+        <h1 class="text-4xl lg:px-[80px] md:px-[40px] sm:px-[20px] px-[10px]  font-Marcellus">Latest Plant News</h1>
+
+        <div class="bg-gray-100 flex gap-[16px] flex-wrap items-center p-4 justify-center mt-[48px]">
+
+            <!-- 1st -->
+            <div class="relative max-w-sm  shadow-lg rounded-lg overflow-hidden">
+                <!-- Card Image -->
+                <img src="https://images.unsplash.com/photo-1634165461820-73bf7738457d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cGxhbnQlMjBpbWFnZXxlbnwwfHwwfHx8MA%3D%3D"
+                    alt="Blog Image" class="lg:w-[480px] md:w-[420px] sm:[360px] w-300px  object-cover">
+
+                <!-- Card Content -->
+                <div
+                    class="absolute bottom-0 px-4 py-4 bg-gradient-to-t from-black via-transparent to-transparent w-full text-white">
+                    <h3 class="text-lg font-bold mb-2">Lorem Ipsum has been the industry's standard dummy text...</h3>
+                    <p class="text-sm">May 12 2024</p>
+                </div>
+
+                <!-- Arrow Button -->
+                <div class="absolute bottom-2 right-6 bg-white p-2 rounded-full">
+                    <svg width="20" height="20" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M0 24C0 10.7452 10.7452 0 24 0C37.2548 0 48 10.7452 48 24C48 37.2548 37.2548 48 24 48C10.7452 48 0 37.2548 0 24Z"
+                            fill="white" style="fill:white;fill-opacity:1;" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M15.513 32.4856C15.3599 32.3326 15.2818 32.117 15.296 31.8863C15.3102 31.6556 15.4154 31.4288 15.5885 31.2557L29.6789 17.1653L19.4783 17.7915C19.3614 17.8027 19.2462 17.7905 19.1397 17.7553C19.0332 17.7202 18.9376 17.6629 18.8586 17.587C18.7795 17.511 18.7187 17.4179 18.6796 17.3132C18.6406 17.2085 18.6241 17.0943 18.6313 16.9776C18.6385 16.8608 18.6691 16.7437 18.7213 16.6334C18.7736 16.5231 18.8464 16.4218 18.9354 16.3355C19.0244 16.2492 19.1278 16.1798 19.2394 16.1312C19.351 16.0827 19.4686 16.0561 19.5851 16.0531L31.8847 15.2981C32.1152 15.2841 32.3306 15.3621 32.4836 15.5151C32.6365 15.6681 32.7146 15.8834 32.7006 16.1139L31.9455 28.4136C31.9425 28.5301 31.9159 28.6476 31.8674 28.7592C31.8189 28.8708 31.7494 28.9742 31.6631 29.0632C31.5769 29.1523 31.4755 29.2251 31.3652 29.2773C31.2549 29.3295 31.1379 29.3602 31.0211 29.3673C30.9043 29.3745 30.7901 29.3581 30.6854 29.319C30.5807 29.28 30.4876 29.2191 30.4117 29.1401C30.3357 29.061 30.2784 28.9654 30.2433 28.8589C30.2082 28.7524 30.1959 28.6373 30.2072 28.5203L30.8334 18.3197L16.743 32.4101C16.5698 32.5833 16.343 32.6885 16.1123 32.7026C15.8817 32.7168 15.6661 32.6387 15.513 32.4856Z"
+                            fill="#020617"
+                            style="fill:#020617;fill:color(display-p3 0.0078 0.0235 0.0902);fill-opacity:1;" />
+                    </svg>
+
+                </div>
+            </div>
+            <!-- 1st -->
+            <div class="relative max-w-sm  shadow-lg rounded-lg overflow-hidden">
+                <!-- Card Image -->
+                <img src="https://images.unsplash.com/photo-1634165461820-73bf7738457d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cGxhbnQlMjBpbWFnZXxlbnwwfHwwfHx8MA%3D%3D"
+                    alt="Blog Image" class="lg:w-[480px] md:w-[420px] sm:[360px] w-300px  object-cover">
+
+                <!-- Card Content -->
+                <div
+                    class="absolute bottom-0 px-4 py-4 bg-gradient-to-t from-black via-transparent to-transparent w-full text-white">
+                    <h3 class="text-lg font-bold mb-2">Lorem Ipsum has been the industry's standard dummy text...</h3>
+                    <p class="text-sm">May 12 2024</p>
+                </div>
+
+                <!-- Arrow Button -->
+                <div class="absolute bottom-2 right-6 bg-white p-2 rounded-full">
+                    <svg width="20" height="20" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M0 24C0 10.7452 10.7452 0 24 0C37.2548 0 48 10.7452 48 24C48 37.2548 37.2548 48 24 48C10.7452 48 0 37.2548 0 24Z"
+                            fill="white" style="fill:white;fill-opacity:1;" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M15.513 32.4856C15.3599 32.3326 15.2818 32.117 15.296 31.8863C15.3102 31.6556 15.4154 31.4288 15.5885 31.2557L29.6789 17.1653L19.4783 17.7915C19.3614 17.8027 19.2462 17.7905 19.1397 17.7553C19.0332 17.7202 18.9376 17.6629 18.8586 17.587C18.7795 17.511 18.7187 17.4179 18.6796 17.3132C18.6406 17.2085 18.6241 17.0943 18.6313 16.9776C18.6385 16.8608 18.6691 16.7437 18.7213 16.6334C18.7736 16.5231 18.8464 16.4218 18.9354 16.3355C19.0244 16.2492 19.1278 16.1798 19.2394 16.1312C19.351 16.0827 19.4686 16.0561 19.5851 16.0531L31.8847 15.2981C32.1152 15.2841 32.3306 15.3621 32.4836 15.5151C32.6365 15.6681 32.7146 15.8834 32.7006 16.1139L31.9455 28.4136C31.9425 28.5301 31.9159 28.6476 31.8674 28.7592C31.8189 28.8708 31.7494 28.9742 31.6631 29.0632C31.5769 29.1523 31.4755 29.2251 31.3652 29.2773C31.2549 29.3295 31.1379 29.3602 31.0211 29.3673C30.9043 29.3745 30.7901 29.3581 30.6854 29.319C30.5807 29.28 30.4876 29.2191 30.4117 29.1401C30.3357 29.061 30.2784 28.9654 30.2433 28.8589C30.2082 28.7524 30.1959 28.6373 30.2072 28.5203L30.8334 18.3197L16.743 32.4101C16.5698 32.5833 16.343 32.6885 16.1123 32.7026C15.8817 32.7168 15.6661 32.6387 15.513 32.4856Z"
+                            fill="#020617"
+                            style="fill:#020617;fill:color(display-p3 0.0078 0.0235 0.0902);fill-opacity:1;" />
+                    </svg>
+
+                </div>
+            </div>
+
+            <!-- 1st -->
+            <div class="relative max-w-sm  shadow-lg rounded-lg overflow-hidden">
+                <!-- Card Image -->
+                <img src="https://images.unsplash.com/photo-1634165461820-73bf7738457d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cGxhbnQlMjBpbWFnZXxlbnwwfHwwfHx8MA%3D%3D"
+                    alt="Blog Image" class="lg:w-[480px] md:w-[420px] sm:[360px] w-300px  object-cover">
+
+                <!-- Card Content -->
+                <div
+                    class="absolute bottom-0 px-4 py-4 bg-gradient-to-t from-black via-transparent to-transparent w-full text-white">
+                    <h3 class="text-lg font-bold mb-2">Lorem Ipsum has been the industry's standard dummy text...</h3>
+                    <p class="text-sm">May 12 2024</p>
+                </div>
+
+                <!-- Arrow Button -->
+                <div class="absolute bottom-2 right-6 bg-white p-2 rounded-full">
+                    <svg width="20" height="20" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M0 24C0 10.7452 10.7452 0 24 0C37.2548 0 48 10.7452 48 24C48 37.2548 37.2548 48 24 48C10.7452 48 0 37.2548 0 24Z"
+                            fill="white" style="fill:white;fill-opacity:1;" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M15.513 32.4856C15.3599 32.3326 15.2818 32.117 15.296 31.8863C15.3102 31.6556 15.4154 31.4288 15.5885 31.2557L29.6789 17.1653L19.4783 17.7915C19.3614 17.8027 19.2462 17.7905 19.1397 17.7553C19.0332 17.7202 18.9376 17.6629 18.8586 17.587C18.7795 17.511 18.7187 17.4179 18.6796 17.3132C18.6406 17.2085 18.6241 17.0943 18.6313 16.9776C18.6385 16.8608 18.6691 16.7437 18.7213 16.6334C18.7736 16.5231 18.8464 16.4218 18.9354 16.3355C19.0244 16.2492 19.1278 16.1798 19.2394 16.1312C19.351 16.0827 19.4686 16.0561 19.5851 16.0531L31.8847 15.2981C32.1152 15.2841 32.3306 15.3621 32.4836 15.5151C32.6365 15.6681 32.7146 15.8834 32.7006 16.1139L31.9455 28.4136C31.9425 28.5301 31.9159 28.6476 31.8674 28.7592C31.8189 28.8708 31.7494 28.9742 31.6631 29.0632C31.5769 29.1523 31.4755 29.2251 31.3652 29.2773C31.2549 29.3295 31.1379 29.3602 31.0211 29.3673C30.9043 29.3745 30.7901 29.3581 30.6854 29.319C30.5807 29.28 30.4876 29.2191 30.4117 29.1401C30.3357 29.061 30.2784 28.9654 30.2433 28.8589C30.2082 28.7524 30.1959 28.6373 30.2072 28.5203L30.8334 18.3197L16.743 32.4101C16.5698 32.5833 16.343 32.6885 16.1123 32.7026C15.8817 32.7168 15.6661 32.6387 15.513 32.4856Z"
+                            fill="#020617"
+                            style="fill:#020617;fill:color(display-p3 0.0078 0.0235 0.0902);fill-opacity:1;" />
+                    </svg>
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <!-- footer -->
+    <footer class="bg-white text-gray-800 mt-[90px] w-full  border-0 border-blue-700">
+        <div class="font-marcellus py-[24px] lg:h-[260px] p-4 max-w-screen-xl mx-auto border-0 border-blue-500">
+            <!-- Flexbox for large screens, stack on mobile -->
+            <div class="flex flex-col md:flex-row justify-between border-0 border-blue-500">
+                <!-- Left Section: Company Info and Social Links -->
+                <div class="mb-8 md:mb-0 md:w-1/3 border-0 border-blue-500">
+                    <h3 class="text-2xl font-semi-bold text-green-900 mb-4">GreenNatures</h3>
+                    <p class="text-gray-600 mb-4 text-wrap lg:w-[296px] w-[198px] ">
+                        Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia
+
+                    </p>
+                    <div class="flex space-x-4">
+                        <!-- Social Media Icons -->
+                        <a href="#" class="text-gray-500 hover:text-gray-900">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-500 hover:text-gray-900">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-500 hover:text-gray-900">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-500 hover:text-gray-900">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Section: Links -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:w-2/3 border-0 border-blue-500">
+                    <!-- Column 1: Our Company -->
+                    <div class="border-0 border-blue-500">
+                        <h4 class="font-semibold text-gray-900 mb-4">Our Company</h4>
+                        <ul>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Home</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">About</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Services</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">News</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 2: Services -->
+                    <div class="border-0 border-blue-500">
+                        <h4 class="font-semibold text-gray-900 mb-4">Services</h4>
+                        <ul>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Market Research</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Market Analysis</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">SEO Consultancy</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Page Ranking</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">SMM</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 3: Services -->
+                    <div class="border-0 border-blue-500">
+                        <h4 class="font-semibold text-gray-900 mb-4">Services</h4>
+                        <ul>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Market Research</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Market Analysis</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">SEO Consultancy</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Page Ranking</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">SMM</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 4: Features -->
+                    <div class="border-0 border-blue-500">
+                        <h4 class="font-semibold text-gray-900 mb-4">Features</h4>
+                        <ul>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Brand Strategy</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Audience Analytics</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Copywriting</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Team Training</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Email Marketing</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom with Full Width Background -->
+        <div class="bg-green-800 w-full py-4 overflow-hidden border-0 border-blue-500">
+            <p class="text-center text-gray-200 lg:text-nowrap md:text-nowrap px-8 border-0 border-blue-500">All
+                Copyrights are reserved by
+                Mamdou Ghaneemy</p>
+        </div>
+        
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const menuList = document.getElementById('menu-list');
+        const closeBtn = document.getElementById('menu-close-btn');
+
+
+
+        // Show mobile menu
+        menuBtn.addEventListener('click', () => {
+            menuList.classList.remove('hidden');
+            menuList.classList.remove('slide-out-left');
+            menuList.classList.add('slide-in-left');
+        });
+
+        // Hide mobile menu
+        closeBtn.addEventListener('click', () => {
+            menuList.classList.remove('slide-in-left');
+            menuList.classList.add('slide-out-left');
+            setTimeout(() => menuList.classList.add('hidden'), 300); // Delay hiding the menu to allow transition
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const carousel = document.querySelector(".carousel");
+            const leftArrowButton = document.getElementById("prevBtn");
+            const rightArrowButton = document.getElementById("nextBtn");
+            const firstCard = carousel.querySelector(".card");
+
+            if (!firstCard) {
+                console.error("Error: The '.card' element inside '.carousel' could not be found.");
+                return;
+            }
+
+            const firstCardWidth = firstCard.offsetWidth;
+            let isDragging = false, startX, startScrollLeft;
+
+            // Scroll buttons
+            leftArrowButton.addEventListener("click", () => {
+                carousel.scrollLeft -= firstCardWidth;
+            });
+            rightArrowButton.addEventListener("click", () => {
+                carousel.scrollLeft += firstCardWidth;
+            });
+
+            const dragStart = (e) => {
+                isDragging = true;
+                startX = e.pageX || e.touches[0].pageX;
+                startScrollLeft = carousel.scrollLeft;
+            };
+
+            const dragging = (e) => {
+                if (!isDragging) return;
+                const x = e.pageX || e.touches[0].pageX;
+                const walk = (x - startX);
+                carousel.scrollLeft = startScrollLeft - walk;
+            };
+
+            const dragStop = () => {
+                isDragging = false;
+            };
+
+            // Mouse events for dragging
+            carousel.addEventListener("mousedown", dragStart);
+            carousel.addEventListener("mousemove", dragging);
+            document.addEventListener("mouseup", dragStop);
+
+            // Touch events for dragging on mobile
+            carousel.addEventListener("touchstart", dragStart);
+            carousel.addEventListener("touchmove", dragging);
+            carousel.addEventListener("touchend", dragStop);
+        });
+
+
+    </script>
+</body>
+
+</html>

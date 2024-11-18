@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Production Ready Breadcrumb</title>
+    <link href="../../dist/styles/output.css" rel="stylesheet">
+    <style>
+        /* Responsive breadcrumb background image */
+        .breadcrumb-bg {
+            background-image: url('https://plus.unsplash.com/premium_photo-1677756430603-f081a25b0aa7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: relative;
+            width: 100%;
+            height: 664px;
+        }
+
+        /* Smooth linear gradient overlay */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(34, 139, 34, 0.8) 0%, rgba(0, 0, 0, 0.5) 100%);
+            z-index: 1;
+        }
+
+        /* Breadcrumb text above the overlay */
+        .breadcrumb-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Custom green shadow for text */
+        .breadcrumb-shadow {
+            text-shadow: 2px 2px 8px rgba(0, 128, 0, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <div class="w-full">
+        <div class="breadcrumb-bg flex items-center justify-center">
+            <!-- Linear gradient overlay -->
+            <div class="overlay"></div>
+
+            <!-- Inner container for breadcrumb content -->
+            <div class="relative max-w-screen-xl w-full px-4 text-center breadcrumb-content">
+                <!-- Breadcrumb text with custom shadow -->
+                <div class="space-y-6">
+                    <h1 class="text-4xl font-marcellus text-white breadcrumb-shadow">Welcome to Greenatures</h1>
+                    <button class="bg-green-600 hover:bg-green-700 transition-colors text-white px-6 py-2 rounded-lg">
+                        Shop Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="../../dist/styles/output.css" rel="stylesheet">
+    <style>
+        .slide-in-left {
+            transform: translateX(0);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .slide-out-left {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Hides scrollbar for a cleaner look */
+        .carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Custom green shadow for the breadcrumb text */
+        .breadcrumb-shadow {
+            text-shadow: 2px 2px 5px rgba(0, 128, 0, 0.7);
+        }
+
+        /* Responsive breadcrumb background image */
+        .breadcrumb-bg {
+            background-image: url('https://images.unsplash.com/photo-1599307690923-8ffea24780e0?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: relative;
+            width: 100%;
+            /* Ensures full width */
+        }
+
+        /* Light green overlay */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 38, 15, 0.758);
+            z-index: 1;
+        }
+
+        /* Breadcrumb text above the overlay */
+        .breadcrumb-content {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+
+<body class="bg-[#F6F6F6]">
+    <!-- Navbar  -->
+    <!-- Navbar  -->
+    <header class="inset-x-0 top-0 z-50  w-full border-0 bg-white border-red-500" id="header">
+
+        <div class="block  border-0 border-slate-700 mx-auto max-w-screen-xl">
+            <nav class="flex items-center max-w-screen-xl justify-between container mx-auto p-2 lg:py-2  font-marcellus border-0 border-blue-500"
+                aria-label="Global">
+                <!-- Logo -->
+                <div class="border-0 border-blue-500">
+                    <a href="/" class="">
+                        <span class="font-marcellus lg:text-[32px] text-[24px] text-green-700">GreenNatures</span>
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="flex lg:hidden border-0 border-blue-500" id="menu-btn">
+                    <button type="button"
+                        class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                            aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Menu listing and Login/Cart for large screens -->
+                <div
+                    class="hidden lg:flex items-center space-x-6 font-marcellus flex-1 justify-end text-nowrap border-0 border-blue-500">
+                    <a href="/" class="text-md leading-6 text-gray-900 border-0 border-blue-500">Home</a>
+                    <a href="Aboutus.html" class="text-md leading-6 text-gray-900 border-0 border-blue-500">About
+                        us</a>
+                    <a href="ProductList01.html"
+                        class="text-md leading-6 text-gray-900 border-0 border-blue-500">Products</a>
+                    <a href="Blog.html" class="text- leading-6 text-gray-900 border-0 border-blue-500">Blogs</a>
+                    <a href="Contactus.html" md class="text-md leading-6 text-gray-900 border-0 border-blue-500">Contact
+                        us</a>
+                    <div class="flex justify-center items-center gap-4 border-0 border-blue-500">
+                        <a href="#"
+                            class="text-md leading font-marcellus text-gray-900 underline border-0 border-red-500">Log
+                            in</a>
+                        <a href="#"
+                            class="flex gap-2 items-center text-md leading font-marcellus text-gray-900 border-0 border-red-500">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M21.8257 5.96903C21.7562 5.88583 21.6692 5.81891 21.571 5.773C21.4728 5.72709 21.3657 5.7033 21.2573 5.70332H6.32177L5.75887 2.60827C5.72786 2.43761 5.63795 2.28324 5.50479 2.17208C5.37164 2.06093 5.20369 2.00003 5.03024 2H2.74066C2.54423 2 2.35584 2.07803 2.21694 2.21694C2.07803 2.35584 2 2.54423 2 2.74066C2 2.9371 2.07803 3.12549 2.21694 3.26439C2.35584 3.40329 2.54423 3.48133 2.74066 3.48133H4.40716L6.77358 16.4698C6.84328 16.855 7.01352 17.2149 7.26704 17.5132C6.91712 17.84 6.66456 18.2574 6.53736 18.719C6.41016 19.1806 6.41329 19.6684 6.54641 20.1284C6.67952 20.5883 6.93742 21.0024 7.29151 21.3247C7.6456 21.647 8.08203 21.865 8.55243 21.9544C9.02282 22.0438 9.50879 22.0012 9.95644 21.8313C10.4041 21.6614 10.7959 21.3708 11.0885 20.9918C11.3811 20.6128 11.563 20.1601 11.6141 19.684C11.6651 19.208 11.5833 18.727 11.3777 18.2946H15.5828C15.4171 18.6415 15.3314 19.0212 15.3319 19.4056C15.3319 19.9183 15.484 20.4195 15.7688 20.8458C16.0537 21.2721 16.4585 21.6044 16.9322 21.8006C17.4059 21.9968 17.9271 22.0481 18.43 21.9481C18.9329 21.8481 19.3948 21.6012 19.7573 21.2386C20.1199 20.8761 20.3668 20.4142 20.4668 19.9113C20.5668 19.4085 20.5155 18.8872 20.3193 18.4136C20.1231 17.9399 19.7908 17.535 19.3645 17.2502C18.9382 16.9653 18.437 16.8133 17.9243 16.8133H8.95946C8.78601 16.8132 8.61806 16.7523 8.48491 16.6412C8.35176 16.53 8.26184 16.3757 8.23083 16.205L7.93734 14.5913H18.677C19.1973 14.5912 19.7012 14.4085 20.1006 14.075C20.5001 13.7415 20.7698 13.2785 20.8629 12.7665L21.9887 6.57638C22.0077 6.46939 22.003 6.35951 21.9748 6.25455C21.9467 6.14959 21.8958 6.05211 21.8257 5.96903ZM10.1473 19.4056C10.1473 19.6253 10.0821 19.8401 9.96006 20.0228C9.83799 20.2055 9.66447 20.3479 9.46146 20.432C9.25846 20.5161 9.03507 20.5381 8.81956 20.4952C8.60405 20.4524 8.40609 20.3466 8.25071 20.1912C8.09534 20.0358 7.98952 19.8379 7.94666 19.6223C7.90379 19.4068 7.92579 19.1834 8.00988 18.9804C8.09397 18.7774 8.23637 18.6039 8.41907 18.4818C8.60177 18.3598 8.81657 18.2946 9.0363 18.2946C9.33096 18.2946 9.61354 18.4117 9.8219 18.62C10.0302 18.8284 10.1473 19.1109 10.1473 19.4056ZM19.0353 19.4056C19.0353 19.6253 18.9701 19.8401 18.848 20.0228C18.7259 20.2055 18.5524 20.3479 18.3494 20.432C18.1464 20.5161 17.923 20.5381 17.7075 20.4952C17.492 20.4524 17.2941 20.3466 17.1387 20.1912C16.9833 20.0358 16.8775 19.8379 16.8346 19.6223C16.7918 19.4068 16.8138 19.1834 16.8978 18.9804C16.9819 18.7774 17.1243 18.6039 17.307 18.4818C17.4897 18.3598 17.7045 18.2946 17.9243 18.2946C18.2189 18.2946 18.5015 18.4117 18.7099 18.62C18.9182 18.8284 19.0353 19.1109 19.0353 19.4056Z"
+                                    fill="black" style="fill:black;fill-opacity:1;" />
+                            </svg>
+                            Cart
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- mobile menu list section -->
+        <div class="lg:hidden fixed inset-0 z-50 hidden slide-out-left " id="menu-list">
+            <div class="fixed inset-0 bg-gray-900 bg-opacity-25 blur"></div>
+            <div class="fixed inset-y-0 left-0 w-64 bg-white px-6 py-6">
+                <div class="flex items-center justify-between">
+                    <a href="#" class="text-2xl font-regular text-green-700">GreenNatures</a>
+                    <button id="menu-close-btn" type="button" class="-m-2.5 p-2.5 text-gray-700">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="mt-6 space-y-2">
+                    <a href="#"
+                        class="block px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 hover:underline ">Home</a>
+                    <a href="#"
+                        class="block px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 hover:underline ">About
+                        us</a>
+                    <a href="#"
+                        class="block px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 hover:underline ">Products</a>
+                    <a href="#"
+                        class="block px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 hover:underline ">Blogs</a>
+                    <a href="#"
+                        class="block px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 hover:underline ">Contact
+                        us</a>
+                    <a href="#"
+                        class="block px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 hover:underline ">Log
+                        in</a>
+                    <a href="#"
+                        class="flex gap-2 items-center px-3 py-2 text-base font-semibold text-gray-900 hover:underline  hover:bg-gray-50">
+                        <!-- <img src="../assets/Cart.svg" alt=""> -->
+                        Cart
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Breadcrumb -->
+    <div class="w-full">
+        <div class="breadcrumb-bg h-12 md:h-16 lg:h-16 flex items-center justify-center">
+            <!-- Light green overlay -->
+            <div class="overlay"></div>
+
+            <!-- Inner container for breadcrumb content, centered and limited to max-w-screen-xl -->
+            <div class="relative max-w-screen-xl w-full px-4 breadcrumb-content">
+                <!-- Breadcrumb text with custom shadow -->
+                <nav
+                    class="text-white text-sm md:text-xl lg:text-2xl breadcrumb-shadow flex items-center font-marcellus leading-3">
+                    <a href="#" class="text-lg">Home</a>
+                    <span class="mx-1 md:mx-2">
+                        <svg width="24" height="28" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 12L31 24L19 36" stroke="white" stroke-width="4" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                    <a href="#" class="text-lg">Product</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+
+    <div>
+
+        <div class="flex flex-col justify-center items-center my-[48px]">
+
+            <!-- Filter product, section,  -->
+            <div class="max-w-screen-xl mx-auto container block lg:flex gap-4  p-4">
+
+                <!-- Left section -->
+                <div class="border-none  border-blue-500">
+
+                    <aside
+                        class="bg-white p-4 w-80 border-0 border-gray-800 rounded-lg shadow-lg space-y-6 lg:flex flex-col hidden">
+                        <!-- Filter Sidebar -->
+                        <div class="flex items-center justify-between ">
+                            <span class="text-primaryLight text-lg font-marcellus font-bold">Filters</span>
+                            <button class="border-none text-[#475569] rounded-2xl hover:bg-gray-100">Clear All</button>
+                        </div>
+                        <!-- Category Filter -->
+                        <div>
+                            <h3 class="font-bold text-lg mb-4">Category</h3>
+                            <ul class="space-y-2">
+                                <li><input type="checkbox" id="category1" class="mr-2"><label
+                                        for="category1">Lorem</label></li>
+                                <li><input type="checkbox" id="category2" class="mr-2"><label
+                                        for="category2">Lorem</label></li>
+                                <li><input type="checkbox" id="category3" class="mr-2"><label
+                                        for="category3">Lorem</label></li>
+                                <li><input type="checkbox" id="category4" class="mr-2"><label
+                                        for="category4">Lorem</label></li>
+                                <li><input type="checkbox" id="category5" class="mr-2"><label
+                                        for="category5">Lorem</label></li>
+                                <li><a href="#" class="text-blue-500 text-sm">Show more</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Ratings Filter -->
+                        <div>
+                            <h3 class="font-bold text-lg mb-4">Ratings</h3>
+                            <ul class="space-y-2">
+                                <li><input type="checkbox" id="rating5" class="mr-2"><label for="rating5">⭐⭐⭐⭐⭐ & up
+                                        (1991)</label></li>
+                                <li><input type="checkbox" id="rating4" class="mr-2"><label for="rating4">⭐⭐⭐⭐ & up
+                                        (200)</label></li>
+                                <li><input type="checkbox" id="rating3" class="mr-2"><label for="rating3">⭐⭐⭐ & up
+                                        (200)</label>
+                                </li>
+                                <li><input type="checkbox" id="rating2" class="mr-2"><label for="rating2">⭐⭐ & up
+                                        (200)</label>
+                                </li>
+                                <li><input type="checkbox" id="rating1" class="mr-2"><label for="rating1">⭐ & up
+                                        (200)</label>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Brand Filter -->
+                        <div>
+                            <h3 class="font-bold text-lg mb-4">Brand</h3>
+                            <ul class="space-y-2">
+                                <li><input type="checkbox" id="brand1" class="mr-2"><label for="brand1">Lorem</label>
+                                </li>
+                                <li><input type="checkbox" id="brand2" class="mr-2"><label for="brand2">Lorem</label>
+                                </li>
+                                <li><input type="checkbox" id="brand3" class="mr-2"><label for="brand3">Lorem</label>
+                                </li>
+                                <li><input type="checkbox" id="brand4" class="mr-2"><label for="brand4">Lorem</label>
+                                </li>
+                                <li><a href="#" class="text-blue-500 text-sm">Show more</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Price Filter -->
+                        <div>
+                            <h3 class="font-bold text-lg mb-4">Price</h3>
+                            <input type="range" min="0" max="200" value="100" class="w-full">
+                            <div class="flex justify-between text-sm mt-2">
+                                <span>₹0</span><span>₹200</span>
+                            </div>
+                        </div>
+
+                        <!-- Size Filter -->
+                        <div>
+                            <h3 class="font-bold text-lg mb-4">Size</h3>
+                            <input type="range" min="5" max="10" value="7" class="w-full">
+                            <div class="flex justify-between text-sm mt-2">
+                                <span>5</span><span>10</span>
+                            </div>
+                        </div>
+
+
+                    </aside>
+
+                </div>
+
+
+                <!-- Right section -->
+                <div class="border-0 border-red-700 w-full">
+
+                    <div class="flex justify-between p-2 items-center mb-6 border-2 border-gray-700 rounded-lg w-full">
+                        <div class="flex items-center">
+                            <select class="p-2 border-none  outline-none bg-[#F6F6F6] rounded-lg">
+                                <option>Sort by Features</option>
+                                <option>Price: Low to High</option>
+                                <option>Price: High to Low</option>
+                            </select>
+                        </div>
+                        <div class="flex gap-1 border-none border-blue-600">
+                            <!-- Button to open the drawer -->
+                            <button onclick="toggleDrawer()" class=" text-black rounded lg:hidden">
+                                <svg width="24" height="16" class="fill-current text-black" viewBox="0 0 16 18"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M10.0011 9V16.88C10.0411 17.18 9.94111 17.5 9.71111 17.71C9.61859 17.8027 9.5087 17.8763 9.38773 17.9264C9.26676 17.9766 9.13708 18.0024 9.00611 18.0024C8.87514 18.0024 8.74546 17.9766 8.62448 17.9264C8.50351 17.8763 8.39362 17.8027 8.30111 17.71L6.29111 15.7C6.18211 15.5933 6.09922 15.4629 6.04892 15.319C5.99861 15.175 5.98225 15.0213 6.00111 14.87V9H5.97111L0.211108 1.62C0.0487158 1.41153 -0.0245586 1.14726 0.00729555 0.88493C0.0391497 0.622602 0.173543 0.383546 0.381108 0.22C0.571108 0.08 0.781108 0 1.00111 0H15.0011C15.2211 0 15.4311 0.08 15.6211 0.22C15.8287 0.383546 15.9631 0.622602 15.9949 0.88493C16.0268 1.14726 15.9535 1.41153 15.7911 1.62L10.0311 9H10.0011Z" />
+                                </svg>
+
+                            </button>
+
+                            <button class="rounded-lg">
+                                <svg width="24" height="24" viewBox="0 0 41 40" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M9.7988 17.5003C9.03102 17.5003 8.39047 17.2437 7.87713 16.7303C7.3638 16.217 7.10658 15.5764 7.10547 14.8087V9.35866C7.10547 8.59199 7.36269 7.95199 7.87713 7.43866C8.39158 6.92533 9.03213 6.6681 9.7988 6.66699H15.2471C16.0138 6.66699 16.6544 6.92421 17.1688 7.43866C17.6832 7.9531 17.9399 8.59366 17.9388 9.36032V14.8087C17.9388 15.5753 17.6821 16.2159 17.1688 16.7303C16.6555 17.2448 16.0149 17.5014 15.2471 17.5003H9.7988ZM9.7988 33.3336C9.03102 33.3336 8.39047 33.077 7.87713 32.5636C7.3638 32.0503 7.10658 31.4092 7.10547 30.6403V25.1936C7.10547 24.4259 7.36269 23.7853 7.87713 23.272C8.39158 22.7586 9.03213 22.5014 9.7988 22.5003H15.2471C16.0138 22.5003 16.6544 22.7575 17.1688 23.272C17.6832 23.7864 17.9399 24.427 17.9388 25.1936V30.642C17.9388 31.4086 17.6821 32.0492 17.1688 32.5636C16.6555 33.0781 16.0149 33.3348 15.2471 33.3336H9.7988ZM25.6321 17.5003C24.8643 17.5003 24.2238 17.2437 23.7105 16.7303C23.1971 16.217 22.9399 15.5764 22.9388 14.8087V9.35866C22.9388 8.59199 23.196 7.95199 23.7105 7.43866C24.2249 6.92533 24.8655 6.6681 25.6321 6.66699H31.0805C31.8471 6.66699 32.4877 6.92421 33.0021 7.43866C33.5166 7.9531 33.7732 8.59366 33.7721 9.36032V14.8087C33.7721 15.5753 33.5154 16.2159 33.0021 16.7303C32.4888 17.2448 31.8477 17.5014 31.0788 17.5003H25.6321ZM25.6321 33.3336C24.8643 33.3336 24.2238 33.077 23.7105 32.5636C23.1971 32.0503 22.9399 31.4092 22.9388 30.6403V25.1936C22.9388 24.4259 23.196 23.7853 23.7105 23.272C24.2249 22.7586 24.8655 22.5014 25.6321 22.5003H31.0805C31.8471 22.5003 32.4877 22.7575 33.0021 23.272C33.5166 23.7864 33.7732 24.427 33.7721 25.1936V30.642C33.7721 31.4086 33.5154 32.0492 33.0021 32.5636C32.4888 33.0781 31.8477 33.3348 31.0788 33.3336H25.6321Z"
+                                        fill="#1E293B"
+                                        style="fill:#1E293B;fill:color(display-p3 0.1176 0.1608 0.2314);fill-opacity:1;" />
+                                </svg>
+                            </button>
+
+
+                            <button class="rounded-lg">
+                                <svg width="24" height="24" viewBox="0 0 41 40" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M7.14691 25.7144C7.68056 25.7144 8.19236 25.9402 8.56971 26.3421C8.94706 26.7439 9.15905 27.289 9.15905 27.8573C9.15905 28.4256 8.94706 28.9706 8.56971 29.3725C8.19236 29.7744 7.68056 30.0001 7.14691 30.0001C6.61326 30.0001 6.10146 29.7744 5.72411 29.3725C5.34676 28.9706 5.13477 28.4256 5.13477 27.8573C5.13477 27.289 5.34676 26.7439 5.72411 26.3421C6.10146 25.9402 6.61326 25.7144 7.14691 25.7144ZM31.2913 26.4287C32.0331 26.4287 32.6341 27.063 32.6341 27.8573C32.6341 28.6466 32.0371 29.2859 31.2913 29.2859H12.514C12.3376 29.2864 12.1629 29.2499 11.9998 29.1783C11.8367 29.1067 11.6886 29.0015 11.5638 28.8688C11.439 28.736 11.3401 28.5783 11.2727 28.4047C11.2053 28.2312 11.1708 28.0451 11.1712 27.8573C11.1712 27.068 11.7681 26.4287 12.514 26.4287H31.2913ZM7.14691 18.5716C7.68056 18.5716 8.19236 18.7973 8.56971 19.1992C8.94706 19.6011 9.15905 20.1461 9.15905 20.7144C9.15905 21.2827 8.94706 21.8278 8.56971 22.2297C8.19236 22.6315 7.68056 22.8573 7.14691 22.8573C6.61326 22.8573 6.10146 22.6315 5.72411 22.2297C5.34676 21.8278 5.13477 21.2827 5.13477 20.7144C5.13477 20.1461 5.34676 19.6011 5.72411 19.1992C6.10146 18.7973 6.61326 18.5716 7.14691 18.5716ZM31.2913 19.2859C32.0331 19.2859 32.6341 19.9201 32.6341 20.7144C32.6341 21.5037 32.0371 22.143 31.2913 22.143H12.514C12.3376 22.1436 12.1629 22.107 11.9998 22.0354C11.8367 21.9639 11.6886 21.8587 11.5638 21.7259C11.439 21.5932 11.3401 21.4355 11.2727 21.2619C11.2053 21.0883 11.1708 20.9023 11.1712 20.7144C11.1712 19.9251 11.7681 19.2859 12.514 19.2859H31.2913ZM7.14691 11.4287C7.68056 11.4287 8.19236 11.6545 8.56971 12.0563C8.94706 12.4582 9.15905 13.0032 9.15905 13.5716C9.15905 14.1399 8.94706 14.6849 8.56971 15.0868C8.19236 15.4887 7.68056 15.7144 7.14691 15.7144C6.61326 15.7144 6.10146 15.4887 5.72411 15.0868C5.34676 14.6849 5.13477 14.1399 5.13477 13.5716C5.13477 13.0032 5.34676 12.4582 5.72411 12.0563C6.10146 11.6545 6.61326 11.4287 7.14691 11.4287ZM31.2913 12.143C32.0331 12.143 32.6341 12.7773 32.6341 13.5716C32.6341 14.3609 32.0371 15.0001 31.2913 15.0001H12.514C12.3376 15.0007 12.1629 14.9641 11.9998 14.8926C11.8367 14.821 11.6886 14.7158 11.5638 14.5831C11.439 14.4503 11.3401 14.2926 11.2727 14.119C11.2053 13.9454 11.1708 13.7594 11.1712 13.5716C11.1712 12.7823 11.7681 12.143 12.514 12.143H31.2913Z"
+                                        fill="#1E293B"
+                                        style="fill:#1E293B;fill:color(display-p3 0.1176 0.1608 0.2314);fill-opacity:1;" />
+                                </svg>
+                            </button>
+
+
+                        </div>
+                    </div>
+
+                    <!-- Product Cards Container -->
+                    <div id="product-container"
+                        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mx-auto gap-4 max-w-screen-lg mb-6 ">
+                    </div>
+
+                    <!-- Pagination Controls -->
+                    <div class="flex justify-center items-center space-x-4">
+                        <button id="prev-btn" onclick="prevPage()" class="p-2 bg-gray-300 rounded disabled:opacity-50"
+                            disabled>Previous</button>
+                        <span id="page-info" class="font-semibold">Page 1 of 1</span>
+                        <button id="next-btn" onclick="nextPage()"
+                            class="p-2 bg-gray-300 rounded disabled:opacity-50">Next</button>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Drawer (Sidebar) -->
+            <div id="drawer"
+                class="fixed top-0 left-0 z-50 h-full w-64  bg-white transform -translate-x-full drawer-transition">
+                <div class="flex justify-between items-center p-4 border-b border-gray-600">
+                    <span class="text-xl font-semibold">Menu</span>
+                    <button onclick="toggleDrawer()" class="text-2xl">
+                        &times;
+                    </button>
+                </div>
+                <!-- Filter Sidebar -->
+                <div class="flex px-4 tems-center text-green-800 justify-between ">
+                    <span class="text-primaryLight text-lg font-marcellus font-bold">Filters</span>
+                    <button class="border-none px-4 py-2 text-[#475569] rounded-2xl hover:bg-gray-100">Clear
+                        All</button>
+                </div>
+                <aside
+                    class="px-4 border-none border-gray-800 rounded-lg shadow-lg overflow-scroll  h-full space-y-6  ">
+                    <!-- Category Filter -->
+                    <div>
+                        <h3 class="font-bold text-lg mb-4">Category</h3>
+                        <ul class="space-y-2">
+                            <li><input type="checkbox" id="category1" class="mr-2"><label for="category1">Lorem</label>
+                            </li>
+                            <li><input type="checkbox" id="category2" class="mr-2"><label for="category2">Lorem</label>
+                            </li>
+                            <li><input type="checkbox" id="category3" class="mr-2"><label for="category3">Lorem</label>
+                            </li>
+                            <li><input type="checkbox" id="category4" class="mr-2"><label for="category4">Lorem</label>
+                            </li>
+                            <li><input type="checkbox" id="category5" class="mr-2"><label for="category5">Lorem</label>
+                            </li>
+                            <li><a href="#" class="text-blue-500 text-sm">Show more</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Ratings Filter -->
+                    <div>
+                        <h3 class="font-bold text-lg mb-4">Ratings</h3>
+                        <ul class="space-y-2">
+                            <li><input type="checkbox" id="rating5" class="mr-2"><label for="rating5">⭐⭐⭐⭐⭐ & up
+                                    (1991)</label></li>
+                            <li><input type="checkbox" id="rating4" class="mr-2"><label for="rating4">⭐⭐⭐⭐ & up
+                                    (200)</label></li>
+                            <li><input type="checkbox" id="rating3" class="mr-2"><label for="rating3">⭐⭐⭐ & up
+                                    (200)</label>
+                            </li>
+                            <li><input type="checkbox" id="rating2" class="mr-2"><label for="rating2">⭐⭐ & up
+                                    (200)</label>
+                            </li>
+                            <li><input type="checkbox" id="rating1" class="mr-2"><label for="rating1">⭐ & up
+                                    (200)</label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Brand Filter -->
+                    <div>
+                        <h3 class="font-bold text-lg mb-4">Brand</h3>
+                        <ul class="space-y-2">
+                            <li><input type="checkbox" id="brand1" class="mr-2"><label for="brand1">Lorem</label></li>
+                            <li><input type="checkbox" id="brand2" class="mr-2"><label for="brand2">Lorem</label></li>
+                            <li><input type="checkbox" id="brand3" class="mr-2"><label for="brand3">Lorem</label></li>
+                            <li><input type="checkbox" id="brand4" class="mr-2"><label for="brand4">Lorem</label></li>
+                            <li><a href="#" class="text-blue-500 text-sm">Show more</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Ratings Filter -->
+                    <div>
+                        <h3 class="font-bold text-lg mb-4">Ratings</h3>
+                        <ul class="space-y-2">
+                            <li><input type="checkbox" id="rating5" class="mr-2"><label for="rating5">⭐⭐⭐⭐⭐ & up
+                                    (1991)</label></li>
+                            <li><input type="checkbox" id="rating4" class="mr-2"><label for="rating4">⭐⭐⭐⭐ & up
+                                    (200)</label></li>
+                            <li><input type="checkbox" id="rating3" class="mr-2"><label for="rating3">⭐⭐⭐ & up
+                                    (200)</label>
+                            </li>
+                            <li><input type="checkbox" id="rating2" class="mr-2"><label for="rating2">⭐⭐ & up
+                                    (200)</label>
+                            </li>
+                            <li><input type="checkbox" id="rating1" class="mr-2"><label for="rating1">⭐ & up
+                                    (200)</label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Brand Filter -->
+                    <div>
+                        <h3 class="font-bold text-lg mb-4">Brand</h3>
+                        <ul class="space-y-2">
+                            <li><input type="checkbox" id="brand1" class="mr-2"><label for="brand1">Lorem</label></li>
+                            <li><input type="checkbox" id="brand2" class="mr-2"><label for="brand2">Lorem</label></li>
+                            <li><input type="checkbox" id="brand3" class="mr-2"><label for="brand3">Lorem</label></li>
+                            <li><input type="checkbox" id="brand4" class="mr-2"><label for="brand4">Lorem</label></li>
+                            <li><a href="#" class="text-blue-500 text-sm">Show more</a></li>
+                        </ul>
+                    </div>
+
+
+                    <!-- Price Filter -->
+                    <div>
+                        <h3 class="font-bold text-lg mb-4">Price</h3>
+                        <input type="range" min="0" max="200" value="100" class="w-full">
+                        <div class="flex justify-between text-sm mt-2">
+                            <span>₹0</span><span>₹200</span>
+                        </div>
+                    </div>
+
+                    <!-- Size Filter -->
+                    <div>
+                        <h3 class="font-bold text-lg mb-4">Size</h3>
+                        <input type="range" min="5" max="10" value="7" class="w-full">
+                        <div class="flex justify-between text-sm mt-2">
+                            <span>5</span><span>10</span>
+                        </div>
+                    </div>
+
+
+                </aside>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Footer -->
+    <footer class=" text-gray-800 w-full border-0 bg-white border-gray-800 font-marcellus backImage">
+        <div
+            class="font-sans lg:py-[96px] lg:px-0 px-4 md:py-[48px] py-[16px]  max-w-screen-xl mx-auto border-0 my-[0px] border-yellow-600">
+            <div class="flex flex-col lg:flex-row justify-between border-0">
+
+                <!-- Left Section: Company Info and Social Links -->
+                <div class="mb-0 lg:mb-0 md:w-1/4 border-0 flex flex-col justify-between border-blue-500">
+
+                    <div class="flex flex-col gap-4">
+                        <div class="flex items-center">
+
+                            <h3 class="text-xl font-medium font-marcellus border-0 border-blue-600 text-green-700">
+                                GreenNatures</h3>
+                        </div>
+
+                        <div class="border-0 ">
+                            <p class="text-gray-600 text-xs mb-1">Address: 451 Wall Street, UK, London</p>
+                            <p class="text-gray-600 text-xs mb-1">Email: example@info.com</p>
+                            <p class="text-gray-600 text-xs mb-1">Phone: +919912121211</p>
+                        </div>
+                    </div>
+
+                    <!-- Social Profiles -->
+                    <div class="flex space-x-4 mt-4 border-0 border-red-800 items-center justify-start ">
+                        <!-- facebook -->
+                        <a href="#" class="text-gray-600 hover:text-green-700">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13.5 21.888C18.311 21.164 22 17.013 22 12C22 6.477 17.523 2 12 2C6.477 2 2 6.477 2 12C2 17.013 5.689 21.165 10.5 21.888V15H9C8.60218 15 8.22064 14.842 7.93934 14.5607C7.65804 14.2794 7.5 13.8978 7.5 13.5C7.5 13.1022 7.65804 12.7206 7.93934 12.4393C8.22064 12.158 8.60218 12 9 12H10.5V10C10.5 9.07174 10.8687 8.1815 11.5251 7.52513C12.1815 6.86875 13.0717 6.5 14 6.5H14.5C14.8978 6.5 15.2794 6.65804 15.5607 6.93934C15.842 7.22064 16 7.60218 16 8C16 8.39782 15.842 8.77936 15.5607 9.06066C15.2794 9.34196 14.8978 9.5 14.5 9.5H14C13.8674 9.5 13.7402 9.55268 13.6464 9.64645C13.5527 9.74021 13.5 9.86739 13.5 10V12H15C15.3978 12 15.7794 12.158 16.0607 12.4393C16.342 12.7206 16.5 13.1022 16.5 13.5C16.5 13.8978 16.342 14.2794 16.0607 14.5607C15.7794 14.842 15.3978 15 15 15H13.5V21.888Z"
+                                    fill="black" style="fill:black;fill-opacity:1;" />
+                            </svg>
+                        </a>
+                        <!-- instagram -->
+                        <a href="#" class="text-gray-600 hover:text-green-700">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 8.75C11.138 8.75 10.3114 9.09241 9.7019 9.7019C9.09241 10.3114 8.75 11.138 8.75 12C8.75 12.862 9.09241 13.6886 9.7019 14.2981C10.3114 14.9076 11.138 15.25 12 15.25C12.862 15.25 13.6886 14.9076 14.2981 14.2981C14.9076 13.6886 15.25 12.862 15.25 12C15.25 11.138 14.9076 10.3114 14.2981 9.7019C13.6886 9.09241 12.862 8.75 12 8.75Z"
+                                    fill="black" style="fill:black;fill-opacity:1;" />
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M6.77061 3.08177C10.2466 2.6967 13.7546 2.6967 17.2306 3.08177C19.1296 3.29377 20.6606 4.78877 20.8836 6.69477C21.2955 10.2194 21.2955 13.7801 20.8836 17.3048C20.6606 19.2108 19.1296 20.7058 17.2316 20.9188C13.7552 21.3039 10.247 21.3039 6.77061 20.9188C4.87161 20.7058 3.34061 19.2108 3.11761 17.3058C2.70559 13.7808 2.70559 10.2198 3.11761 6.69477C3.34061 4.78877 4.87161 3.29377 6.77061 3.08177ZM17.0006 5.99977C16.7354 5.99977 16.481 6.10513 16.2935 6.29267C16.106 6.4802 16.0006 6.73456 16.0006 6.99977C16.0006 7.26499 16.106 7.51934 16.2935 7.70688C16.481 7.89442 16.7354 7.99977 17.0006 7.99977C17.2658 7.99977 17.5202 7.89442 17.7077 7.70688C17.8953 7.51934 18.0006 7.26499 18.0006 6.99977C18.0006 6.73456 17.8953 6.4802 17.7077 6.29267C17.5202 6.10513 17.2658 5.99977 17.0006 5.99977ZM7.25061 11.9998C7.25061 10.74 7.75105 9.53181 8.64185 8.64102C9.53265 7.75022 10.7408 7.24977 12.0006 7.24977C13.2604 7.24977 14.4686 7.75022 15.3594 8.64102C16.2502 9.53181 16.7506 10.74 16.7506 11.9998C16.7506 13.2596 16.2502 14.4677 15.3594 15.3585C14.4686 16.2493 13.2604 16.7498 12.0006 16.7498C10.7408 16.7498 9.53265 16.2493 8.64185 15.3585C7.75105 14.4677 7.25061 13.2596 7.25061 11.9998Z"
+                                    fill="black" style="fill:black;fill-opacity:1;" />
+                            </svg>
+                        </a>
+                        <!-- linkedin -->
+                        <a href="#" class="text-gray-600 hover:text-green-700">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M18 3C18.7956 3 19.5587 3.31607 20.1213 3.87868C20.6839 4.44129 21 5.20435 21 6V18C21 18.7956 20.6839 19.5587 20.1213 20.1213C19.5587 20.6839 18.7956 21 18 21H6C5.20435 21 4.44129 20.6839 3.87868 20.1213C3.31607 19.5587 3 18.7956 3 18V6C3 5.20435 3.31607 4.44129 3.87868 3.87868C4.44129 3.31607 5.20435 3 6 3H18ZM8 10C7.73478 10 7.48043 10.1054 7.29289 10.2929C7.10536 10.4804 7 10.7348 7 11V16C7 16.2652 7.10536 16.5196 7.29289 16.7071C7.48043 16.8946 7.73478 17 8 17C8.26522 17 8.51957 16.8946 8.70711 16.7071C8.89464 16.5196 9 16.2652 9 16V11C9 10.7348 8.89464 10.4804 8.70711 10.2929C8.51957 10.1054 8.26522 10 8 10ZM11 9C10.7348 9 10.4804 9.10536 10.2929 9.29289C10.1054 9.48043 10 9.73478 10 10V16C10 16.2652 10.1054 16.5196 10.2929 16.7071C10.4804 16.8946 10.7348 17 11 17C11.2652 17 11.5196 16.8946 11.7071 16.7071C11.8946 16.5196 12 16.2652 12 16V12.34C12.305 11.996 12.82 11.592 13.393 11.347C13.726 11.205 14.227 11.147 14.575 11.257C14.6904 11.2863 14.7933 11.3523 14.868 11.445C14.92 11.515 15 11.671 15 12V16C15 16.2652 15.1054 16.5196 15.2929 16.7071C15.4804 16.8946 15.7348 17 16 17C16.2652 17 16.5196 16.8946 16.7071 16.7071C16.8946 16.5196 17 16.2652 17 16V12C17 11.33 16.83 10.734 16.476 10.256C16.1503 9.82256 15.6944 9.50472 15.175 9.349C14.273 9.066 13.274 9.223 12.607 9.509C12.3935 9.60084 12.1854 9.70502 11.984 9.821C11.9421 9.59059 11.8206 9.3822 11.6408 9.23216C11.461 9.08213 11.2342 8.99996 11 9ZM8 7C7.73478 7 7.48043 7.10536 7.29289 7.29289C7.10536 7.48043 7 7.73478 7 8C7 8.26522 7.10536 8.51957 7.29289 8.70711C7.48043 8.89464 7.73478 9 8 9C8.26522 9 8.51957 8.89464 8.70711 8.70711C8.89464 8.51957 9 8.26522 9 8C9 7.73478 8.89464 7.48043 8.70711 7.29289C8.51957 7.10536 8.26522 7 8 7Z"
+                                    fill="black" style="fill:black;fill-opacity:1;" />
+                            </svg>
+                        </a>
+                        <!-- twiiter -->
+                        <a href="#" class="text-gray-600 hover:text-green-700">
+                            <svg width="24" height="24" viewBox="0 0 16 16" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M11.7915 2.04199L8.46087 5.84933L5.58087 2.04199H1.4082L6.39287 8.55933L1.66887 13.9587H3.69154L7.33754 9.79199L10.5242 13.9587H14.5922L9.3962 7.08933L13.8129 2.04199H11.7915ZM11.0822 12.7487L3.76954 3.18799H4.97154L12.2022 12.748L11.0822 12.7487Z"
+                                    fill="black" style="fill:black;fill-opacity:1;" />
+                            </svg>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <!-- Features Section -->
+                <div class="grid border-0 border-red-500 grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 lg:w-3/4">
+
+                    <div class="flex flex-col border-0 border-blue-500">
+                        <h4 class="font-medium text-sm text-gray-900 mb-4 border-0 border-teal-600">Features</h4>
+                        <ul class="border-0">
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900 text-xs">E-Money</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900 text-xs">Local Business</a>
+                            </li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900 text-xs">Corporate</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900 text-xs">Internet Money</a>
+                            </li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900 text-xs">Staking Ecosystem</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="border-0 border-yellow-600">
+                        <h4 class="font-medium text-sm text-gray-900 mb-4 border-0 border-teal-600">Features</h4>
+                        <ul class="border-0">
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900 text-xs">E-Money</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900 text-xs">Local Business</a>
+                            </li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900 text-xs">Corporate</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900 text-xs">Internet Money</a>
+                            </li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900 text-xs">Staking Ecosystem</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Column: Useful Links -->
+                    <div class="border-0 border-pink-400">
+                        <h4 class="font-medium text-sm text-gray-900 mb-4 border-0 border-teal-500 ">Useful Links
+                        </h4>
+                        <ul class="border-0">
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900 text-xs">Privacy Policy</a>
+                            </li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900 text-xs">Returns</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900 text-xs">Terms & Conditions</a>
+                            </li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900 text-xs">Contact Us</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900 text-xs">Our Sitemap</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Recent post -->
+
+                    <div class="text-gray-600 body-font border-0 col-span-1">
+                        <div class="flex flex-col text-start w-full border-0 border-orange-500">
+                            <h1 class="text-sm font-medium mb-4 text-green-900">Recent Post</h1>
+                        </div>
+
+                        <!-- Post Items -->
+                        <div class="space-y-4 border-0 border-blue-600 gap-2">
+                            <!-- Post 1 -->
+                            <div class="flex items-center border-b border-gray-200 pb-4">
+                                <img alt="Plant"
+                                    class="w-12 h-12 bg-gray-100 object-cover object-center flex-shrink-0 rounded-sm mr-4"
+                                    src="https://images.unsplash.com/photo-1727362123795-efcbc405d113?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Ym9uc2FpJTIwcGxhbnR8ZW58MHx8MHx8fDA%3D" />
+                                <div class="flex-grow">
+                                    <h2 class="text-gray-900 text-xs  font-medium">A journey through
+                                        plants</h2>
+                                    <p class="text-gray-500 text-xs ">14 November 2024</p>
+                                </div>
+                            </div>
+
+                            <!-- Post 2 -->
+                            <div class="flex items-center border-b border-gray-200 pb-4">
+                                <img alt="Plant"
+                                    class="w-12 h-12 bg-gray-100 object-cover object-center flex-shrink-0 rounded-sm mr-4"
+                                    src="https://images.unsplash.com/photo-1727362123795-efcbc405d113?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Ym9uc2FpJTIwcGxhbnR8ZW58MHx8MHx8fDA%3D" />
+                                <div class="flex-grow">
+                                    <h2 class="text-gray-900 text-xs font-medium">A journey through
+                                        plants</h2>
+                                    <p class="text-gray-500 text-xs ">14 November 2024</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Bottom Section with  -->
+        <div class="bg-green-800 py-4">
+            <div
+                class="max-w-screen-xl mx-auto flex flex-col md:flex-row lg:flex-col  justify-center items-center text-center text-gray-100">
+                <p class="text-white text-xs"> All Rights Reserved © 2024 .</p>
+
+            </div>
+        </div>
+
+    </footer>
+
+
+
+    <!-- Script tag  -->
+    <script>
+        // Sample product data
+        const products = [
+            {
+                title: "Product 1",
+                imageUrl: "https://images.unsplash.com/photo-1717473478640-1f03102cbb43?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                details: "The organized floder of the iamge that should follow the image recogniton",
+                rating: 4.5,
+                reviews: "5,291",
+                originalPrice: "499.00",
+                discountPrice: "249.00",
+                discount: "50% Off"
+            },
+            {
+                title: "Product 1",
+                imageUrl: "https://images.unsplash.com/photo-1717473478640-1f03102cbb43?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                details: "The organized floder of the iamge that should follow the image recogniton",
+                rating: 4.5,
+                reviews: "5,291",
+                originalPrice: "499.00",
+                discountPrice: "249.00",
+                discount: "50% Off"
+            },
+            {
+                title: "Product 1",
+                imageUrl: "https://images.unsplash.com/photo-1717473478640-1f03102cbb43?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                details: "The organized floder of the iamge that should follow the image recogniton",
+                rating: 4.5,
+                reviews: "5,291",
+                originalPrice: "499.00",
+                discountPrice: "249.00",
+                discount: "50% Off"
+            },
+            {
+                title: "Product 1",
+                imageUrl: "https://images.unsplash.com/photo-1717473478640-1f03102cbb43?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                details: "The organized floder of the iamge that should follow the image recogniton",
+                rating: 4.5,
+                reviews: "5,291",
+                originalPrice: "499.00",
+                discountPrice: "249.00",
+                discount: "50% Off"
+            },
+            {
+                title: "Product 1",
+                imageUrl: "https://images.unsplash.com/photo-1717473478640-1f03102cbb43?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                details: "The organized floder of the iamge that should follow the image recogniton",
+                rating: 4.5,
+                reviews: "5,291",
+                originalPrice: "499.00",
+                discountPrice: "249.00",
+                discount: "50% Off"
+            },
+            {
+                title: "Product 1",
+                imageUrl: "https://images.unsplash.com/photo-1717473478640-1f03102cbb43?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                details: "The organized floder of the iamge that should follow the image recogniton",
+                rating: 4.5,
+                reviews: "5,291",
+                originalPrice: "499.00",
+                discountPrice: "249.00",
+                discount: "50% Off"
+            },
+            {
+                title: "Product 1",
+                imageUrl: "https://images.unsplash.com/photo-1717473478640-1f03102cbb43?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                details: "The organized floder of the iamge that should follow the image recogniton",
+                rating: 4.5,
+                reviews: "5,291",
+                originalPrice: "499.00",
+                discountPrice: "249.00",
+                discount: "50% Off"
+            },
+            {
+                title: "Product 1",
+                imageUrl: "https://images.unsplash.com/photo-1717473478640-1f03102cbb43?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                details: "The organized floder of the iamge that should follow the image recogniton",
+                rating: 4.5,
+                reviews: "5,291",
+                originalPrice: "499.00",
+                discountPrice: "249.00",
+                discount: "50% Off"
+            },
+            {
+                title: "Product 1",
+                imageUrl: "https://images.unsplash.com/photo-1717473478640-1f03102cbb43?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                details: "The organized floder of the iamge that should follow the image recogniton",
+                rating: 4.5,
+                reviews: "5,291",
+                originalPrice: "499.00",
+                discountPrice: "249.00",
+                discount: "50% Off"
+            },
+            {
+                title: "Product 1",
+                imageUrl: "https://images.unsplash.com/photo-1717473478640-1f03102cbb43?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                details: "The organized floder of the iamge that should follow the image recogniton",
+                rating: 4.5,
+                reviews: "5,291",
+                originalPrice: "499.00",
+                discountPrice: "249.00",
+                discount: "50% Off"
+            },
+        ];
+
+        const productsPerPage = 6; // Number of products per page
+        let currentPage = 1;
+
+        // Function to render products for the current page
+        function renderProducts() {
+            const productContainer = document.getElementById("product-container");
+            productContainer.innerHTML = ""; // Clear previous products
+
+            const startIndex = (currentPage - 1) * productsPerPage;
+            const endIndex = startIndex + productsPerPage;
+            const currentProducts = products.slice(startIndex, endIndex);
+
+            currentProducts.forEach(product => {
+                const productCard = `
+                    <!-- 1st -->
+            <div
+                class="w-full h-full p-2  items-center flex flex-col bg-white rounded-xl transform  shadow-lg hover:shadow-2xl  mb-4 lg:mt-0 border-none border-blue-500">
+                <!-- Product Image -->
+                <img src="${product.imageUrl}"
+                    class="object-cover w-full h-40 rounded-md flex items-center border-none border-blue-500" />
+    
+                <div class="p-2 border-none border-blue-500">
+                    <!-- header text -->
+                    <h1 class="font-semibold text-lg  font-marcellus border-none border-blue-500">${product.title}</h1>
+                    <!-- header subtext -->
+                    <span class="text-sm text-center text-[#636363] leading-4 font-marcellus">
+                        ${product.details}
+                    </span>
+    
+                    <!-- discount pricing section -->
+                    <div class="flex gap-2 mt-2 border-none border-blue-500">
+                        <span class="text-md  flex items-center gap-1 line-through text-[#64748B] border-none border-blue-500">
+                            <svg width="10" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M6.66309 2.48047L6.34863 3.56055H0.00488281L0.319336 2.48047H6.66309ZM3.81934 10L0.203125 5.77539L0.196289 4.92773H1.86426C2.34733 4.92773 2.74609 4.84798 3.06055 4.68848C3.37956 4.52441 3.61882 4.30339 3.77832 4.02539C3.93783 3.7474 4.01758 3.43522 4.01758 3.08887C4.01758 2.7015 3.94238 2.36198 3.79199 2.07031C3.6416 1.77409 3.40462 1.54395 3.08105 1.37988C2.76204 1.21126 2.34277 1.12695 1.82324 1.12695H0.0185547L0.339844 0.046875H1.82324C2.61621 0.046875 3.27018 0.167643 3.78516 0.40918C4.30469 0.646159 4.69206 0.992513 4.94727 1.44824C5.20247 1.90397 5.33008 2.4554 5.33008 3.10254C5.33008 3.65853 5.22298 4.15755 5.00879 4.59961C4.79915 5.03711 4.45052 5.38118 3.96289 5.63184C3.47982 5.88249 2.82812 6.00781 2.00781 6.00781L5.37109 9.91797V10H3.81934ZM6.66309 0.046875L6.34863 1.12695H1.23535L1.5498 0.046875H6.66309Z"
+                                    fill="#64748B"
+                                    style="fill:#64748B;fill:color(display-p3 0.3922 0.4549 0.5451);fill-opacity:1;" />
+                            </svg>
+    
+                        ${product.originalPrice}</span>
+                        <span class="text-sm   text-[#48AD4A] border-none border-blue-500">${product.discount} </span>
+                    </div>
+                    <!--  price  -->
+                    <div class="flex items-center gap-2 border-none border-blue-500">
+                        <span class="text-lg  font-bold text-black gap-1  flex items-center border-none border-blue-500">
+                            <svg width="10" height="12" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M6.66309 2.48047L6.34863 3.56055H0.00488281L0.319336 2.48047H6.66309ZM3.81934 10L0.203125 5.77539L0.196289 4.92773H1.86426C2.34733 4.92773 2.74609 4.84798 3.06055 4.68848C3.37956 4.52441 3.61882 4.30339 3.77832 4.02539C3.93783 3.7474 4.01758 3.43522 4.01758 3.08887C4.01758 2.7015 3.94238 2.36198 3.79199 2.07031C3.6416 1.77409 3.40462 1.54395 3.08105 1.37988C2.76204 1.21126 2.34277 1.12695 1.82324 1.12695H0.0185547L0.339844 0.046875H1.82324C2.61621 0.046875 3.27018 0.167643 3.78516 0.40918C4.30469 0.646159 4.69206 0.992513 4.94727 1.44824C5.20247 1.90397 5.33008 2.4554 5.33008 3.10254C5.33008 3.65853 5.22298 4.15755 5.00879 4.59961C4.79915 5.03711 4.45052 5.38118 3.96289 5.63184C3.47982 5.88249 2.82812 6.00781 2.00781 6.00781L5.37109 9.91797V10H3.81934ZM6.66309 0.046875L6.34863 1.12695H1.23535L1.5498 0.046875H6.66309Z"
+                                    fill="#64748B"
+                                    style="fill:#000205;fill:color(display-p3 0.3922 0.4549 0.5451);fill-opacity:100;" />
+                            </svg>
+                        ${product.discountPrice}</span>
+                    </div>
+                    <!-- start rating -->
+                    <div class="flex items-center mt-2 gap-1 mb-[12px] border-none border-blue-500">
+                        <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+                        </svg>
+                        <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+                        </svg>
+                        <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+                        </svg>
+                        <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+                        </svg>
+                        <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+                        </svg>
+                        <p class="font-bold text-xs border-none border-blue-500">(${product.reviews})</p>
+                    </div>
+    
+                    <!-- Add to cart and buy now button  -->
+                    <div class="lg:flex items-center justify-center w-full gap-[16px] mt-2 font-marcellus border-none border-blue-500">
+                        <button
+                            class="px-4 py-1 rounded bg-white text-primary border border-green-900 text-nowrap lg:w-1/2 w-full">Buy
+                            Now
+                            <button
+                                class="px-4 py-1 rounded text-white border border-green-900 bg-primary text-nowrap  lg:w-1/2 w-full md:mt-4 mt-4 lg:mt-0">Add
+                                to cart</button>
+                    </div>
+    
+                </div>
+            </div>
+                `;
+                productContainer.innerHTML += productCard;
+            });
+
+            updatePaginationControls();
+        }
+
+        // Function to update pagination controls
+        function updatePaginationControls() {
+            const totalPages = Math.ceil(products.length / productsPerPage);
+            document.getElementById("page-info").innerText = `Page ${currentPage} of ${totalPages}`;
+            document.getElementById("prev-btn").disabled = currentPage === 1;
+            document.getElementById("next-btn").disabled = currentPage === totalPages;
+        }
+
+        // Navigate to the previous page
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                renderProducts();
+            }
+        }
+
+        // Navigate to the next page
+        function nextPage() {
+            const totalPages = Math.ceil(products.length / productsPerPage);
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderProducts();
+            }
+        }
+
+        // Toggel
+        function toggleDrawer() {
+            const drawer = document.getElementById("drawer");
+            // Check if the drawer is already visible or not
+            if (drawer.classList.contains("-translate-x-full")) {
+                // If it's hidden, slide it in
+                drawer.classList.remove("-translate-x-full");
+                drawer.classList.add("translate-x-0");
+            } else {
+                // If it's visible, slide it out
+                drawer.classList.remove("translate-x-0");
+                drawer.classList.add("-translate-x-full");
+            }
+        }
+
+        // Initial render
+        renderProducts();
+    </script>
+    <!-- Navbar sticky logic -->
+    <script>
+        const header = document.getElementById("header");
+        window.addEventListener("scroll", () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 250) {
+                header.classList.add('sticky', 'shadow-md');
+
+            } else {
+                header.classList.remove('sticky ');
+            }
+        });
+    </script>
+
+
+
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const menuList = document.getElementById('menu-list');
+        const closeBtn = document.getElementById('menu-close-btn');
+
+
+
+        // Show mobile menu
+        menuBtn.addEventListener('click', () => {
+            menuList.classList.remove('hidden');
+            menuList.classList.remove('slide-out-left');
+            menuList.classList.add('slide-in-left');
+        });
+
+        // Hide mobile menu
+        closeBtn.addEventListener('click', () => {
+            menuList.classList.remove('slide-in-left');
+            menuList.classList.add('slide-out-left');
+            setTimeout(() => menuList.classList.add('hidden'), 300); // Delay hiding the menu to allow transition
+        });
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="../../dist/styles/output.css" rel="stylesheet">
+
+    <style>
+        .slide-in-left {
+            transform: translateX(0);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .slide-out-left {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #header {
+            transform: translateY(90deg);
+        }
+
+        /* Hides scrollbar for a cleaner look */
+        .carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .carousel-transition {
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-scroll {
+            scroll-behavior: smooth;
+        }
+
+        /* Smooth scrolling and hidden scrollbar for horizontal carousel */
+        .carousel-scroll {
+            scroll-behavior: smooth;
+            overflow-x: scroll;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Hide scrollbar */
+        .carousel-scroll::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body class="bg-[#F6F6F6]">
+
+    <div class="">
+
+        <!-- Navbar  -->
+        <header class="inset-x-0 top-0 z-50  w-full border-2 bg-white border-red-500" id="header">
+
+            <div class="block  border-2 border-slate-700 mx-auto max-w-screen-xl">
+                <nav class="flex items-center max-w-screen-xl justify-between container mx-auto p-2 lg:py-2  font-marcellus border-2 border-blue-500"
+                    aria-label="Global">
+                    <!-- Logo -->
+                    <div class="border-2 border-blue-500">
+                        <a href="/" class="">
+                            <span class="font-marcellus lg:text-[32px] text-[24px] text-green-700">GreenNatures</span>
+                        </a>
+                    </div>
+
+                    <!-- Mobile menu button -->
+                    <div class="flex lg:hidden border-2 border-blue-500" id="menu-btn">
+                        <button type="button"
+                            class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Menu listing and Login/Cart for large screens -->
+                    <div
+                        class="hidden lg:flex items-center space-x-6 font-marcellus flex-1 justify-end text-nowrap border-2 border-blue-500">
+                        <a href="/" class="text-md leading-6 text-gray-900 border-2 border-blue-500">Home</a>
+                        <a href="Aboutus.html" class="text-md leading-6 text-gray-900 border-2 border-blue-500">About
+                            us</a>
+                        <a href="ProductList01.html"
+                            class="text-md leading-6 text-gray-900 border-2 border-blue-500">Products</a>
+                        <a href="Blog.html" class="text- leading-6 text-gray-900 border-2 border-blue-500">Blogs</a>
+                        <a href="Contactus.html" md
+                            class="text-md leading-6 text-gray-900 border-2 border-blue-500">Contact
+                            us</a>
+                        <div class="flex justify-center items-center gap-4 border-2 border-blue-500">
+                            <a href="#"
+                                class="text-md leading font-marcellus text-gray-900 underline border-2 border-red-500">Log
+                                in</a>
+                            <a href="#"
+                                class="flex gap-2 items-center text-md leading font-marcellus text-gray-900 border-2 border-red-500">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M21.8257 5.96903C21.7562 5.88583 21.6692 5.81891 21.571 5.773C21.4728 5.72709 21.3657 5.7033 21.2573 5.70332H6.32177L5.75887 2.60827C5.72786 2.43761 5.63795 2.28324 5.50479 2.17208C5.37164 2.06093 5.20369 2.00003 5.03024 2H2.74066C2.54423 2 2.35584 2.07803 2.21694 2.21694C2.07803 2.35584 2 2.54423 2 2.74066C2 2.9371 2.07803 3.12549 2.21694 3.26439C2.35584 3.40329 2.54423 3.48133 2.74066 3.48133H4.40716L6.77358 16.4698C6.84328 16.855 7.01352 17.2149 7.26704 17.5132C6.91712 17.84 6.66456 18.2574 6.53736 18.719C6.41016 19.1806 6.41329 19.6684 6.54641 20.1284C6.67952 20.5883 6.93742 21.0024 7.29151 21.3247C7.6456 21.647 8.08203 21.865 8.55243 21.9544C9.02282 22.0438 9.50879 22.0012 9.95644 21.8313C10.4041 21.6614 10.7959 21.3708 11.0885 20.9918C11.3811 20.6128 11.563 20.1601 11.6141 19.684C11.6651 19.208 11.5833 18.727 11.3777 18.2946H15.5828C15.4171 18.6415 15.3314 19.0212 15.3319 19.4056C15.3319 19.9183 15.484 20.4195 15.7688 20.8458C16.0537 21.2721 16.4585 21.6044 16.9322 21.8006C17.4059 21.9968 17.9271 22.0481 18.43 21.9481C18.9329 21.8481 19.3948 21.6012 19.7573 21.2386C20.1199 20.8761 20.3668 20.4142 20.4668 19.9113C20.5668 19.4085 20.5155 18.8872 20.3193 18.4136C20.1231 17.9399 19.7908 17.535 19.3645 17.2502C18.9382 16.9653 18.437 16.8133 17.9243 16.8133H8.95946C8.78601 16.8132 8.61806 16.7523 8.48491 16.6412C8.35176 16.53 8.26184 16.3757 8.23083 16.205L7.93734 14.5913H18.677C19.1973 14.5912 19.7012 14.4085 20.1006 14.075C20.5001 13.7415 20.7698 13.2785 20.8629 12.7665L21.9887 6.57638C22.0077 6.46939 22.003 6.35951 21.9748 6.25455C21.9467 6.14959 21.8958 6.05211 21.8257 5.96903ZM10.1473 19.4056C10.1473 19.6253 10.0821 19.8401 9.96006 20.0228C9.83799 20.2055 9.66447 20.3479 9.46146 20.432C9.25846 20.5161 9.03507 20.5381 8.81956 20.4952C8.60405 20.4524 8.40609 20.3466 8.25071 20.1912C8.09534 20.0358 7.98952 19.8379 7.94666 19.6223C7.90379 19.4068 7.92579 19.1834 8.00988 18.9804C8.09397 18.7774 8.23637 18.6039 8.41907 18.4818C8.60177 18.3598 8.81657 18.2946 9.0363 18.2946C9.33096 18.2946 9.61354 18.4117 9.8219 18.62C10.0302 18.8284 10.1473 19.1109 10.1473 19.4056ZM19.0353 19.4056C19.0353 19.6253 18.9701 19.8401 18.848 20.0228C18.7259 20.2055 18.5524 20.3479 18.3494 20.432C18.1464 20.5161 17.923 20.5381 17.7075 20.4952C17.492 20.4524 17.2941 20.3466 17.1387 20.1912C16.9833 20.0358 16.8775 19.8379 16.8346 19.6223C16.7918 19.4068 16.8138 19.1834 16.8978 18.9804C16.9819 18.7774 17.1243 18.6039 17.307 18.4818C17.4897 18.3598 17.7045 18.2946 17.9243 18.2946C18.2189 18.2946 18.5015 18.4117 18.7099 18.62C18.9182 18.8284 19.0353 19.1109 19.0353 19.4056Z"
+                                        fill="black" style="fill:black;fill-opacity:1;" />
+                                </svg>
+                                Cart
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <!-- mobile menu list section -->
+            <div class="lg:hidden fixed inset-0 z-50 hidden slide-out-left " id="menu-list">
+                <div class="fixed inset-0 bg-gray-900 bg-opacity-25 blur"></div>
+                <div class="fixed inset-y-0 left-0 w-64 bg-white px-6 py-6">
+                    <div class="flex items-center justify-between">
+                        <a href="#" class="text-2xl font-regular text-green-700">GreenNatures</a>
+                        <button id="menu-close-btn" type="button" class="-m-2.5 p-2.5 text-gray-700">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="mt-6 space-y-2">
+                        <a href="#"
+                            class="block px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 hover:underline ">Home</a>
+                        <a href="#"
+                            class="block px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 hover:underline ">About
+                            us</a>
+                        <a href="#"
+                            class="block px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 hover:underline ">Products</a>
+                        <a href="#"
+                            class="block px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 hover:underline ">Blogs</a>
+                        <a href="#"
+                            class="block px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 hover:underline ">Contact
+                            us</a>
+                        <a href="#"
+                            class="block px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 hover:underline ">Log
+                            in</a>
+                        <a href="#"
+                            class="flex gap-2 items-center px-3 py-2 text-base font-semibold text-gray-900 hover:underline  hover:bg-gray-50">
+                            <!-- <img src="../assets/Cart.svg" alt=""> -->
+                            Cart
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero image -->
+        <div class="w-full border-orange-500 border-2 ">
+            <img src="https://plus.unsplash.com/premium_photo-1677756430603-f081a25b0aa7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                class="object-cover w-full lg:h-[664px]" />
+        </div>
+
+
+        <!-- Category Section  -->
+        <section
+            class="sm:px-8 md:px-8 lg:px-24 px-2 font-marcellus max-w-screen-xl lg:my-[0px] md:my-[48px] sm:my-[24px] my-[16px] container mx-auto w-full flex flex-col  border-2 border-red-600">
+            <!-- Category Header with Navigation Arrows -->
+            <div class="flex justify-between items-center w-full px-0 py-0 border-2 border-blue-300">
+                <h1 class="lg:text-2xl md:text-xl text-xl font-regular">Find Plant category</h1>
+
+                <div class="flex gap-4">
+                    <button id="prevBtn" class="bg-transparent p-2 hover:bg-gray-200 rounded-full leftArrow"
+                        aria-label="Previous category">
+                        <svg width="20" height="20" viewBox="0 0 22 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 13L1 7M1 7L5 1M1 7H21" stroke="black" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button id="nextBtn" class="bg-transparent p-2 hover:bg-gray-200 rounded-full rightArrow"
+                        aria-label="Next category">
+                        <svg width="20" height="20" viewBox="0 0 22 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17 1L21 7M21 7L17 13M21 7H1" stroke="black" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Category Cards Carousel -->
+            <div class="w-full lg:p-0 overflow-hidden lg:my-[32px] my-[16px] border-2 px-2 lg:px-0 border-black">
+
+                <ul id="categoryList"
+                    class="flex overflow-x-auto scroll-smooth carousel gap-6 p-0 border-2 border-red-500">
+                    <!-- Category Card Template -->
+
+                    <!-- 1st -->
+                    <li class="card w-[148px] h-auto flex-shrink-0 border-2 border-blue-300">
+                        <div
+                            class="w-full py-4 px-4  h-auto rounded-lg shadow-lg bg-white transform hover:scale-105 transition-transform duration-300">
+                            <h2 class="text-sm sm:text-md md:text-md font-medium text-center mb-2">Tropical</h2>
+                            <img src="https://plus.unsplash.com/premium_photo-1682542226584-e776098d5ea9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Ym9uc2FpJTIwcGxhbnR8ZW58MHx8MHx8fDA%3D"
+                                alt="Category 1" class="w-full h-[100px] rounded-lg bg-red-800 object-cover " />
+                        </div>
+                    </li>
+                    <!-- 2nd -->
+                    <li class="card w-[148px] h-auto flex-shrink-0 border-2 border-blue-300">
+                        <div
+                            class="w-full py-4 px-4  h-auto rounded-lg shadow-lg bg-white transform hover:scale-105 transition-transform duration-300">
+                            <h2 class="text-sm sm:text-md md:text-md font-medium text-center mb-2">Tropical</h2>
+                            <img src="https://plus.unsplash.com/premium_photo-1682542226584-e776098d5ea9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Ym9uc2FpJTIwcGxhbnR8ZW58MHx8MHx8fDA%3D"
+                                alt="Category 1" class="w-full h-[100px] rounded-lg bg-red-800 object-cover " />
+                        </div>
+                    </li>
+                    <!-- 3rd -->
+                    <li class="card w-[148px] h-auto flex-shrink-0 border-2 border-blue-300">
+                        <div
+                            class="w-full py-4 px-4  h-auto rounded-lg shadow-lg bg-white transform hover:scale-105 transition-transform duration-300">
+                            <h2 class="text-sm sm:text-md md:text-md font-medium text-center mb-2">Tropical</h2>
+                            <img src="https://plus.unsplash.com/premium_photo-1682542226584-e776098d5ea9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Ym9uc2FpJTIwcGxhbnR8ZW58MHx8MHx8fDA%3D"
+                                alt="Category 1" class="w-full h-[100px] rounded-lg bg-red-800 object-cover " />
+                        </div>
+                    </li>
+                    <!-- 4th -->
+                    <li class="card w-[148px] h-auto flex-shrink-0 border-2 border-blue-300">
+                        <div
+                            class="w-full py-4 px-4  h-auto rounded-lg shadow-lg bg-white transform hover:scale-105 transition-transform duration-300">
+                            <h2 class="text-sm sm:text-md md:text-md font-medium text-center mb-2">Tropical</h2>
+                            <img src="https://plus.unsplash.com/premium_photo-1682542226584-e776098d5ea9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Ym9uc2FpJTIwcGxhbnR8ZW58MHx8MHx8fDA%3D"
+                                alt="Category 1" class="w-full h-[100px] rounded-lg bg-red-800 object-cover " />
+                        </div>
+                    </li>
+                    <!-- 5th -->
+                    <li class="card w-[148px] h-auto flex-shrink-0 border-2 border-blue-300">
+                        <div
+                            class="w-full py-4 px-4  h-auto rounded-lg shadow-lg bg-white transform hover:scale-105 transition-transform duration-300">
+                            <h2 class="text-sm sm:text-md md:text-md font-medium text-center mb-2">Tropical</h2>
+                            <img src="https://plus.unsplash.com/premium_photo-1682542226584-e776098d5ea9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Ym9uc2FpJTIwcGxhbnR8ZW58MHx8MHx8fDA%3D"
+                                alt="Category 1" class="w-full h-[100px] rounded-lg bg-red-800 object-cover " />
+                        </div>
+                    </li>
+                    <!-- 6th -->
+                    <li class="card w-[148px] h-auto flex-shrink-0 border-2 border-blue-300">
+                        <div
+                            class="w-full py-4 px-4  h-auto rounded-lg shadow-lg bg-white transform hover:scale-105 transition-transform duration-300">
+                            <h2 class="text-sm sm:text-md md:text-md font-medium text-center mb-2">Tropical</h2>
+                            <img src="https://plus.unsplash.com/premium_photo-1682542226584-e776098d5ea9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Ym9uc2FpJTIwcGxhbnR8ZW58MHx8MHx8fDA%3D"
+                                alt="Category 1" class="w-full h-[100px] rounded-lg bg-red-800 object-cover " />
+                        </div>
+                    </li>
+                    <!-- 7th -->
+                    <li class="card w-[148px] h-auto flex-shrink-0 border-2 border-blue-300">
+                        <div
+                            class="w-full py-4 px-4  h-auto rounded-lg shadow-lg bg-white transform hover:scale-105 transition-transform duration-300">
+                            <h2 class="text-sm sm:text-md md:text-md font-medium text-center mb-2">Tropical</h2>
+                            <img src="https://plus.unsplash.com/premium_photo-1682542226584-e776098d5ea9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Ym9uc2FpJTIwcGxhbnR8ZW58MHx8MHx8fDA%3D"
+                                alt="Category 1" class="w-full h-[100px] rounded-lg bg-red-800 object-cover " />
+                        </div>
+                    </li>
+                    <!-- 8th -->
+                    <li class="card w-[148px] h-auto flex-shrink-0 border-2 border-blue-300">
+                        <div
+                            class="w-full py-4 px-4  h-auto rounded-lg shadow-lg bg-white transform hover:scale-105 transition-transform duration-300">
+                            <h2 class="text-sm sm:text-md md:text-md font-medium text-center mb-2">Tropical</h2>
+                            <img src="https://plus.unsplash.com/premium_photo-1682542226584-e776098d5ea9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Ym9uc2FpJTIwcGxhbnR8ZW58MHx8MHx8fDA%3D"
+                                alt="Category 1" class="w-full h-[100px] rounded-lg bg-red-800 object-cover " />
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+
+
+            <div class="flex items-end justify-end border-2 border-pink-700 p-0">
+                <a href="" class="hover:underline text-green-800 p-0 border-2 border-purple-700 hover:text-primaryLight">View All</a>
+            </div>
+
+        </section>
+
+        <!-- Banner image -->
+        <!-- <div class="w-full  border-2 border-blue-600">
+            <img src="../assets//homeBanner.png" class="lg:h-[620px] h-[225px] md:h-[420px] w-full" />
+        </div> -->
+
+        <!-- Most Popular Menu Listing -->
+        <div
+            class="flex flex-col border-2 lg:my-[0px] md:my-[0px] sm:my-[0px] my-[0px] border-green-700 items-center justify-center max-w-screen-xl container mx-auto  ">
+            <div>
+                <h1 class="lg:text-4xl text-xl font-marcellus">Most Popular Product</h1>
+            </div>
+            <div class="flex lg:mt-[0px] md:mt-[0px] mt-[0px]">
+                <ul id="tabs"
+                    class="flex border-2 border-slate-600 items-center justify-center lg:space-x-[92px] md:space-x-[41px] sm:space-x-[20px] space-x-[16px] font-marcellus  cursor-pointer">
+                    <li data-tab="trees"
+                        class="tab lg:text-2xl hover:underline hover:text-primary duration-400 transition transform">
+                        Trees
+                    </li>
+                    <li data-tab="ferns"
+                        class="tab lg:text-2xl hover:underline hover:text-primary duration-400 transition transform">
+                        Ferns
+                    </li>
+                    <li data-tab="herbs"
+                        class="tab lg:text-2xl hover:underline hover:text-primary duration-400 transition transform">
+                        Herbs
+                    </li>
+                    <li data-tab="shrubs"
+                        class="tab lg:text-2xl hover:underline hover:text-primary duration-400 transition transform">
+                        Shrubs
+                    </li>
+                    <li data-tab="vines"
+                        class="tab lg:text-2xl hover:underline hover:text-primary duration-400 transition transform">
+                        Vines
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Product Card Category Listing Section -->
+
+        <div id="content"
+            class="max-w-screen-xl lg:my-[0px] md:my-[0px] sm:my-[0px] my-[0px] sm:px-8 md:px-8 lg:px-24 container border-2 px-4 border-orange-700 mx-auto  gap-[16px]   grid grid-cols-2 p-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 place-items-center">
+            <!-- Product cards will be loaded here dynamically -->
+        </div>
+
+
+        <!-- Subscribe News Letter -->
+        <div
+            class="relative lg:my-[0px] md:my-[48px]  sm:my-[24px] my-[16px] border-2 border-red-700 bg-white  sm:py-0 lg:py-0 flex items-center justify-center">
+            <div class="mx-auto max-w-4xl px-6  lg:px-0 border-2 border-blue-600 py-0 text-center">
+                <div class="mx-auto max-w-2xl">
+                    <div class="max-w-2xl leading-6 font-marcellus text-center border-2 border-blue-800 p-0">
+                        <h2
+                            class="text-xl sm:text-3xl lg:text-3xl font-medium tracking-loose text-gray-900 border-2 border-red-800">
+                            Subscribe Newsletter & Get Plant News
+                        </h2>
+
+                        <p class="mt-[0px] lg:text-lg text-base text-gray-600 border-2 border-green-800">
+                            Stay updated with the latest plant news, tips, and exclusive offers.
+                        </p>
+                    </div>
+                    <div class="mt-6 flex flex-col sm:flex-row max-w-lg gap-4 mx-auto border-2 border-gray-800 p-2">
+                        <label for="email-address" class="sr-only">Email address</label>
+                        <input id="email-address" name="email" type="email" autocomplete="email" required
+                            class="w-full sm:flex-1 rounded-md border-2 bg-white px-4 py-4 text-gray-900 shadow-lg   ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-green-500 sm:text-sm"
+                            placeholder="Email Address">
+                        <button type="submit"
+                            class="w-full sm:w-auto rounded-md bg-gray-900 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900">
+                            Subscribe Now
+                        </button>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Blog Card Section -->
+        <div class="lg:py-[0px] md:my-[0px] sm:my-[0px] my-[0px] lg:px-0 px-2 max-w-screen-xl border-2 border-green-600 container mx-auto">
+            <h1 class="lg:text-3xl md:text-2xl text-xl  font-marcellus mb-0">Latest Plant News</h1>
+
+            <div class="grid lg:gap-6 md:gap-4 gap-2 lg:grid-cols-3 md:grid-cols-2 lg:my-[0px] my-[0px] sm:grid-cols-1">
+                <!-- Blog Card -->
+
+                <!-- 1st -->
+                <div class="relative shadow-lg rounded-lg overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1634165461820-73bf7738457d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cGxhbnQlMjBpbWFnZXxlbnwwfHwwfHx8MA%3D%3D"
+                        alt="Blog Image" class="w-full h-64 object-cover">
+
+                    <div
+                        class="absolute bottom-0 px-4 py-4 bg-gradient-to-t from-black via-transparent to-transparent w-full text-white">
+                        <h3 class="text-lg font-bold mb-2">Lorem Ipsum has been the industry's standard dummy text...
+                        </h3>
+                        <p class="text-sm">May 12 2024</p>
+                    </div>
+
+                    <div class="absolute bottom-2 right-6 bg-white p-2 rounded-full">
+                        <svg width="20" height="20" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M0 24C0 10.7452 10.7452 0 24 0C37.2548 0 48 10.7452 48 24C48 37.2548 37.2548 48 24 48C10.7452 48 0 37.2548 0 24Z"
+                                fill="white" style="fill:white;fill-opacity:1;" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M15.513 32.4856C15.3599 32.3326 15.2818 32.117 15.296 31.8863C15.3102 31.6556 15.4154 31.4288 15.5885 31.2557L29.6789 17.1653L19.4783 17.7915C19.3614 17.8027 19.2462 17.7905 19.1397 17.7553C19.0332 17.7202 18.9376 17.6629 18.8586 17.587C18.7795 17.511 18.7187 17.4179 18.6796 17.3132C18.6406 17.2085 18.6241 17.0943 18.6313 16.9776C18.6385 16.8608 18.6691 16.7437 18.7213 16.6334C18.7736 16.5231 18.8464 16.4218 18.9354 16.3355C19.0244 16.2492 19.1278 16.1798 19.2394 16.1312C19.351 16.0827 19.4686 16.0561 19.5851 16.0531L31.8847 15.2981C32.1152 15.2841 32.3306 15.3621 32.4836 15.5151C32.6365 15.6681 32.7146 15.8834 32.7006 16.1139L31.9455 28.4136C31.9425 28.5301 31.9159 28.6476 31.8674 28.7592C31.8189 28.8708 31.7494 28.9742 31.6631 29.0632C31.5769 29.1523 31.4755 29.2251 31.3652 29.2773C31.2549 29.3295 31.1379 29.3602 31.0211 29.3673C30.9043 29.3745 30.7901 29.3581 30.6854 29.319C30.5807 29.28 30.4876 29.2191 30.4117 29.1401C30.3357 29.061 30.2784 28.9654 30.2433 28.8589C30.2082 28.7524 30.1959 28.6373 30.2072 28.5203L30.8334 18.3197L16.743 32.4101C16.5698 32.5833 16.343 32.6885 16.1123 32.7026C15.8817 32.7168 15.6661 32.6387 15.513 32.4856Z"
+                                fill="#020617"
+                                style="fill:#020617;fill:color(display-p3 0.0078 0.0235 0.0902);fill-opacity:1;" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="relative shadow-lg rounded-lg overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1634165461820-73bf7738457d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cGxhbnQlMjBpbWFnZXxlbnwwfHwwfHx8MA%3D%3D"
+                        alt="Blog Image" class="w-full h-64 object-cover">
+
+                    <div
+                        class="absolute bottom-0 px-4 py-4 bg-gradient-to-t from-black via-transparent to-transparent w-full text-white">
+                        <h3 class="text-lg font-bold mb-2">Lorem Ipsum has been the industry's standard dummy text...
+                        </h3>
+                        <p class="text-sm">May 12 2024</p>
+                    </div>
+
+                    <div class="absolute bottom-2 right-6 bg-white p-2 rounded-full">
+                        <svg width="20" height="20" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M0 24C0 10.7452 10.7452 0 24 0C37.2548 0 48 10.7452 48 24C48 37.2548 37.2548 48 24 48C10.7452 48 0 37.2548 0 24Z"
+                                fill="white" style="fill:white;fill-opacity:1;" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M15.513 32.4856C15.3599 32.3326 15.2818 32.117 15.296 31.8863C15.3102 31.6556 15.4154 31.4288 15.5885 31.2557L29.6789 17.1653L19.4783 17.7915C19.3614 17.8027 19.2462 17.7905 19.1397 17.7553C19.0332 17.7202 18.9376 17.6629 18.8586 17.587C18.7795 17.511 18.7187 17.4179 18.6796 17.3132C18.6406 17.2085 18.6241 17.0943 18.6313 16.9776C18.6385 16.8608 18.6691 16.7437 18.7213 16.6334C18.7736 16.5231 18.8464 16.4218 18.9354 16.3355C19.0244 16.2492 19.1278 16.1798 19.2394 16.1312C19.351 16.0827 19.4686 16.0561 19.5851 16.0531L31.8847 15.2981C32.1152 15.2841 32.3306 15.3621 32.4836 15.5151C32.6365 15.6681 32.7146 15.8834 32.7006 16.1139L31.9455 28.4136C31.9425 28.5301 31.9159 28.6476 31.8674 28.7592C31.8189 28.8708 31.7494 28.9742 31.6631 29.0632C31.5769 29.1523 31.4755 29.2251 31.3652 29.2773C31.2549 29.3295 31.1379 29.3602 31.0211 29.3673C30.9043 29.3745 30.7901 29.3581 30.6854 29.319C30.5807 29.28 30.4876 29.2191 30.4117 29.1401C30.3357 29.061 30.2784 28.9654 30.2433 28.8589C30.2082 28.7524 30.1959 28.6373 30.2072 28.5203L30.8334 18.3197L16.743 32.4101C16.5698 32.5833 16.343 32.6885 16.1123 32.7026C15.8817 32.7168 15.6661 32.6387 15.513 32.4856Z"
+                                fill="#020617"
+                                style="fill:#020617;fill:color(display-p3 0.0078 0.0235 0.0902);fill-opacity:1;" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="relative shadow-lg rounded-lg overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1634165461820-73bf7738457d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cGxhbnQlMjBpbWFnZXxlbnwwfHwwfHx8MA%3D%3D"
+                        alt="Blog Image" class="w-full h-64 object-cover">
+
+                    <div
+                        class="absolute bottom-0 px-4 py-4 bg-gradient-to-t from-black via-transparent to-transparent w-full text-white">
+                        <h3 class="text-lg font-bold mb-2">Lorem Ipsum has been the industry's standard dummy text...
+                        </h3>
+                        <p class="text-sm">May 12 2024</p>
+                    </div>
+
+                    <div class="absolute bottom-2 right-6 bg-white p-2 rounded-full">
+                        <svg width="20" height="20" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M0 24C0 10.7452 10.7452 0 24 0C37.2548 0 48 10.7452 48 24C48 37.2548 37.2548 48 24 48C10.7452 48 0 37.2548 0 24Z"
+                                fill="white" style="fill:white;fill-opacity:1;" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M15.513 32.4856C15.3599 32.3326 15.2818 32.117 15.296 31.8863C15.3102 31.6556 15.4154 31.4288 15.5885 31.2557L29.6789 17.1653L19.4783 17.7915C19.3614 17.8027 19.2462 17.7905 19.1397 17.7553C19.0332 17.7202 18.9376 17.6629 18.8586 17.587C18.7795 17.511 18.7187 17.4179 18.6796 17.3132C18.6406 17.2085 18.6241 17.0943 18.6313 16.9776C18.6385 16.8608 18.6691 16.7437 18.7213 16.6334C18.7736 16.5231 18.8464 16.4218 18.9354 16.3355C19.0244 16.2492 19.1278 16.1798 19.2394 16.1312C19.351 16.0827 19.4686 16.0561 19.5851 16.0531L31.8847 15.2981C32.1152 15.2841 32.3306 15.3621 32.4836 15.5151C32.6365 15.6681 32.7146 15.8834 32.7006 16.1139L31.9455 28.4136C31.9425 28.5301 31.9159 28.6476 31.8674 28.7592C31.8189 28.8708 31.7494 28.9742 31.6631 29.0632C31.5769 29.1523 31.4755 29.2251 31.3652 29.2773C31.2549 29.3295 31.1379 29.3602 31.0211 29.3673C30.9043 29.3745 30.7901 29.3581 30.6854 29.319C30.5807 29.28 30.4876 29.2191 30.4117 29.1401C30.3357 29.061 30.2784 28.9654 30.2433 28.8589C30.2082 28.7524 30.1959 28.6373 30.2072 28.5203L30.8334 18.3197L16.743 32.4101C16.5698 32.5833 16.343 32.6885 16.1123 32.7026C15.8817 32.7168 15.6661 32.6387 15.513 32.4856Z"
+                                fill="#020617"
+                                style="fill:#020617;fill:color(display-p3 0.0078 0.0235 0.0902);fill-opacity:1;" />
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Repeat Blog Card Structure for Other Cards -->
+            </div>
+            <div class="text-end p-0">
+                <a href="" class="hover:underline text-green-800 border-2 border-blue-600 hover:text-primaryLight">View All</a>
+            </div>
+
+        </div>
+
+
+
+        <!-- our happy clients -->
+        <div class=" lg:my-[0px] md:my-[0px] sm:my-[0px] my-[0px] bg-white flex flex-col items-center border-2 border-pink-600 justify-center w-full font-marcellus py-[0px]">
+            <div class="text-center ">
+                <h2 class="lg:text-3xl md:text-2xl text-md border-2 border-blue-500 lg:mt-[0px]">Our Happy Clients</h2>
+            </div>
+
+            <div class="relative flex items-center  gap-2 max-w-screen-xl mx-auto container lg:px-0 px-2 lg:my-[0px] my-[0px] border-2 border-red-700 ">
+                <!-- Left Button -->
+                <button id="prevButton" class="lg:p-4 p-2 bg-white rounded-full shadow-md">
+                    <svg width="18" height="18" viewBox="0 0 14 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13 25L1 13L13 1" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+
+                <!-- Testimonial Cards Wrapper -->
+                <div id="carousel"
+                    class="flex carousel-scroll gap-4 overflow-x-auto max-w-full snap-x snap-mandatory px-4">
+                    <!-- Cards will be dynamically added here -->
+                </div>
+
+                <!-- Right Button -->
+                <button id="nextButton" class="lg:p-4 p-2 bg-white rounded-full shadow-md">
+                    <svg width="18" height="18" viewBox="0 0 14 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 25L13 13L1 1" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+
+        </div>
+
+        <!-- <div>
+
+        <div class="">
+            <div class="max-w-sm mx-auto bg-white shadow-md rounded-lg p-6">
+                <div class="flex items-center space-x-4">
+                    <img src="https://plus.unsplash.com/premium_photo-1661683653197-ca2d0aab80eb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fGdpcmwlMjBmYWNlfGVufDB8fDB8fHww" alt="Profile Picture" class="w-12 h-12 rounded-full object-cover">
+                    <div>
+                        <h2 class="text-lg font-semibold text-gray-900">Ahmed Saimoon</h2>
+                        <p class="text-sm text-gray-500">CEO, Avito</p>
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.478 4.554a1 1 0 00.95.69h4.786c.969 0 1.371 1.24.588 1.81l-3.874 2.815a1 1 0 00-.364 1.118l1.478 4.554c.3.921-.755 1.688-1.54 1.118l-3.874-2.815a1 1 0 00-1.176 0l-3.874 2.815c-.784.57-1.839-.197-1.54-1.118l1.478-4.554a1 1 0 00-.364-1.118L2.342 9.98c-.783-.57-.38-1.81.588-1.81h4.786a1 1 0 00.95-.69L9.049 2.927z" />
+                            </svg>
+                            <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.478 4.554a1 1 0 00.95.69h4.786c.969 0 1.371 1.24.588 1.81l-3.874 2.815a1 1 0 00-.364 1.118l1.478 4.554c.3.921-.755 1.688-1.54 1.118l-3.874-2.815a1 1 0 00-1.176 0l-3.874 2.815c-.784.57-1.839-.197-1.54-1.118l1.478-4.554a1 1 0 00-.364-1.118L2.342 9.98c-.783-.57-.38-1.81.588-1.81h4.786a1 1 0 00.95-.69L9.049 2.927z" />
+                            </svg>
+                            <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.478 4.554a1 1 0 00.95.69h4.786c.969 0 1.371 1.24.588 1.81l-3.874 2.815a1 1 0 00-.364 1.118l1.478 4.554c.3.921-.755 1.688-1.54 1.118l-3.874-2.815a1 1 0 00-1.176 0l-3.874 2.815c-.784.57-1.839-.197-1.54-1.118l1.478-4.554a1 1 0 00-.364-1.118L2.342 9.98c-.783-.57-.38-1.81.588-1.81h4.786a1 1 0 00.95-.69L9.049 2.927z" />
+                            </svg>
+                            <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.478 4.554a1 1 0 00.95.69h4.786c.969 0 1.371 1.24.588 1.81l-3.874 2.815a1 1 0 00-.364 1.118l1.478 4.554c.3.921-.755 1.688-1.54 1.118l-3.874-2.815a1 1 0 00-1.176 0l-3.874 2.815c-.784.57-1.839-.197-1.54-1.118l1.478-4.554a1 1 0 00-.364-1.118L2.342 9.98c-.783-.57-.38-1.81.588-1.81h4.786a1 1 0 00.95-.69L9.049 2.927z" />
+                            </svg>
+                            <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.478 4.554a1 1 0 00.95.69h4.786c.969 0 1.371 1.24.588 1.81l-3.874 2.815a1 1 0 00-.364 1.118l1.478 4.554c.3.921-.755 1.688-1.54 1.118l-3.874-2.815a1 1 0 00-1.176 0l-3.874 2.815c-.784.57-1.839-.197-1.54-1.118l1.478-4.554a1 1 0 00-.364-1.118L2.342 9.98c-.783-.57-.38-1.81.588-1.81h4.786a1 1 0 00.95-.69L9.049 2.927z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <p class="mt-4 text-gray-600 text-sm">
+                    Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Excepteur sint occaecat cupidatat non proident.
+                </p>
+            </div>
+            
+        </div>
+        
+    </div> -->
+
+
+        <!-- Footer -->
+        <footer class=" text-gray-800 w-full border-2  border-gray-800 font-marcellus backImage">
+            <div class="font-sans py-0 lg:px-0 px-2 max-w-screen-xl mx-auto border-2 my-[0px] border-yellow-600">
+                <div class="flex flex-col lg:flex-row justify-between border-2">
+
+                    <!-- Left Section: Company Info and Social Links -->
+                    <div class="mb-0 lg:mb-0 md:w-1/4 border-2 flex flex-col justify-between border-blue-500">
+
+                        <div class="flex flex-col gap-4">
+                        <div class="flex items-center">
+
+                            <h3 class="text-xl font-medium font-marcellus border-2 border-blue-600 text-green-700">GreenNatures</h3>
+                        </div>
+
+                     <div class="border-2 " >
+                        <p class="text-gray-600 text-xs mb-1">Address: 451 Wall Street, UK, London</p>
+                        <p class="text-gray-600 text-xs mb-1">Email: example@info.com</p>
+                        <p class="text-gray-600 text-xs mb-1">Phone: +919912121211</p>
+                        </div>
+                    </div>
+
+                        <!-- Social Profiles -->
+                        <div class="flex space-x-4 mt-4 border-2 border-red-800 items-center justify-start ">
+                            <!-- facebook -->
+                            <a href="#" class="text-gray-600 hover:text-green-700">
+                                <svg width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M13.5 21.888C18.311 21.164 22 17.013 22 12C22 6.477 17.523 2 12 2C6.477 2 2 6.477 2 12C2 17.013 5.689 21.165 10.5 21.888V15H9C8.60218 15 8.22064 14.842 7.93934 14.5607C7.65804 14.2794 7.5 13.8978 7.5 13.5C7.5 13.1022 7.65804 12.7206 7.93934 12.4393C8.22064 12.158 8.60218 12 9 12H10.5V10C10.5 9.07174 10.8687 8.1815 11.5251 7.52513C12.1815 6.86875 13.0717 6.5 14 6.5H14.5C14.8978 6.5 15.2794 6.65804 15.5607 6.93934C15.842 7.22064 16 7.60218 16 8C16 8.39782 15.842 8.77936 15.5607 9.06066C15.2794 9.34196 14.8978 9.5 14.5 9.5H14C13.8674 9.5 13.7402 9.55268 13.6464 9.64645C13.5527 9.74021 13.5 9.86739 13.5 10V12H15C15.3978 12 15.7794 12.158 16.0607 12.4393C16.342 12.7206 16.5 13.1022 16.5 13.5C16.5 13.8978 16.342 14.2794 16.0607 14.5607C15.7794 14.842 15.3978 15 15 15H13.5V21.888Z"
+                                        fill="black" style="fill:black;fill-opacity:1;" />
+                                </svg>
+                            </a>
+                            <!-- instagram -->
+                            <a href="#" class="text-gray-600 hover:text-green-700">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12 8.75C11.138 8.75 10.3114 9.09241 9.7019 9.7019C9.09241 10.3114 8.75 11.138 8.75 12C8.75 12.862 9.09241 13.6886 9.7019 14.2981C10.3114 14.9076 11.138 15.25 12 15.25C12.862 15.25 13.6886 14.9076 14.2981 14.2981C14.9076 13.6886 15.25 12.862 15.25 12C15.25 11.138 14.9076 10.3114 14.2981 9.7019C13.6886 9.09241 12.862 8.75 12 8.75Z"
+                                        fill="black" style="fill:black;fill-opacity:1;" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M6.77061 3.08177C10.2466 2.6967 13.7546 2.6967 17.2306 3.08177C19.1296 3.29377 20.6606 4.78877 20.8836 6.69477C21.2955 10.2194 21.2955 13.7801 20.8836 17.3048C20.6606 19.2108 19.1296 20.7058 17.2316 20.9188C13.7552 21.3039 10.247 21.3039 6.77061 20.9188C4.87161 20.7058 3.34061 19.2108 3.11761 17.3058C2.70559 13.7808 2.70559 10.2198 3.11761 6.69477C3.34061 4.78877 4.87161 3.29377 6.77061 3.08177ZM17.0006 5.99977C16.7354 5.99977 16.481 6.10513 16.2935 6.29267C16.106 6.4802 16.0006 6.73456 16.0006 6.99977C16.0006 7.26499 16.106 7.51934 16.2935 7.70688C16.481 7.89442 16.7354 7.99977 17.0006 7.99977C17.2658 7.99977 17.5202 7.89442 17.7077 7.70688C17.8953 7.51934 18.0006 7.26499 18.0006 6.99977C18.0006 6.73456 17.8953 6.4802 17.7077 6.29267C17.5202 6.10513 17.2658 5.99977 17.0006 5.99977ZM7.25061 11.9998C7.25061 10.74 7.75105 9.53181 8.64185 8.64102C9.53265 7.75022 10.7408 7.24977 12.0006 7.24977C13.2604 7.24977 14.4686 7.75022 15.3594 8.64102C16.2502 9.53181 16.7506 10.74 16.7506 11.9998C16.7506 13.2596 16.2502 14.4677 15.3594 15.3585C14.4686 16.2493 13.2604 16.7498 12.0006 16.7498C10.7408 16.7498 9.53265 16.2493 8.64185 15.3585C7.75105 14.4677 7.25061 13.2596 7.25061 11.9998Z"
+                                        fill="black" style="fill:black;fill-opacity:1;" />
+                                </svg>
+                            </a>
+                            <!-- linkedin -->
+                            <a href="#" class="text-gray-600 hover:text-green-700">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M18 3C18.7956 3 19.5587 3.31607 20.1213 3.87868C20.6839 4.44129 21 5.20435 21 6V18C21 18.7956 20.6839 19.5587 20.1213 20.1213C19.5587 20.6839 18.7956 21 18 21H6C5.20435 21 4.44129 20.6839 3.87868 20.1213C3.31607 19.5587 3 18.7956 3 18V6C3 5.20435 3.31607 4.44129 3.87868 3.87868C4.44129 3.31607 5.20435 3 6 3H18ZM8 10C7.73478 10 7.48043 10.1054 7.29289 10.2929C7.10536 10.4804 7 10.7348 7 11V16C7 16.2652 7.10536 16.5196 7.29289 16.7071C7.48043 16.8946 7.73478 17 8 17C8.26522 17 8.51957 16.8946 8.70711 16.7071C8.89464 16.5196 9 16.2652 9 16V11C9 10.7348 8.89464 10.4804 8.70711 10.2929C8.51957 10.1054 8.26522 10 8 10ZM11 9C10.7348 9 10.4804 9.10536 10.2929 9.29289C10.1054 9.48043 10 9.73478 10 10V16C10 16.2652 10.1054 16.5196 10.2929 16.7071C10.4804 16.8946 10.7348 17 11 17C11.2652 17 11.5196 16.8946 11.7071 16.7071C11.8946 16.5196 12 16.2652 12 16V12.34C12.305 11.996 12.82 11.592 13.393 11.347C13.726 11.205 14.227 11.147 14.575 11.257C14.6904 11.2863 14.7933 11.3523 14.868 11.445C14.92 11.515 15 11.671 15 12V16C15 16.2652 15.1054 16.5196 15.2929 16.7071C15.4804 16.8946 15.7348 17 16 17C16.2652 17 16.5196 16.8946 16.7071 16.7071C16.8946 16.5196 17 16.2652 17 16V12C17 11.33 16.83 10.734 16.476 10.256C16.1503 9.82256 15.6944 9.50472 15.175 9.349C14.273 9.066 13.274 9.223 12.607 9.509C12.3935 9.60084 12.1854 9.70502 11.984 9.821C11.9421 9.59059 11.8206 9.3822 11.6408 9.23216C11.461 9.08213 11.2342 8.99996 11 9ZM8 7C7.73478 7 7.48043 7.10536 7.29289 7.29289C7.10536 7.48043 7 7.73478 7 8C7 8.26522 7.10536 8.51957 7.29289 8.70711C7.48043 8.89464 7.73478 9 8 9C8.26522 9 8.51957 8.89464 8.70711 8.70711C8.89464 8.51957 9 8.26522 9 8C9 7.73478 8.89464 7.48043 8.70711 7.29289C8.51957 7.10536 8.26522 7 8 7Z"
+                                        fill="black" style="fill:black;fill-opacity:1;" />
+                                </svg>
+                            </a>
+                            <!-- twiiter -->
+                            <a href="#" class="text-gray-600 hover:text-green-700">
+                                <svg width="24" height="24" viewBox="0 0 16 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M11.7915 2.04199L8.46087 5.84933L5.58087 2.04199H1.4082L6.39287 8.55933L1.66887 13.9587H3.69154L7.33754 9.79199L10.5242 13.9587H14.5922L9.3962 7.08933L13.8129 2.04199H11.7915ZM11.0822 12.7487L3.76954 3.18799H4.97154L12.2022 12.748L11.0822 12.7487Z"
+                                        fill="black" style="fill:black;fill-opacity:1;" />
+                                </svg>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Features Section -->
+                    <div class="grid border-2 border-red-500 grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 lg:w-3/4">
+
+                        <div class="flex flex-col border-2 border-blue-500">
+                            <h4 class="font-medium text-sm text-gray-900 mb-4 border-2 border-teal-600">Features</h4>
+                            <ul class="border-2">
+                                <li><a href="#" class="text-gray-600 hover:text-gray-900 text-xs">E-Money</a></li>
+                                <li><a href="#" class="text-gray-600 hover:text-gray-900 text-xs">Local Business</a>
+                                </li>
+                                <li><a href="#" class="text-gray-600 hover:text-gray-900 text-xs">Corporate</a></li>
+                                <li><a href="#" class="text-gray-600 hover:text-gray-900 text-xs">Internet Money</a>
+                                </li>
+                                <li><a href="#" class="text-gray-600 hover:text-gray-900 text-xs">Staking Ecosystem</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="border-2 border-yellow-600">
+                            <h4 class="font-medium text-sm text-gray-900 mb-4 border-2 border-teal-600">Features</h4>
+                            <ul class="border-2">
+                                <li><a href="#" class="text-gray-600 hover:text-gray-900 text-xs">E-Money</a></li>
+                                <li><a href="#" class="text-gray-600 hover:text-gray-900 text-xs">Local Business</a>
+                                </li>
+                                <li><a href="#" class="text-gray-600 hover:text-gray-900 text-xs">Corporate</a></li>
+                                <li><a href="#" class="text-gray-600 hover:text-gray-900 text-xs">Internet Money</a>
+                                </li>
+                                <li><a href="#" class="text-gray-600 hover:text-gray-900 text-xs">Staking Ecosystem</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Column: Useful Links -->
+                        <div class="border-2 border-pink-400">
+                            <h4 class="font-medium text-sm text-gray-900 mb-4 border-2 border-teal-500 ">Useful Links</h4>
+                            <ul class="border-2">
+                                <li><a href="#" class="text-gray-600 hover:text-gray-900 text-xs">Privacy Policy</a>
+                                </li>
+                                <li><a href="#" class="text-gray-600 hover:text-gray-900 text-xs">Returns</a></li>
+                                <li><a href="#" class="text-gray-600 hover:text-gray-900 text-xs">Terms & Conditions</a>
+                                </li>
+                                <li><a href="#" class="text-gray-600 hover:text-gray-900 text-xs">Contact Us</a></li>
+                                <li><a href="#" class="text-gray-600 hover:text-gray-900 text-xs">Our Sitemap</a></li>
+                            </ul>
+                        </div>               
+                        
+                        <!-- Recent post -->
+    
+                        <div class="text-gray-600 body-font border-2 col-span-1">
+                            <div class="flex flex-col text-start w-full border-2 border-orange-500">
+                                <h1 class="text-sm font-medium mb-4 text-green-900">Recent Post</h1>
+                            </div>
+    
+                            <!-- Post Items -->
+                            <div class="space-y-4 border-2 border-blue-600 gap-2">
+                                <!-- Post 1 -->
+                                <div class="flex items-center border-b border-gray-200 pb-4">
+                                    <img alt="Plant"
+                                        class="w-12 h-12 bg-gray-100 object-cover object-center flex-shrink-0 rounded-sm mr-4"
+                                        src="https://images.unsplash.com/photo-1727362123795-efcbc405d113?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Ym9uc2FpJTIwcGxhbnR8ZW58MHx8MHx8fDA%3D" />
+                                    <div class="flex-grow">
+                                        <h2 class="text-gray-900 text-xs  font-medium">A journey through
+                                            plants</h2>
+                                        <p class="text-gray-500 text-xs ">14 November 2024</p>
+                                    </div>
+                                </div>
+    
+                                <!-- Post 2 -->
+                                <div class="flex items-center border-b border-gray-200 pb-4">
+                                    <img alt="Plant"
+                                        class="w-12 h-12 bg-gray-100 object-cover object-center flex-shrink-0 rounded-sm mr-4"
+                                        src="https://images.unsplash.com/photo-1727362123795-efcbc405d113?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Ym9uc2FpJTIwcGxhbnR8ZW58MHx8MHx8fDA%3D" />
+                                    <div class="flex-grow">
+                                        <h2 class="text-gray-900 text-xs font-medium">A journey through
+                                            plants</h2>
+                                        <p class="text-gray-500 text-xs ">14 November 2024</p>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Bottom Section with  -->
+            <div class="bg-green-800 py-4">
+                <div
+                    class="max-w-screen-xl mx-auto flex flex-col md:flex-row lg:flex-col  justify-center items-center text-center text-gray-100">
+                    <p class="text-white text-xs"> All Rights Reserved © 2024 .</p>
+
+                </div>
+            </div>
+
+        </footer>
+
+        <!--  footer test  -->
+
+
+    </div>
+
+
+
+    <!-- side narvbar open and find plant category carousel -->
+    <script>
+        // Navbar
+        const menuBtn = document.getElementById('menu-btn');
+        const menuList = document.getElementById('menu-list');
+        const closeBtn = document.getElementById('menu-close-btn');
+        // Show mobile menu
+        menuBtn.addEventListener('click', () => {
+            menuList.classList.remove('hidden');
+            menuList.classList.remove('slide-out-left');
+            menuList.classList.add('slide-in-left');
+        });
+
+        // Hide mobile menu
+        closeBtn.addEventListener('click', () => {
+            menuList.classList.remove('slide-in-left');
+            menuList.classList.add('slide-out-left');
+            setTimeout(() => menuList.classList.add('hidden'), 300); // Delay hiding the menu to allow transition
+        });
+
+        // category carousel
+        document.addEventListener('DOMContentLoaded', () => {
+            const carousel = document.querySelector(".carousel");
+            const leftArrowButton = document.getElementById("prevBtn");
+            const rightArrowButton = document.getElementById("nextBtn");
+            const firstCard = carousel.querySelector(".card");
+
+            if (!firstCard) {
+                console.error("Error: The '.card' element inside '.carousel' could not be found.");
+                return;
+            }
+            console.log("Card")
+
+            const firstCardWidth = firstCard.offsetWidth;
+            let isDragging = false, startX, startScrollLeft;
+
+            // Scroll buttons
+            leftArrowButton.addEventListener("click", () => {
+                carousel.scrollLeft -= firstCardWidth;
+            });
+            rightArrowButton.addEventListener("click", () => {
+                carousel.scrollLeft += firstCardWidth;
+            });
+
+            const dragStart = (e) => {
+                isDragging = true;
+                startX = e.pageX || e.touches[0].pageX;
+                startScrollLeft = carousel.scrollLeft;
+            };
+
+            const dragging = (e) => {
+                if (!isDragging) return;
+                const x = e.pageX || e.touches[0].pageX;
+                const walk = (x - startX);
+                carousel.scrollLeft = startScrollLeft - walk;
+            };
+
+            const dragStop = () => {
+                isDragging = false;
+            };
+
+            // Mouse events for dragging
+            carousel.addEventListener("mousedown", dragStart);
+            carousel.addEventListener("mousemove", dragging);
+            document.addEventListener("mouseup", dragStop);
+
+            // Touch events for dragging on mobile
+            carousel.addEventListener("touchstart", dragStart);
+            carousel.addEventListener("touchmove", dragging);
+            carousel.addEventListener("touchend", dragStop);
+        });
+
+
+        //for tab feature in product card 
+        document.addEventListener("DOMContentLoaded", () => {
+            const tabs = document.querySelectorAll("#tabs li");
+            const contents = document.querySelectorAll(".tab-content");
+
+            tabs.forEach(tab => {
+                tab.addEventListener("click", () => {
+                    const target = tab.getAttribute("data-tab");
+
+                    contents.forEach(content => {
+                        content.classList.add("hidden");
+                        if (content.getAttribute("data-content") === target) {
+                            content.classList.remove("hidden");
+                        }
+                    });
+                });
+            });
+        });
+
+
+    </script>
+
+
+    <!-- Navbar sticky logic -->
+    <script>
+        const header = document.getElementById("header");
+        window.addEventListener("scroll", () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 250) {
+                header.classList.add('sticky', 'shadow-md');
+
+            } else {
+                header.classList.remove('sticky ');
+            }
+        });
+    </script>
+
+
+    <!-- happy client section -->
+    <script>
+        const testimonials = [
+            {
+                name: "Ahmed Saimoon",
+                position: "CEO, Avito",
+                rating: 5,
+                imageUrl: "https://plus.unsplash.com/premium_photo-1661683653197-ca2d0aab80eb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fGdpcmwlMjBmYWNlfGVufDB8fDB8fHww",
+                review: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint."
+            },
+            {
+                name: "Ahmed Saimoon",
+                position: "CEO, Avito",
+                rating: 5,
+                imageUrl: "https://plus.unsplash.com/premium_photo-1661683653197-ca2d0aab80eb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fGdpcmwlMjBmYWNlfGVufDB8fDB8fHww",
+                review: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint."
+            },
+            {
+                name: "Ahmed Saimoon",
+                position: "CEO, Avito",
+                rating: 5,
+                imageUrl: "https://plus.unsplash.com/premium_photo-1661683653197-ca2d0aab80eb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fGdpcmwlMjBmYWNlfGVufDB8fDB8fHww",
+                review: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint."
+            },
+            {
+                name: "Ahmed Saimoon",
+                position: "CEO, Avito",
+                rating: 5,
+                imageUrl: "https://plus.unsplash.com/premium_photo-1661683653197-ca2d0aab80eb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fGdpcmwlMjBmYWNlfGVufDB8fDB8fHww",
+                review: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint."
+            },
+            {
+                name: "Ahmed Saimoon",
+                position: "CEO, Avito",
+                rating: 5,
+                imageUrl: "https://plus.unsplash.com/premium_photo-1661683653197-ca2d0aab80eb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fGdpcmwlMjBmYWNlfGVufDB8fDB8fHww",
+                review: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint."
+            },
+            {
+                name: "Ahmed Saimoon",
+                position: "CEO, Avito",
+                rating: 5,
+                imageUrl: "https://plus.unsplash.com/premium_photo-1661683653197-ca2d0aab80eb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fGdpcmwlMjBmYWNlfGVufDB8fDB8fHww",
+                review: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint."
+            },
+            {
+                name: "Ahmed Saimoon",
+                position: "CEO, Avito",
+                rating: 5,
+                imageUrl: "https://plus.unsplash.com/premium_photo-1661683653197-ca2d0aab80eb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fGdpcmwlMjBmYWNlfGVufDB8fDB8fHww",
+                review: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint."
+            },
+
+            // Add additional testimonials here
+        ];
+
+        const carousel = document.getElementById('carousel');
+
+        function createTestimonialCard(testimonial) {
+            const card = document.createElement('div');
+            card.classList.add(
+                'w-full',
+                'sm:w-4/5',  // Single card on small screens
+                'md:w-1/2',  // Two cards on medium screens
+                'lg:w-1/3',  // Three cards on large screens
+                'snap-start',
+                'bg-[#F6F6F6]', 'shadow-md', 'rounded-lg', 'p-4', 'flex-shrink-0'
+            );
+
+            card.innerHTML = `
+        <div class="flex flex-col items-start gap-2">
+            <img src="${testimonial.imageUrl}" alt="${testimonial.name}'s Picture" class="w-16 h-16 rounded-full object-cover">
+            <div class="flex flex-col items-start">
+                <h2 class="text-sm font-semibold text-gray-900">${testimonial.name}</h2>
+                <p class="text-xs text-gray-500">${testimonial.position}</p>
+                <div class="flex items-center">
+                    ${generateStars(testimonial.rating)}
+                </div>
+            </div>
+        </div>
+        <p class="mt-2 text-gray-600 text-sm">${testimonial.review}</p>
+    `;
+            return card;
+        }
+
+        function generateStars(rating) {
+            let stars = '';
+            for (let i = 0; i < 5; i++) {
+                stars += `
+            <svg class="w-4 h-4 ${i < rating ? 'text-green-500' : 'text-gray-300'}" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.478 4.554a1 1 0 00.95.69h4.786c.969 0 1.371 1.24.588 1.81l-3.874 2.815a1 1 0 00-.364 1.118l1.478 4.554c.3.921-.755 1.688-1.54 1.118l-3.874-2.815a1 1 0 00-1.176 0l-3.874 2.815c-.784.57-1.839-.197-1.54-1.118l1.478-4.554a1 1 0 00-.364-1.118L2.342 9.98c-.783-.57-.38-1.81.588-1.81h4.786a1 1 0 00.95-.69L9.049 2.927z" />
+            </svg>
+        `;
+            }
+            return stars;
+        }
+
+        testimonials.forEach(testimonial => {
+            const card = createTestimonialCard(testimonial);
+            carousel.appendChild(card);
+        });
+
+        // Scroll buttons functionality
+        document.getElementById('prevButton').addEventListener('click', () => {
+            carousel.scrollBy({
+                left: -carousel.clientWidth,
+                behavior: 'smooth'
+            });
+        });
+
+        document.getElementById('nextButton').addEventListener('click', () => {
+            carousel.scrollBy({
+                left: carousel.clientWidth,
+                behavior: 'smooth'
+            });
+        });
+
+    </script>
+
+    <!-- for popular product card -->
+    <script>
+        // Sample product data categorized by type
+        const products = {
+            trees: [
+                // 1st
+                {
+                    id: 1,
+                    name: "Tree Product 1",
+                    description: "Details about Tree Product 1 ",
+                    imageUrl: "https://images.unsplash.com/photo-1707932700096-db113d55a026?q=80&w=1983&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 300,
+                    discount: "30% off",
+                    newPrice: 210,
+                    rating: 4
+                },
+                // 2nd
+                {
+                    id: 1,
+                    name: "Tree Product 1",
+                    description: "Details about Tree Product 1",
+                    imageUrl: "https://images.unsplash.com/photo-1707932700096-db113d55a026?q=80&w=1983&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 300,
+                    discount: "30% off",
+                    newPrice: 210,
+                    rating: 4
+                },
+                // 3rd    
+                {
+                    id: 1,
+                    name: "Tree Product 1",
+                    description: "Details about Tree Product 1",
+                    imageUrl: "https://images.unsplash.com/photo-1707932700096-db113d55a026?q=80&w=1983&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 300,
+                    discount: "30% off",
+                    newPrice: 210,
+                    rating: 4
+                },
+                // 4th   
+                {
+                    id: 1,
+                    name: "Tree Product 1",
+                    description: "Details about Tree Product 1",
+                    imageUrl: "https://images.unsplash.com/photo-1707932700096-db113d55a026?q=80&w=1983&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 300,
+                    discount: "30% off",
+                    newPrice: 210,
+                    rating: 4
+                },
+                // 5th    
+                {
+                    id: 1,
+                    name: "Tree Product 1",
+                    description: "Details about Tree Product 1",
+                    imageUrl: "https://images.unsplash.com/photo-1707932700096-db113d55a026?q=80&w=1983&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 300,
+                    discount: "30% off",
+                    newPrice: 210,
+                    rating: 4
+                },
+                // 6th     
+                {
+                    id: 1,
+                    name: "Tree Product 1",
+                    description: "Details about Tree Product 1",
+                    imageUrl: "https://images.unsplash.com/photo-1707932700096-db113d55a026?q=80&w=1983&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 300,
+                    discount: "30% off",
+                    newPrice: 210,
+                    rating: 4
+                },
+                // 7th   
+                {
+                    id: 1,
+                    name: "Tree Product 1",
+                    description: "Details about Tree Product 1",
+                    imageUrl: "https://images.unsplash.com/photo-1707932700096-db113d55a026?q=80&w=1983&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 300,
+                    discount: "30% off",
+                    newPrice: 210,
+                    rating: 4
+                },
+                //8th   
+                {
+                    id: 1,
+                    name: "Tree Product 1",
+                    description: "Details about Tree Product 1",
+                    imageUrl: "https://images.unsplash.com/photo-1707932700096-db113d55a026?q=80&w=1983&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 300,
+                    discount: "30% off",
+                    newPrice: 210,
+                    rating: 4
+                },
+                // Add more tree products here
+            ],
+            ferns: [
+                //1st 
+                {
+                    id: 2,
+                    name: "Fern Product 1",
+                    description: "Details about Fern Product 1",
+                    imageUrl: "https://images.pexels.com/photos/19128471/pexels-photo-19128471/free-photo-of-woman-decorating-living-room.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 250,
+                    discount: "20% off",
+                    newPrice: 200,
+                    rating: 5
+                },
+                //2nd 
+                {
+                    id: 2,
+                    name: "Fern Product 1",
+                    description: "Details about Fern Product 1",
+                    imageUrl: "https://images.pexels.com/photos/19128471/pexels-photo-19128471/free-photo-of-woman-decorating-living-room.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 250,
+                    discount: "20% off",
+                    newPrice: 200,
+                    rating: 5
+                },
+                //3rd
+                {
+                    id: 2,
+                    name: "Fern Product 1",
+                    description: "Details about Fern Product 1",
+                    imageUrl: "https://images.pexels.com/photos/19128471/pexels-photo-19128471/free-photo-of-woman-decorating-living-room.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 250,
+                    discount: "20% off",
+                    newPrice: 200,
+                    rating: 5
+                },
+                //4th
+                {
+                    id: 2,
+                    name: "Fern Product 1",
+                    description: "Details about Fern Product 1",
+                    imageUrl: "https://images.pexels.com/photos/19128471/pexels-photo-19128471/free-photo-of-woman-decorating-living-room.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 250,
+                    discount: "20% off",
+                    newPrice: 200,
+                    rating: 5
+                },
+                //5th
+                {
+                    id: 2,
+                    name: "Fern Product 1",
+                    description: "Details about Fern Product 1",
+                    imageUrl: "https://images.pexels.com/photos/19128471/pexels-photo-19128471/free-photo-of-woman-decorating-living-room.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 250,
+                    discount: "20% off",
+                    newPrice: 200,
+                    rating: 5
+                },
+                //6th
+                {
+                    id: 2,
+                    name: "Fern Product 1",
+                    description: "Details about Fern Product 1",
+                    imageUrl: "https://images.pexels.com/photos/19128471/pexels-photo-19128471/free-photo-of-woman-decorating-living-room.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 250,
+                    discount: "20% off",
+                    newPrice: 200,
+                    rating: 5
+                },
+                //7th
+                {
+                    id: 2,
+                    name: "Fern Product 1",
+                    description: "Details about Fern Product 1",
+                    imageUrl: "https://images.pexels.com/photos/19128471/pexels-photo-19128471/free-photo-of-woman-decorating-living-room.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 250,
+                    discount: "20% off",
+                    newPrice: 200,
+                    rating: 5
+                },
+                //8th
+                {
+                    id: 2,
+                    name: "Fern Product 1",
+                    description: "Details about Fern Product 1",
+                    imageUrl: "https://images.pexels.com/photos/19128471/pexels-photo-19128471/free-photo-of-woman-decorating-living-room.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 250,
+                    discount: "20% off",
+                    newPrice: 200,
+                    rating: 5
+                },
+
+
+                // Add more fern products here
+            ],
+            herbs: [
+                //1st
+                {
+                    id: 3,
+                    name: "Herb Product 1",
+                    description: "Details about Herb Product 1",
+                    imageUrl: "https://images.pexels.com/photos/1463186/pexels-photo-1463186.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 120,
+                    discount: "10% off",
+                    newPrice: 108,
+                    rating: 3
+                },
+                //2nd
+                {
+                    id: 3,
+                    name: "Herb Product 1",
+                    description: "Details about Herb Product 1",
+                    imageUrl: "https://images.pexels.com/photos/1463186/pexels-photo-1463186.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 120,
+                    discount: "10% off",
+                    newPrice: 108,
+                    rating: 3
+                },
+                //3rd
+                {
+                    id: 3,
+                    name: "Herb Product 1",
+                    description: "Details about Herb Product 1",
+                    imageUrl: "https://images.pexels.com/photos/1463186/pexels-photo-1463186.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 120,
+                    discount: "10% off",
+                    newPrice: 108,
+                    rating: 3
+                },
+                //4th
+                {
+                    id: 3,
+                    name: "Herb Product 1",
+                    description: "Details about Herb Product 1",
+                    imageUrl: "https://images.pexels.com/photos/1463186/pexels-photo-1463186.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 120,
+                    discount: "10% off",
+                    newPrice: 108,
+                    rating: 3
+                },
+                //5th
+                {
+                    id: 3,
+                    name: "Herb Product 1",
+                    description: "Details about Herb Product 1",
+                    imageUrl: "https://images.pexels.com/photos/1463186/pexels-photo-1463186.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 120,
+                    discount: "10% off",
+                    newPrice: 108,
+                    rating: 3
+                },
+                //6th
+                {
+                    id: 3,
+                    name: "Herb Product 1",
+                    description: "Details about Herb Product 1",
+                    imageUrl: "https://images.pexels.com/photos/1463186/pexels-photo-1463186.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 120,
+                    discount: "10% off",
+                    newPrice: 108,
+                    rating: 3
+                },
+                //7th
+                {
+                    id: 3,
+                    name: "Herb Product 1",
+                    description: "Details about Herb Product 1",
+                    imageUrl: "https://images.pexels.com/photos/1463186/pexels-photo-1463186.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 120,
+                    discount: "10% off",
+                    newPrice: 108,
+                    rating: 3
+                },
+                //8th
+                {
+                    id: 3,
+                    name: "Herb Product 1",
+                    description: "Details about Herb Product 1",
+                    imageUrl: "https://images.pexels.com/photos/1463186/pexels-photo-1463186.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 120,
+                    discount: "10% off",
+                    newPrice: 108,
+                    rating: 3
+                },
+
+
+            ],
+            shrubs: [
+                {
+                    id: 4,
+                    name: "Shrub Product 1",
+                    description: "Details about Shrub Product 1",
+                    imageUrl: "https://plus.unsplash.com/premium_photo-1680528165482-2b008fa8fa41?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 180,
+                    discount: "15% off",
+                    newPrice: 153,
+                    rating: 4
+                },
+                {
+                    id: 4,
+                    name: "Shrub Product 1",
+                    description: "Details about Shrub Product 1",
+                    imageUrl: "https://plus.unsplash.com/premium_photo-1680528165482-2b008fa8fa41?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 180,
+                    discount: "15% off",
+                    newPrice: 153,
+                    rating: 4
+                },
+                {
+                    id: 4,
+                    name: "Shrub Product 1",
+                    description: "Details about Shrub Product 1",
+                    imageUrl: "https://plus.unsplash.com/premium_photo-1680528165482-2b008fa8fa41?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 180,
+                    discount: "15% off",
+                    newPrice: 153,
+                    rating: 4
+                },
+                {
+                    id: 4,
+                    name: "Shrub Product 1",
+                    description: "Details about Shrub Product 1",
+                    imageUrl: "https://plus.unsplash.com/premium_photo-1680528165482-2b008fa8fa41?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 180,
+                    discount: "15% off",
+                    newPrice: 153,
+                    rating: 4
+                },
+                {
+                    id: 4,
+                    name: "Shrub Product 1",
+                    description: "Details about Shrub Product 1",
+                    imageUrl: "https://plus.unsplash.com/premium_photo-1680528165482-2b008fa8fa41?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 180,
+                    discount: "15% off",
+                    newPrice: 153,
+                    rating: 4
+                },
+                {
+                    id: 4,
+                    name: "Shrub Product 1",
+                    description: "Details about Shrub Product 1",
+                    imageUrl: "https://plus.unsplash.com/premium_photo-1680528165482-2b008fa8fa41?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 180,
+                    discount: "15% off",
+                    newPrice: 153,
+                    rating: 4
+                },
+                {
+                    id: 4,
+                    name: "Shrub Product 1",
+                    description: "Details about Shrub Product 1",
+                    imageUrl: "https://plus.unsplash.com/premium_photo-1680528165482-2b008fa8fa41?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 180,
+                    discount: "15% off",
+                    newPrice: 153,
+                    rating: 4
+                },
+                {
+                    id: 4,
+                    name: "Shrub Product 1",
+                    description: "Details about Shrub Product 1",
+                    imageUrl: "https://plus.unsplash.com/premium_photo-1680528165482-2b008fa8fa41?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 180,
+                    discount: "15% off",
+                    newPrice: 153,
+                    rating: 4
+                },
+
+                // Add more shrub products here
+            ],
+            vines: [
+                {
+                    id: 5,
+                    name: "Vine Product 1",
+                    description: "Details about Vine Product 1",
+                    imageUrl: "https://images.pexels.com/photos/27407175/pexels-photo-27407175/free-photo-of-a-close-up-of-a-green-ivy-plant.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+                    oldPrice: 220,
+                    discount: "25% off",
+                    newPrice: 165,
+                    rating: 5
+                },
+                {
+                    id: 5,
+                    name: "Vine Product 1",
+                    description: "Details about Vine Product 1",
+                    imageUrl: "https://images.pexels.com/photos/27407175/pexels-photo-27407175/free-photo-of-a-close-up-of-a-green-ivy-plant.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+                    oldPrice: 220,
+                    discount: "25% off",
+                    newPrice: 165,
+                    rating: 5
+                },
+                {
+                    id: 5,
+                    name: "Vine Product 1",
+                    description: "Details about Vine Product 1",
+                    imageUrl: "https://images.pexels.com/photos/27407175/pexels-photo-27407175/free-photo-of-a-close-up-of-a-green-ivy-plant.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+                    oldPrice: 220,
+                    discount: "25% off",
+                    newPrice: 165,
+                    rating: 5
+                },
+                {
+                    id: 5,
+                    name: "Vine Product 1",
+                    description: "Details about Vine Product 1",
+                    imageUrl: "https://images.pexels.com/photos/27407175/pexels-photo-27407175/free-photo-of-a-close-up-of-a-green-ivy-plant.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+                    oldPrice: 220,
+                    discount: "25% off",
+                    newPrice: 165,
+                    rating: 5
+                },
+                {
+                    id: 5,
+                    name: "Vine Product 1",
+                    description: "Details about Vine Product 1",
+                    imageUrl: "https://images.pexels.com/photos/27407175/pexels-photo-27407175/free-photo-of-a-close-up-of-a-green-ivy-plant.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+                    oldPrice: 220,
+                    discount: "25% off",
+                    newPrice: 165,
+                    rating: 5
+                },
+                {
+                    id: 5,
+                    name: "Vine Product 1",
+                    description: "Details about Vine Product 1",
+                    imageUrl: "https://images.pexels.com/photos/27407175/pexels-photo-27407175/free-photo-of-a-close-up-of-a-green-ivy-plant.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+                    oldPrice: 220,
+                    discount: "25% off",
+                    newPrice: 165,
+                    rating: 5
+                },
+                {
+                    id: 5,
+                    name: "Vine Product 1",
+                    description: "Details about Vine Product 1",
+                    imageUrl: "https://images.pexels.com/photos/27407175/pexels-photo-27407175/free-photo-of-a-close-up-of-a-green-ivy-plant.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+                    oldPrice: 220,
+                    discount: "25% off",
+                    newPrice: 165,
+                    rating: 5
+                },
+                {
+                    id: 5,
+                    name: "Vine Product 1",
+                    description: "Details about Vine Product 1",
+                    imageUrl: "https://images.pexels.com/photos/27407175/pexels-photo-27407175/free-photo-of-a-close-up-of-a-green-ivy-plant.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+                    oldPrice: 220,
+                    discount: "25% off",
+                    newPrice: 165,
+                    rating: 5
+                },
+
+                // Add more vine products here
+            ]
+        };
+
+        const contentContainer = document.getElementById("content");
+
+        function renderProducts(category) {
+            contentContainer.innerHTML = ''; // Clear previous products
+            products[category].forEach(product => {
+                const productCard = document.createElement("div");
+                productCard.className = "w-[164px] border-2 border-green-600 sm:w-[184px] md:w-[224px] lg:w-64 p-2 items-center flex-col bg-white rounded-xl transform shadow-md  mb-4 lg:mt-0";
+                productCard.innerHTML = `
+                    <img src="${product.imageUrl}" class="lg:h-40 h-32 object-cover w-full rounded-xl flex items-center  " alt="${product.name}" />
+                    <div class="p-2 ">
+                        <h1 class=" lg:text-lg  font-marcellus tracking-tighter ">${product.name}</h1>
+                        <div class="text-sm text-start text-[#636363] leading-4 mt-1 text-elipses line-clamp-1  overflow-hidden font-marcellus" >${product.description}</div>
+                        <div class="flex items-center gap-2 lg:mt-1 md:mt-1">
+                            <span class="text-md  flex items-center gap-1 line-through text-[#64748B] border-none border-blue-500">
+                            <svg width="10" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M6.66309 2.48047L6.34863 3.56055H0.00488281L0.319336 2.48047H6.66309ZM3.81934 10L0.203125 5.77539L0.196289 4.92773H1.86426C2.34733 4.92773 2.74609 4.84798 3.06055 4.68848C3.37956 4.52441 3.61882 4.30339 3.77832 4.02539C3.93783 3.7474 4.01758 3.43522 4.01758 3.08887C4.01758 2.7015 3.94238 2.36198 3.79199 2.07031C3.6416 1.77409 3.40462 1.54395 3.08105 1.37988C2.76204 1.21126 2.34277 1.12695 1.82324 1.12695H0.0185547L0.339844 0.046875H1.82324C2.61621 0.046875 3.27018 0.167643 3.78516 0.40918C4.30469 0.646159 4.69206 0.992513 4.94727 1.44824C5.20247 1.90397 5.33008 2.4554 5.33008 3.10254C5.33008 3.65853 5.22298 4.15755 5.00879 4.59961C4.79915 5.03711 4.45052 5.38118 3.96289 5.63184C3.47982 5.88249 2.82812 6.00781 2.00781 6.00781L5.37109 9.91797V10H3.81934ZM6.66309 0.046875L6.34863 1.12695H1.23535L1.5498 0.046875H6.66309Z"
+                                    fill="#64748B"
+                                    style="fill:#64748B;fill:color(display-p3 0.3922 0.4549 0.5451);fill-opacity:1;" />
+                            </svg>
+    
+                        ${product.oldPrice}</span>
+                            <span class="text-sm text-[#48AD4A]">
+                                
+                            ${product.discount}</span>
+                        </div>
+                        <div class="flex items-center gap-2 ">
+                             <span class="lg:text-lg text-sm font-bold text-black gap-1  flex items-center border-none border-blue-500">
+                            <svg width="10" height="12" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M6.66309 2.48047L6.34863 3.56055H0.00488281L0.319336 2.48047H6.66309ZM3.81934 10L0.203125 5.77539L0.196289 4.92773H1.86426C2.34733 4.92773 2.74609 4.84798 3.06055 4.68848C3.37956 4.52441 3.61882 4.30339 3.77832 4.02539C3.93783 3.7474 4.01758 3.43522 4.01758 3.08887C4.01758 2.7015 3.94238 2.36198 3.79199 2.07031C3.6416 1.77409 3.40462 1.54395 3.08105 1.37988C2.76204 1.21126 2.34277 1.12695 1.82324 1.12695H0.0185547L0.339844 0.046875H1.82324C2.61621 0.046875 3.27018 0.167643 3.78516 0.40918C4.30469 0.646159 4.69206 0.992513 4.94727 1.44824C5.20247 1.90397 5.33008 2.4554 5.33008 3.10254C5.33008 3.65853 5.22298 4.15755 5.00879 4.59961C4.79915 5.03711 4.45052 5.38118 3.96289 5.63184C3.47982 5.88249 2.82812 6.00781 2.00781 6.00781L5.37109 9.91797V10H3.81934ZM6.66309 0.046875L6.34863 1.12695H1.23535L1.5498 0.046875H6.66309Z"
+                                    fill="#64748B"
+                                    style="fill:#000205;fill:color(display-p3 0.3922 0.4549 0.5451);fill-opacity:100;" />
+                            </svg>
+                        ${product.newPrice}</span>
+                        </div>
+
+                         <!-- start rating -->
+                    <div class="flex items-center mt-1 gap-1  border-none border-blue-500">
+                        <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+                        </svg>
+                        <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+                        </svg>
+                       
+                        <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+                        </svg>
+                        <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+                        </svg>
+                        <p class="font-bold text-xs border-none border-blue-500">(${product.rating})</p>
+                    </div>
+    
+
+              <!-- Add to cart and buy now button  -->
+                    <div class="lg:flex flex items-center justify-center w-full lg:gap-[16px] gap-2  mt-2 font-marcellus border-none border-blue-500">
+                        <button
+                            class="lg:px-4 px-1 lg:py-2 py-1 rounded bg-white text-xs text-primary text-center border border-green-900 text-nowrap lg:w-1/2  w-full">Buy
+                            Now
+                            <button
+                                class="lg:px-4 lg:py-2 py-1 px-1 rounded text-white border text-center text-xs border-green-900 bg-primary text-nowrap  lg:w-1/2  w-full md:mt-4  lg:mt-0">Add
+                             to cart</button>
+                    </div>
+
+
+                        
+             </div>
+                `;
+                contentContainer.appendChild(productCard);
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const tabs = document.querySelectorAll(".tab");
+
+            // Load initial category
+            renderProducts("trees");
+
+            // Set up tab click event
+            tabs.forEach(tab => {
+                tab.addEventListener("click", () => {
+                    const target = tab.getAttribute("data-tab");
+
+                    // Reset active class on tabs
+                    tabs.forEach(t => t.classList.remove("active-tab"));
+                    tab.classList.add("active-tab");
+
+                    // Render products for selected category
+                    renderProducts(target);
+                });
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>

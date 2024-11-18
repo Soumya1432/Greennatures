@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="../../dist/styles/output.css" rel="stylesheet">
+    <style>
+        .slide-in-left {
+            transform: translateX(0);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .slide-out-left {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Hides scrollbar for a cleaner look */
+        .carousel::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    
+
+
+
+
+
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+       const menuList = document.getElementById('menu-list');
+       const closeBtn = document.getElementById('menu-close-btn');
+
+
+
+       // Show mobile menu
+       menuBtn.addEventListener('click', () => {
+           menuList.classList.remove('hidden');
+           menuList.classList.remove('slide-out-left');
+           menuList.classList.add('slide-in-left');
+       });
+
+       // Hide mobile menu
+       closeBtn.addEventListener('click', () => {
+           menuList.classList.remove('slide-in-left');
+           menuList.classList.add('slide-out-left');
+           setTimeout(() => menuList.classList.add('hidden'), 300); // Delay hiding the menu to allow transition
+       });
+
+   </script>
+</body>
+</html>

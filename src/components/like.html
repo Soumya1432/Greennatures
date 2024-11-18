@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comments Section</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 p-4">
+
+    <div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
+        <h2 class="text-2xl font-semibold mb-4">Comments</h2>
+
+        <!-- Comment Card Start -->
+        <div class="space-y-6">
+            <div class="flex space-x-4">
+                <img src="https://i.pravatar.cc/40?img=1" alt="User Avatar" class="w-10 h-10 rounded-full">
+                <div class="flex-1">
+                    <p class="text-gray-700">This is amazing product I have.</p>
+                    <p class="text-sm text-gray-500">July 2, 2020 1:04 PM</p>
+                    <div class="flex items-center space-x-2 mt-2">
+                        <button onclick="handleLike(this)" class="flex items-center space-x-1 text-gray-600 hover:text-blue-600 transition">
+                            <span class="material-icons">thumb_up</span>
+                            <span class="like-count">82</span>
+                        </button>
+                        <button onclick="handleDislike(this)" class="flex items-center space-x-1 text-gray-600 hover:text-red-600 transition">
+                            <span class="material-icons">thumb_down</span>
+                            <span class="dislike-count">0</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Duplicate comment for example -->
+            <div class="flex space-x-4">
+                <img src="https://i.pravatar.cc/40?img=1" alt="User Avatar" class="w-10 h-10 rounded-full">
+                <div class="flex-1">
+                    <p class="text-gray-700">This is amazing product I have.</p>
+                    <p class="text-sm text-gray-500">July 2, 2020 1:04 PM</p>
+                    <div class="flex items-center space-x-2 mt-2">
+                        <button onclick="handleLike(this)" class="flex items-center space-x-1 text-gray-600 hover:text-blue-600 transition">
+                            <span class="material-icons">thumb_up</span>
+                            <span class="like-count">82</span>
+                        </button>
+                        <button onclick="handleDislike(this)" class="flex items-center space-x-1 text-gray-600 hover:text-red-600 transition">
+                            <span class="material-icons">thumb_down</span>
+                            <span class="dislike-count">0</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Comment Card End -->
+    </div>
+
+    <script src="https://fonts.googleapis.com/icon?family=Material+Icons"></script>
+    <script>
+        function handleLike(button) {
+            const likeCount = button.querySelector('.like-count');
+            let count = parseInt(likeCount.textContent);
+            likeCount.textContent = ++count;
+        }
+        
+        function handleDislike(button) {
+            const dislikeCount = button.querySelector('.dislike-count');
+            let count = parseInt(dislikeCount.textContent);
+            dislikeCount.textContent = ++count;
+        }
+        
+    </script>
+</body>
+</html>

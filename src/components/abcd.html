@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Filter Preview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+
+    <div class="max-w-lg p-6 bg-white rounded-lg shadow-lg">
+        <h2 class="text-2xl font-bold mb-4 text-center">Image Filter Preview</h2>
+        
+        <!-- Image Upload -->
+        <input type="file" id="imageUpload" accept="image/*" 
+               class="mb-4 p-2 w-full border rounded-lg">
+        
+        <!-- Image Preview -->
+        <div class="flex justify-center">
+            <img id="imagePreview" class="max-w-full rounded-lg shadow-lg" alt="Upload an image to preview filters" />
+        </div>
+        
+        <!-- Filter Controls -->
+        <div class="mt-6 space-y-4">
+            <!-- Brightness -->
+            <div>
+                <label for="brightness" class="block text-gray-700 font-medium">Brightness</label>
+                <input type="range" id="brightness" min="0" max="200" value="100" 
+                       class="w-full" onchange="applyFilters()">
+            </div>
+            <!-- Contrast -->
+            <div>
+                <label for="contrast" class="block text-gray-700 font-medium">Contrast</label>
+                <input type="range" id="contrast" min="0" max="200" value="100" 
+                       class="w-full" onchange="applyFilters()">
+            </div>
+            <!-- Grayscale -->
+            <div>
+                <label for="grayscale" class="block text-gray-700 font-medium">Grayscale</label>
+                <input type="range" id="grayscale" min="0" max="100" value="0" 
+                       class="w-full" onchange="applyFilters()">
+            </div>
+            <!-- Sepia -->
+            <div>
+                <label for="sepia" class="block text-gray-700 font-medium">Sepia</label>
+                <input type="range" id="sepia" min="0" max="100" value="0" 
+                       class="w-full" onchange="applyFilters()">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Select elements
+        const imageUpload = document.getElementById("imageUpload");
+        const imagePreview = document.getElementById("imagePreview");
+        const brightness = document.getElementById("brightness");
+        const contrast = document.getElementById("contrast");
+        const grayscale = document.getElementById("grayscale");
+        const sepia = document.getElementById("sepia");
+
+        // Load and preview the uploaded image
+        imageUpload.addEventListener("change", (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    imagePreview.src = reader.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Apply filter settings to the image preview
+        function applyFilters() {
+            const brightnessValue = brightness.value;
+            const contrastValue = contrast.value;
+            const grayscaleValue = grayscale.value;
+            const sepiaValue = sepia.value;
+
+            // Construct filter CSS property
+            imagePreview.style.filter = `
+                brightness(${brightnessValue}%)
+                contrast(${contrastValue}%)
+                grayscale(${grayscaleValue}%)
+                sepia(${sepiaValue}%)
+            `;
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="../../dist/styles/output.css" rel="stylesheet">
+    <style>
+        .slide-in-left {
+            transform: translateX(0);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .slide-out-left {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Hides scrollbar for a cleaner look */
+        .carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Custom green shadow for the breadcrumb text */
+        .breadcrumb-shadow {
+            text-shadow: 2px 2px 5px rgba(0, 128, 0, 0.7);
+        }
+
+        /* Responsive breadcrumb background image */
+        .breadcrumb-bg {
+            background-image: url('https://images.unsplash.com/photo-1599307690923-8ffea24780e0?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: relative;
+            width: 100%;
+            /* Ensures full width */
+        }
+
+        /* Light green overlay */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 38, 15, 0.758);
+            z-index: 1;
+        }
+
+        /* Breadcrumb text above the overlay */
+        .breadcrumb-content {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+
+<body class="bg-[#F6F6F6]">
+    <!-- Navbar  -->
+    <header class="inset-x-0 bg-white top-0 z-50 w-full border-0 border-red-500">
+
+        <div class=" mx-auto max-w-screen-xl border-0 border-slate-200 ">
+            <nav class="flex items-center max-w-screen-xl justify-between container mx-auto p-4 lg:py-4  font-marcellus border-0 border-blue-500"
+                aria-label="Global">
+                <!-- Logo -->
+                <div class="border-0 border-blue-500">
+                    <a href="/" class="">
+                        <span class="font-marcellus lg:text-[32px] text-[24px] text-green-700">GreenNatures</span>
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="flex lg:hidden border-0 border-blue-500" id="menu-btn">
+                    <button type="button"
+                        class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                            aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Menu listing and Login/Cart for large screens -->
+                <div
+                    class="hidden lg:flex items-center space-x-8 font-marcellus flex-1 justify-end text-nowrap border-0 border-blue-500">
+                    <a href="/" class="text-lg leading-6 text-gray-900 border-0 border-blue-500">Home</a>
+                    <a href="Aboutus.html" class="text-lg leading-6 text-gray-900 border-0 border-blue-500">About us</a>
+                    <a href="ProductList01.html"
+                        class="text-lg leading-6 text-gray-900 border-0 border-blue-500">Products</a>
+                    <a href="Blog.html" class="text-lg leading-6 text-gray-900 border-0 border-blue-500">Blogs</a>
+                    <a href="Contactus.html" class="text-lg leading-6 text-gray-900 border-0 border-blue-500">Contact
+                        us</a>
+                    <div class="flex justify-center items-center gap-4 border-0 border-blue-500">
+                        <a href="#"
+                            class="text-lg leading font-marcellus text-gray-900 underline border-0 border-red-500">Log
+                            in</a>
+                        <a href="#"
+                            class="flex gap-2 items-center text-lg leading font-marcellus text-gray-900 border-0 border-red-500">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M21.8257 5.96903C21.7562 5.88583 21.6692 5.81891 21.571 5.773C21.4728 5.72709 21.3657 5.7033 21.2573 5.70332H6.32177L5.75887 2.60827C5.72786 2.43761 5.63795 2.28324 5.50479 2.17208C5.37164 2.06093 5.20369 2.00003 5.03024 2H2.74066C2.54423 2 2.35584 2.07803 2.21694 2.21694C2.07803 2.35584 2 2.54423 2 2.74066C2 2.9371 2.07803 3.12549 2.21694 3.26439C2.35584 3.40329 2.54423 3.48133 2.74066 3.48133H4.40716L6.77358 16.4698C6.84328 16.855 7.01352 17.2149 7.26704 17.5132C6.91712 17.84 6.66456 18.2574 6.53736 18.719C6.41016 19.1806 6.41329 19.6684 6.54641 20.1284C6.67952 20.5883 6.93742 21.0024 7.29151 21.3247C7.6456 21.647 8.08203 21.865 8.55243 21.9544C9.02282 22.0438 9.50879 22.0012 9.95644 21.8313C10.4041 21.6614 10.7959 21.3708 11.0885 20.9918C11.3811 20.6128 11.563 20.1601 11.6141 19.684C11.6651 19.208 11.5833 18.727 11.3777 18.2946H15.5828C15.4171 18.6415 15.3314 19.0212 15.3319 19.4056C15.3319 19.9183 15.484 20.4195 15.7688 20.8458C16.0537 21.2721 16.4585 21.6044 16.9322 21.8006C17.4059 21.9968 17.9271 22.0481 18.43 21.9481C18.9329 21.8481 19.3948 21.6012 19.7573 21.2386C20.1199 20.8761 20.3668 20.4142 20.4668 19.9113C20.5668 19.4085 20.5155 18.8872 20.3193 18.4136C20.1231 17.9399 19.7908 17.535 19.3645 17.2502C18.9382 16.9653 18.437 16.8133 17.9243 16.8133H8.95946C8.78601 16.8132 8.61806 16.7523 8.48491 16.6412C8.35176 16.53 8.26184 16.3757 8.23083 16.205L7.93734 14.5913H18.677C19.1973 14.5912 19.7012 14.4085 20.1006 14.075C20.5001 13.7415 20.7698 13.2785 20.8629 12.7665L21.9887 6.57638C22.0077 6.46939 22.003 6.35951 21.9748 6.25455C21.9467 6.14959 21.8958 6.05211 21.8257 5.96903ZM10.1473 19.4056C10.1473 19.6253 10.0821 19.8401 9.96006 20.0228C9.83799 20.2055 9.66447 20.3479 9.46146 20.432C9.25846 20.5161 9.03507 20.5381 8.81956 20.4952C8.60405 20.4524 8.40609 20.3466 8.25071 20.1912C8.09534 20.0358 7.98952 19.8379 7.94666 19.6223C7.90379 19.4068 7.92579 19.1834 8.00988 18.9804C8.09397 18.7774 8.23637 18.6039 8.41907 18.4818C8.60177 18.3598 8.81657 18.2946 9.0363 18.2946C9.33096 18.2946 9.61354 18.4117 9.8219 18.62C10.0302 18.8284 10.1473 19.1109 10.1473 19.4056ZM19.0353 19.4056C19.0353 19.6253 18.9701 19.8401 18.848 20.0228C18.7259 20.2055 18.5524 20.3479 18.3494 20.432C18.1464 20.5161 17.923 20.5381 17.7075 20.4952C17.492 20.4524 17.2941 20.3466 17.1387 20.1912C16.9833 20.0358 16.8775 19.8379 16.8346 19.6223C16.7918 19.4068 16.8138 19.1834 16.8978 18.9804C16.9819 18.7774 17.1243 18.6039 17.307 18.4818C17.4897 18.3598 17.7045 18.2946 17.9243 18.2946C18.2189 18.2946 18.5015 18.4117 18.7099 18.62C18.9182 18.8284 19.0353 19.1109 19.0353 19.4056Z"
+                                    fill="black" style="fill:black;fill-opacity:1;" />
+                            </svg>
+                            Cart
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- mobile menu list section -->
+        <div class="lg:hidden fixed inset-0 z-50 hidden slide-out-left " id="menu-list">
+            <div class="fixed inset-0 bg-gray-900 bg-opacity-25 blur"></div>
+            <div class="fixed inset-y-0 left-0 w-64 bg-white px-6 py-6">
+                <div class="flex items-center justify-between">
+                    <a href="#" class="text-2xl font-regular text-green-700">GreenNatures</a>
+                    <button id="menu-close-btn" type="button" class="-m-2.5 p-2.5 text-gray-700">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="mt-6 space-y-2">
+                    <a href="#"
+                        class="block px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 hover:underline ">Home</a>
+                    <a href="#"
+                        class="block px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 hover:underline ">About
+                        us</a>
+                    <a href="#"
+                        class="block px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 hover:underline ">Products</a>
+                    <a href="#"
+                        class="block px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 hover:underline ">Blogs</a>
+                    <a href="#"
+                        class="block px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 hover:underline ">Contact
+                        us</a>
+                    <a href="#"
+                        class="block px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 hover:underline ">Log
+                        in</a>
+                    <a href="#"
+                        class="flex gap-2 items-center px-3 py-2 text-base font-semibold text-gray-900 hover:underline  hover:bg-gray-50">
+                        <!-- <img src="../assets/Cart.svg" alt=""> -->
+                        Cart
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="w-full">
+        <div class="breadcrumb-bg h-12 md:h-16 lg:h-16 flex items-center justify-center">
+            <!-- Light green overlay -->
+            <div class="overlay"></div>
+
+            <!-- Inner container for breadcrumb content, centered and limited to max-w-screen-xl -->
+            <div class="relative max-w-screen-xl w-full px-4 breadcrumb-content">
+                <!-- Breadcrumb text with custom shadow -->
+                <nav
+                    class="text-white text-sm md:text-xl lg:text-2xl breadcrumb-shadow flex items-center font-marcellus leading-3">
+                    <a href="#" class="text-lg">Home</a>
+                    <span class="mx-1 md:mx-2">
+                        <svg width="24" height="28" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 12L31 24L19 36" stroke="white" stroke-width="4" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                    <a href="#" class="text-lg">Product</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+<!-- Filter product, section,  -->
+    <div class="max-w-screen-xl mx-auto container flex gap-4 mt-[48px] p-4">
+
+        <!-- Left section -->
+        <div class="border-2  border-blue-500">
+            <!-- Filter Sidebar -->
+            <div class="lg:flex hidden items-center justify-between ">
+                <span class="text-primaryLight text-lg font-marcellus font-bold">Filters</span>
+                <button class="border px-4 py-2 text-[#475569] rounded-2xl hover:bg-gray-100">Clear All</button>
+            </div>
+            <aside
+                class="bg-white p-6 mt-10 border-2 border-gray-800 rounded-lg shadow-lg space-y-6 lg:col-span-1 lg:flex flex-col md:hidden hidden">
+                <!-- Category Filter -->
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Category</h3>
+                    <ul class="space-y-2">
+                        <li><input type="checkbox" id="category1" class="mr-2"><label for="category1">Lorem</label></li>
+                        <li><input type="checkbox" id="category2" class="mr-2"><label for="category2">Lorem</label></li>
+                        <li><input type="checkbox" id="category3" class="mr-2"><label for="category3">Lorem</label></li>
+                        <li><input type="checkbox" id="category4" class="mr-2"><label for="category4">Lorem</label></li>
+                        <li><input type="checkbox" id="category5" class="mr-2"><label for="category5">Lorem</label></li>
+                        <li><a href="#" class="text-blue-500 text-sm">Show more</a></li>
+                    </ul>
+                </div>
+
+                <!-- Ratings Filter -->
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Ratings</h3>
+                    <ul class="space-y-2">
+                        <li><input type="checkbox" id="rating5" class="mr-2"><label for="rating5">⭐⭐⭐⭐⭐ & up
+                                (1991)</label></li>
+                        <li><input type="checkbox" id="rating4" class="mr-2"><label for="rating4">⭐⭐⭐⭐ & up
+                                (200)</label></li>
+                        <li><input type="checkbox" id="rating3" class="mr-2"><label for="rating3">⭐⭐⭐ & up (200)</label>
+                        </li>
+                        <li><input type="checkbox" id="rating2" class="mr-2"><label for="rating2">⭐⭐ & up (200)</label>
+                        </li>
+                        <li><input type="checkbox" id="rating1" class="mr-2"><label for="rating1">⭐ & up (200)</label>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Brand Filter -->
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Brand</h3>
+                    <ul class="space-y-2">
+                        <li><input type="checkbox" id="brand1" class="mr-2"><label for="brand1">Lorem</label></li>
+                        <li><input type="checkbox" id="brand2" class="mr-2"><label for="brand2">Lorem</label></li>
+                        <li><input type="checkbox" id="brand3" class="mr-2"><label for="brand3">Lorem</label></li>
+                        <li><input type="checkbox" id="brand4" class="mr-2"><label for="brand4">Lorem</label></li>
+                        <li><a href="#" class="text-blue-500 text-sm">Show more</a></li>
+                    </ul>
+                </div>
+
+                <!-- Price Filter -->
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Price</h3>
+                    <input type="range" min="0" max="200" value="100" class="w-full">
+                    <div class="flex justify-between text-sm mt-2">
+                        <span>₹0</span><span>₹200</span>
+                    </div>
+                </div>
+
+                <!-- Size Filter -->
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Size</h3>
+                    <input type="range" min="5" max="10" value="7" class="w-full">
+                    <div class="flex justify-between text-sm mt-2">
+                        <span>5</span><span>10</span>
+                    </div>
+                </div>
+
+
+            </aside>
+        </div>
+
+
+        <!-- Right section -->
+        <div class="border-2 border-red-700">
+
+            <div class="flex justify-between items-center mb-6 border-2 border-gray-700 rounded-lg">
+                <div class="flex space-x-4 items-center">
+                    <select class="p-2 border-none  outline-none bg-[#F6F6F6] rounded-lg">
+                        <option>Sort by Features</option>
+                        <option>Price: Low to High</option>
+                        <option>Price: High to Low</option>
+                    </select>
+                    <span>Showing 1-20 of 30 results</span>
+                </div>
+                <div class="flex space-x-2">
+                    <button class="p-2 bg-gray-200 rounded-lg">
+                        <svg width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M9.7988 17.5003C9.03102 17.5003 8.39047 17.2437 7.87713 16.7303C7.3638 16.217 7.10658 15.5764 7.10547 14.8087V9.35866C7.10547 8.59199 7.36269 7.95199 7.87713 7.43866C8.39158 6.92533 9.03213 6.6681 9.7988 6.66699H15.2471C16.0138 6.66699 16.6544 6.92421 17.1688 7.43866C17.6832 7.9531 17.9399 8.59366 17.9388 9.36032V14.8087C17.9388 15.5753 17.6821 16.2159 17.1688 16.7303C16.6555 17.2448 16.0149 17.5014 15.2471 17.5003H9.7988ZM9.7988 33.3336C9.03102 33.3336 8.39047 33.077 7.87713 32.5636C7.3638 32.0503 7.10658 31.4092 7.10547 30.6403V25.1936C7.10547 24.4259 7.36269 23.7853 7.87713 23.272C8.39158 22.7586 9.03213 22.5014 9.7988 22.5003H15.2471C16.0138 22.5003 16.6544 22.7575 17.1688 23.272C17.6832 23.7864 17.9399 24.427 17.9388 25.1936V30.642C17.9388 31.4086 17.6821 32.0492 17.1688 32.5636C16.6555 33.0781 16.0149 33.3348 15.2471 33.3336H9.7988ZM25.6321 17.5003C24.8643 17.5003 24.2238 17.2437 23.7105 16.7303C23.1971 16.217 22.9399 15.5764 22.9388 14.8087V9.35866C22.9388 8.59199 23.196 7.95199 23.7105 7.43866C24.2249 6.92533 24.8655 6.6681 25.6321 6.66699H31.0805C31.8471 6.66699 32.4877 6.92421 33.0021 7.43866C33.5166 7.9531 33.7732 8.59366 33.7721 9.36032V14.8087C33.7721 15.5753 33.5154 16.2159 33.0021 16.7303C32.4888 17.2448 31.8477 17.5014 31.0788 17.5003H25.6321ZM25.6321 33.3336C24.8643 33.3336 24.2238 33.077 23.7105 32.5636C23.1971 32.0503 22.9399 31.4092 22.9388 30.6403V25.1936C22.9388 24.4259 23.196 23.7853 23.7105 23.272C24.2249 22.7586 24.8655 22.5014 25.6321 22.5003H31.0805C31.8471 22.5003 32.4877 22.7575 33.0021 23.272C33.5166 23.7864 33.7732 24.427 33.7721 25.1936V30.642C33.7721 31.4086 33.5154 32.0492 33.0021 32.5636C32.4888 33.0781 31.8477 33.3348 31.0788 33.3336H25.6321Z"
+                                fill="#1E293B"
+                                style="fill:#1E293B;fill:color(display-p3 0.1176 0.1608 0.2314);fill-opacity:1;" />
+                        </svg>
+                    </button>
+                    <button class="p-2 bg-gray-200 rounded-lg">
+                        <svg width="38" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M7.14691 25.7144C7.68056 25.7144 8.19236 25.9402 8.56971 26.3421C8.94706 26.7439 9.15905 27.289 9.15905 27.8573C9.15905 28.4256 8.94706 28.9706 8.56971 29.3725C8.19236 29.7744 7.68056 30.0001 7.14691 30.0001C6.61326 30.0001 6.10146 29.7744 5.72411 29.3725C5.34676 28.9706 5.13477 28.4256 5.13477 27.8573C5.13477 27.289 5.34676 26.7439 5.72411 26.3421C6.10146 25.9402 6.61326 25.7144 7.14691 25.7144ZM31.2913 26.4287C32.0331 26.4287 32.6341 27.063 32.6341 27.8573C32.6341 28.6466 32.0371 29.2859 31.2913 29.2859H12.514C12.3376 29.2864 12.1629 29.2499 11.9998 29.1783C11.8367 29.1067 11.6886 29.0015 11.5638 28.8688C11.439 28.736 11.3401 28.5783 11.2727 28.4047C11.2053 28.2312 11.1708 28.0451 11.1712 27.8573C11.1712 27.068 11.7681 26.4287 12.514 26.4287H31.2913ZM7.14691 18.5716C7.68056 18.5716 8.19236 18.7973 8.56971 19.1992C8.94706 19.6011 9.15905 20.1461 9.15905 20.7144C9.15905 21.2827 8.94706 21.8278 8.56971 22.2297C8.19236 22.6315 7.68056 22.8573 7.14691 22.8573C6.61326 22.8573 6.10146 22.6315 5.72411 22.2297C5.34676 21.8278 5.13477 21.2827 5.13477 20.7144C5.13477 20.1461 5.34676 19.6011 5.72411 19.1992C6.10146 18.7973 6.61326 18.5716 7.14691 18.5716ZM31.2913 19.2859C32.0331 19.2859 32.6341 19.9201 32.6341 20.7144C32.6341 21.5037 32.0371 22.143 31.2913 22.143H12.514C12.3376 22.1436 12.1629 22.107 11.9998 22.0354C11.8367 21.9639 11.6886 21.8587 11.5638 21.7259C11.439 21.5932 11.3401 21.4355 11.2727 21.2619C11.2053 21.0883 11.1708 20.9023 11.1712 20.7144C11.1712 19.9251 11.7681 19.2859 12.514 19.2859H31.2913ZM7.14691 11.4287C7.68056 11.4287 8.19236 11.6545 8.56971 12.0563C8.94706 12.4582 9.15905 13.0032 9.15905 13.5716C9.15905 14.1399 8.94706 14.6849 8.56971 15.0868C8.19236 15.4887 7.68056 15.7144 7.14691 15.7144C6.61326 15.7144 6.10146 15.4887 5.72411 15.0868C5.34676 14.6849 5.13477 14.1399 5.13477 13.5716C5.13477 13.0032 5.34676 12.4582 5.72411 12.0563C6.10146 11.6545 6.61326 11.4287 7.14691 11.4287ZM31.2913 12.143C32.0331 12.143 32.6341 12.7773 32.6341 13.5716C32.6341 14.3609 32.0371 15.0001 31.2913 15.0001H12.514C12.3376 15.0007 12.1629 14.9641 11.9998 14.8926C11.8367 14.821 11.6886 14.7158 11.5638 14.5831C11.439 14.4503 11.3401 14.2926 11.2727 14.119C11.2053 13.9454 11.1708 13.7594 11.1712 13.5716C11.1712 12.7823 11.7681 12.143 12.514 12.143H31.2913Z"
+                                fill="#1E293B"
+                                style="fill:#1E293B;fill:color(display-p3 0.1176 0.1608 0.2314);fill-opacity:1;" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+
+
+
+
+            <!-- Product List -->
+            <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-6">
+                <!-- Single Product Card -->
+
+                <!-- 1st -->
+                <div
+                    class="flex justify-between max-w-screen-lg sm:items-center gap-4 border-2 border-gray-600 bg-white p-4 shadow-md w-full">
+                    <img src="https://images.unsplash.com/photo-1727362123795-efcbc405d113?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGJvbnNhaSUyMGdhcmRlbnxlbnwwfHwwfHx8MA%3D%3D" alt="product_01"
+                        class="w-24 sm:w-40 h-24 sm:h-40 rounded object-cover">
+                    <div class="flex-1">
+                        <!-- Title with line clamp for two lines -->
+                        <h1 class="text-sm sm:text-lg font-semibold mb-1 leading-4 line-clamp-2">
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis, minus voluptatem!
+                            Commodi
+                            inventore laboriosam adipisci?
+                        </h1>
+                        <div class="flex items-center mb-1 space-x-1">
+                            <div class="flex items-center text-yellow-500">
+                                <!-- Star icons for rating -->
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
+                                    class="w-4 h-4">
+                                    <path
+                                        d="M12 .587l3.668 7.571L24 9.748l-6 5.856L19.336 24 12 19.901 4.664 24 6 15.604 0 9.748l8.332-1.59z" />
+                                </svg>
+                                <!-- Repeat star icons as needed -->
+                            </div>
+                            <span class="text-xs text-gray-600">(5,291 reviews)</span>
+                        </div>
+                        <!-- Price and Buttons Section -->
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                            <!-- Price Section -->
+                            <div class="text-gray-800 mb-2 sm:mb-0">
+                                <span class=" text-sm line-through text-gray-400">₹249.00</span>
+                                <span class=" text-sm text-green-600 font-semibold ml-2">50% Off</span>
+                                <div class="text-sm text-left sm:text-xl font-bold">₹249.00</div>
+                            </div>
+
+                              <!-- Buttons -->
+                              <div class="flex flex-row space-x-2 sm:space-y-0 sm:space-x-2 mt-2">
+                                <button
+                                    class="p-2 sm:px-4 py-2 text-xs sm:text-base border border-primary text-primary font-semibold rounded hover:bg-green-50 transition">
+                                    Buy Now
+                                </button>
+                                <button
+                                    class="p-2 sm:px-4 py-2 text-xs sm:text-base bg-primary text-white font-semibold rounded hover:bg-green-700 transition">
+                                    Add to cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 2nd -->
+                <div
+                    class="flex justify-between max-w-screen-lg sm:items-center gap-4 border-2 border-gray-600 bg-white p-4 shadow-md w-full">
+                    <img src="https://images.unsplash.com/photo-1593526831556-22aef0e308b0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D" alt="product_01"
+                        class="w-24 sm:w-40 h-24 sm:h-40 rounded object-cover">
+                    <div class="flex-1">
+                        <!-- Title with line clamp for two lines -->
+                        <h1 class="text-sm sm:text-lg font-semibold mb-1 leading-4 line-clamp-2">
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis, minus voluptatem!
+                            Commodi
+                            inventore laboriosam adipisci?
+                        </h1>
+                        <div class="flex items-center mb-1 space-x-1">
+                            <div class="flex items-center text-yellow-500">
+                                <!-- Star icons for rating -->
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
+                                    class="w-4 h-4">
+                                    <path
+                                        d="M12 .587l3.668 7.571L24 9.748l-6 5.856L19.336 24 12 19.901 4.664 24 6 15.604 0 9.748l8.332-1.59z" />
+                                </svg>
+                                <!-- Repeat star icons as needed -->
+                            </div>
+                            <span class="text-xs text-gray-600">(5,291 reviews)</span>
+                        </div>
+                        <!-- Price and Buttons Section -->
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                            <!-- Price Section -->
+                            <div class="text-gray-800 mb-2 sm:mb-0">
+                                <span class=" text-sm line-through text-gray-400">₹249.00</span>
+                                <span class=" text-sm text-green-600 font-semibold ml-2">50% Off</span>
+                                <div class="text-sm text-left sm:text-xl font-bold">₹249.00</div>
+                            </div>
+
+                              <!-- Buttons -->
+                              <div class="flex flex-row space-x-2 sm:space-y-0 sm:space-x-2 mt-2">
+                                <button
+                                    class="p-2 sm:px-4 py-2 text-xs sm:text-base border border-primary text-primary font-semibold rounded hover:bg-green-50 transition">
+                                    Buy Now
+                                </button>
+                                <button
+                                    class="p-2 sm:px-4 py-2 text-xs sm:text-base bg-primary text-white font-semibold rounded hover:bg-green-700 transition">
+                                    Add to cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 3rd -->
+                <div
+                    class="flex justify-between max-w-screen-lg sm:items-center gap-4 border-2 border-gray-600 bg-white p-4 shadow-md w-full">
+                    <img src="https://images.unsplash.com/photo-1643650128153-01123d19d98e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D" alt="product_01"
+                        class="w-24 sm:w-40 h-24 sm:h-40 rounded object-cover">
+                    <div class="flex-1">
+                        <!-- Title with line clamp for two lines -->
+                        <h1 class="text-sm sm:text-lg font-semibold mb-1 leading-4 line-clamp-2">
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis, minus voluptatem!
+                            Commodi
+                            inventore laboriosam adipisci?
+                        </h1>
+                        <div class="flex items-center mb-1 space-x-1">
+                            <div class="flex items-center text-yellow-500">
+                                <!-- Star icons for rating -->
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
+                                    class="w-4 h-4">
+                                    <path
+                                        d="M12 .587l3.668 7.571L24 9.748l-6 5.856L19.336 24 12 19.901 4.664 24 6 15.604 0 9.748l8.332-1.59z" />
+                                </svg>
+                                <!-- Repeat star icons as needed -->
+                            </div>
+                            <span class="text-xs text-gray-600">(5,291 reviews)</span>
+                        </div>
+                        <!-- Price and Buttons Section -->
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                            <!-- Price Section -->
+                            <div class="text-gray-800 mb-2 sm:mb-0">
+                                <span class=" text-sm line-through text-gray-400">₹249.00</span>
+                                <span class=" text-sm text-green-600 font-semibold ml-2">50% Off</span>
+                                <div class="text-sm text-left sm:text-xl font-bold">₹249.00</div>
+                            </div>
+
+                              <!-- Buttons -->
+                              <div class="flex flex-row space-x-2 sm:space-y-0 sm:space-x-2 mt-2">
+                                <button
+                                    class="p-2 sm:px-4 py-2 text-xs sm:text-base border border-primary text-primary font-semibold rounded hover:bg-green-50 transition">
+                                    Buy Now
+                                </button>
+                                <button
+                                    class="p-2 sm:px-4 py-2 text-xs sm:text-base bg-primary text-white font-semibold rounded hover:bg-green-700 transition">
+                                    Add to cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 4th -->
+                <div
+                    class="flex justify-between max-w-screen-lg sm:items-center gap-4 border-2 border-gray-600 bg-white p-4 shadow-md w-full">
+                    <img src="https://images.unsplash.com/photo-1628577924198-03d711408d60?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDQ4fHx8ZW58MHx8fHx8" alt="product_01"
+                        class="w-24 sm:w-40 h-24 sm:h-40 rounded object-cover">
+                    <div class="flex-1">
+                        <!-- Title with line clamp for two lines -->
+                        <h1 class="text-sm sm:text-lg font-semibold mb-1 leading-4 line-clamp-2">
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis, minus voluptatem!
+                            Commodi
+                            inventore laboriosam adipisci?
+                        </h1>
+                        <div class="flex items-center mb-1 space-x-1">
+                            <div class="flex items-center text-yellow-500">
+                                <!-- Star icons for rating -->
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
+                                    class="w-4 h-4">
+                                    <path
+                                        d="M12 .587l3.668 7.571L24 9.748l-6 5.856L19.336 24 12 19.901 4.664 24 6 15.604 0 9.748l8.332-1.59z" />
+                                </svg>
+                                <!-- Repeat star icons as needed -->
+                            </div>
+                            <span class="text-xs text-gray-600">(5,291 reviews)</span>
+                        </div>
+                        <!-- Price and Buttons Section -->
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                            <!-- Price Section -->
+                            <div class="text-gray-800 mb-2 sm:mb-0">
+                                <span class=" text-sm line-through text-gray-400">₹249.00</span>
+                                <span class=" text-sm text-green-600 font-semibold ml-2">50% Off</span>
+                                <div class="text-sm text-left sm:text-xl font-bold">₹249.00</div>
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="flex flex-row space-x-2 sm:space-y-0 sm:space-x-2 mt-2">
+                                <button
+                                    class="p-2 sm:px-4 py-2 text-xs sm:text-base border border-primary text-primary font-semibold rounded hover:bg-green-50 transition">
+                                    Buy Now
+                                </button>
+                                <button
+                                    class="p-2 sm:px-4 py-2 text-xs sm:text-base bg-primary text-white font-semibold rounded hover:bg-green-700 transition">
+                                    Add to cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5th -->
+                <div
+                    class="flex justify-between max-w-screen-lg sm:items-center gap-4 border-2 border-gray-600 bg-white p-4 shadow-md w-full">
+                    <img src="https://images.unsplash.com/photo-1589428240878-0e1a08d1e733?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDg2fHx8ZW58MHx8fHx8" alt="product_01"
+                        class="w-24 sm:w-40 h-24 sm:h-40 rounded object-cover">
+                    <div class="flex-1">
+                        <!-- Title with line clamp for two lines -->
+                        <h1 class="text-sm sm:text-lg font-semibold mb-1 leading-4 line-clamp-2">
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis, minus voluptatem!
+                            Commodi
+                            inventore laboriosam adipisci?
+                        </h1>
+                        <div class="flex items-center mb-1 space-x-1">
+                            <div class="flex items-center text-yellow-500">
+                                <!-- Star icons for rating -->
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
+                                    class="w-4 h-4">
+                                    <path
+                                        d="M12 .587l3.668 7.571L24 9.748l-6 5.856L19.336 24 12 19.901 4.664 24 6 15.604 0 9.748l8.332-1.59z" />
+                                </svg>
+                                <!-- Repeat star icons as needed -->
+                            </div>
+                            <span class="text-xs text-gray-600">(5,291 reviews)</span>
+                        </div>
+                        <!-- Price and Buttons Section -->
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                            <!-- Price Section -->
+                            <div class="text-gray-800 mb-2 sm:mb-0">
+                                <span class=" text-sm line-through text-gray-400">₹249.00</span>
+                                <span class=" text-sm text-green-600 font-semibold ml-2">50% Off</span>
+                                <div class="text-sm text-left sm:text-xl font-bold">₹249.00</div>
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="flex flex-row space-x-2 sm:space-y-0 sm:space-x-2 mt-2">
+                                <button
+                                    class="p-2 sm:px-4 py-2 text-xs sm:text-base border border-primary text-primary font-semibold rounded hover:bg-green-50 transition">
+                                    Buy Now
+                                </button>
+                                <button
+                                    class="p-2 sm:px-4 py-2 text-xs sm:text-base bg-primary text-white font-semibold rounded hover:bg-green-700 transition">
+                                    Add to cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6th -->
+                <div
+                    class="flex justify-between max-w-screen-lg sm:items-center gap-4 border-2 border-gray-600 bg-white p-4 shadow-md w-full">
+                    <img src="https://images.unsplash.com/photo-1654221983704-51cff412f340?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDcyfHx8ZW58MHx8fHx8" alt="product_01"
+                        class="w-24 sm:w-40 h-24 sm:h-40 rounded object-cover">
+                    <div class="flex-1">
+                        <!-- Title with line clamp for two lines -->
+                        <h1 class="text-sm sm:text-lg font-semibold mb-1 leading-4 line-clamp-2">
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis, minus voluptatem!
+                            Commodi
+                            inventore laboriosam adipisci?
+                        </h1>
+                        <div class="flex items-center mb-1 space-x-1">
+                            <div class="flex items-center text-yellow-500">
+                                <!-- Star icons for rating -->
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
+                                    class="w-4 h-4">
+                                    <path
+                                        d="M12 .587l3.668 7.571L24 9.748l-6 5.856L19.336 24 12 19.901 4.664 24 6 15.604 0 9.748l8.332-1.59z" />
+                                </svg>
+                                <!-- Repeat star icons as needed -->
+                            </div>
+                            <span class="text-xs text-gray-600">(5,291 reviews)</span>
+                        </div>
+                        <!-- Price and Buttons Section -->
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                            <!-- Price Section -->
+                            <div class="text-gray-800 mb-2 sm:mb-0">
+                                <span class=" text-sm line-through text-gray-400">₹249.00</span>
+                                <span class=" text-sm text-green-600 font-semibold ml-2">50% Off</span>
+                                <div class="text-sm text-left sm:text-xl font-bold">₹249.00</div>
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="flex flex-row space-x-2 sm:space-y-0 sm:space-x-2 mt-2">
+                                <button
+                                    class="p-2 sm:px-4 py-2 text-xs sm:text-base border border-primary text-primary font-semibold rounded hover:bg-green-50 transition">
+                                    Buy Now
+                                </button>
+                                <button
+                                    class="p-2 sm:px-4 py-2 text-xs sm:text-base bg-primary text-white font-semibold rounded hover:bg-green-700 transition">
+                                    Add to cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat the product card for each product -->
+                <!-- Copy the above code block to show multiple products, as per the example image -->
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- footer -->
+    <footer class="bg-white text-gray-800 mt-[90px] w-full  border-0 border-blue-700">
+        <div class="font-marcellus py-[24px] lg:h-[260px] p-4 max-w-screen-xl mx-auto border-0 border-blue-500">
+            <!-- Flexbox for large screens, stack on mobile -->
+            <div class="flex flex-col md:flex-row justify-between border-0 border-blue-500">
+                <!-- Left Section: Company Info and Social Links -->
+                <div class="mb-8 md:mb-0 md:w-1/3 border-0 border-blue-500">
+                    <h3 class="text-2xl font-semi-bold text-green-900 mb-4">GreenNatures</h3>
+                    <p class="text-gray-600 mb-4 text-wrap lg:w-[296px] w-[198px] ">
+                        Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia
+
+                    </p>
+                    <div class="flex space-x-4">
+                        <!-- Social Media Icons -->
+                        <a href="#" class="text-gray-500 hover:text-gray-900">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-500 hover:text-gray-900">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-500 hover:text-gray-900">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-500 hover:text-gray-900">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Section: Links -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:w-2/3 border-0 border-blue-500">
+                    <!-- Column 1: Our Company -->
+                    <div class="border-0 border-blue-500">
+                        <h4 class="font-semibold text-gray-900 mb-4">Our Company</h4>
+                        <ul>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Home</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">About</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Services</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">News</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 2: Services -->
+                    <div class="border-0 border-blue-500">
+                        <h4 class="font-semibold text-gray-900 mb-4">Services</h4>
+                        <ul>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Market Research</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Market Analysis</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">SEO Consultancy</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Page Ranking</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">SMM</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 3: Services -->
+                    <div class="border-0 border-blue-500">
+                        <h4 class="font-semibold text-gray-900 mb-4">Services</h4>
+                        <ul>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Market Research</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Market Analysis</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">SEO Consultancy</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Page Ranking</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">SMM</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 4: Features -->
+                    <div class="border-0 border-blue-500">
+                        <h4 class="font-semibold text-gray-900 mb-4">Features</h4>
+                        <ul>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Brand Strategy</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Audience Analytics</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Copywriting</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Team Training</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Email Marketing</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom with Full Width Background -->
+        <div class="bg-green-800 w-full py-4 overflow-hidden border-0 border-blue-500">
+            <p class="text-center text-gray-200 lg:text-nowrap md:text-nowrap px-8 border-0 border-blue-500">All
+                Copyrights are reserved by
+                Mamdou Ghaneemy</p>
+        </div>
+    </footer>
+
+
+
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const menuList = document.getElementById('menu-list');
+        const closeBtn = document.getElementById('menu-close-btn');
+
+
+
+        // Show mobile menu
+        menuBtn.addEventListener('click', () => {
+            menuList.classList.remove('hidden');
+            menuList.classList.remove('slide-out-left');
+            menuList.classList.add('slide-in-left');
+        });
+
+        // Hide mobile menu
+        closeBtn.addEventListener('click', () => {
+            menuList.classList.remove('slide-in-left');
+            menuList.classList.add('slide-out-left');
+            setTimeout(() => menuList.classList.add('hidden'), 300); // Delay hiding the menu to allow transition
+        });
+
+    </script>
+</body>
+
+</html>

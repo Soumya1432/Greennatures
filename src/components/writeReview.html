@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="../../dist/styles/output.css" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-gray-100 flex items-center justify-center min-h-screen">
+        <div class="max-w-screen-lg w-full mx-auto px-4 py-8 bg-white rounded-lg shadow-lg">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Write a Review</h2>
+            
+            <!-- Rating Section -->
+            <div class="mb-4">
+                <label class="block text-gray-700 font-medium mb-2">What is it like to Product?</label>
+                <div class="flex space-x-1">
+                    <!-- Replace these SVGs with your icons if needed -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.167 1.191-5.895 5.749 1.392 8.101-7.332-3.854-7.332 3.854 1.392-8.101-5.895-5.749 8.167-1.191z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.167 1.191-5.895 5.749 1.392 8.101-7.332-3.854-7.332 3.854 1.392-8.101-5.895-5.749 8.167-1.191z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.167 1.191-5.895 5.749 1.392 8.101-7.332-3.854-7.332 3.854 1.392-8.101-5.895-5.749 8.167-1.191z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.167 1.191-5.895 5.749 1.392 8.101-7.332-3.854-7.332 3.854 1.392-8.101-5.895-5.749 8.167-1.191z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.167 1.191-5.895 5.749 1.392 8.101-7.332-3.854-7.332 3.854 1.392-8.101-5.895-5.749 8.167-1.191z"/></svg>
+                </div>
+            </div>
+            
+            <!-- Review Title -->
+            <div class="mb-4">
+                <label class="block text-gray-700 font-medium mb-2" for="title">Review Title</label>
+                <input type="text" id="title" placeholder="Great Products" class="w-full border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring focus:ring-green-500" />
+            </div>
+            
+            <!-- Review Content -->
+            <div class="mb-4">
+                <label class="block text-gray-700 font-medium mb-2" for="content">Review Content</label>
+                <textarea id="content" rows="5" placeholder="Write your review here..." class="w-full border border-gray-300 p-2 rounded-lg resize-none focus:outline-none focus:ring focus:ring-green-500"></textarea>
+            </div>
+            
+            <!-- Submit Button -->
+            <button class="bg-green-500 text-white font-medium px-4 py-2 rounded-lg hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-500">Submit Review</button>
+        </div>
+    </div>
+</body>
+</html>

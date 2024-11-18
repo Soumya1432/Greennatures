@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="../../dist/styles/output.css" rel="stylesheet">
+</head>
+<body>
+    <div class="max-w-screen-lg mx-auto px-4 py-8 font-marcellus">
+        <h1 class="text-2xl font-medium font-marcellus mb-4 text-center md:text-left">Product Reviews</h1>
+        <!-- Rating Summary Section -->
+         <div class="flex flex-col md:flex-row items-center md:items-start gap-4 p-4 bg-gray-100 rounded-lg shadow-md">
+            <div class="flex items-center gap-2">
+                <div class="text-4xl font-bold text-green-600">4.5</div>
+                <div class="text-sm">from 1.25k reviews</div>
+            </div>
+            <div class="flex flex-col w-full">
+                <!-- Star Rating Distribution -->
+                <div class="flex items-center space-x-2 my-1">
+                    <div class="text-sm font-semibold">5.0</div>
+                    <div class="flex-1 h-2 bg-gray-200 rounded-full gap-2">
+                        <div class="h-2 bg-green-500 rounded-full" style="width: 80%;"></div>
+                    
+                    </div>
+                    
+                    <div class="text-sm">2823</div>
+                </div>
+
+                <div class="flex items-center space-x-2 my-1">
+                    <div class="text-sm font-semibold">5.0</div>
+                    <div class="flex-1 h-2 bg-gray-200 rounded-full gap-2">
+                        <div class="h-2 bg-green-500 rounded-full" style="width: 80%;"></div>
+                    
+                    </div>
+                    
+                    <div class="text-sm">2823</div>
+                </div>
+                <div class="flex items-center space-x-2 my-1">
+                    <div class="text-sm font-semibold">5.0</div>
+                    <div class="flex-1 h-2 bg-gray-200 rounded-full gap-2">
+                        <div class="h-2 bg-green-500 rounded-full" style="width: 80%;"></div>
+                    
+                    </div>
+                    
+                    <div class="text-sm">2823</div>
+                </div>
+                <div class="flex items-center space-x-2 my-1">
+                    <div class="text-sm font-semibold">2.0</div>
+                    <div class="flex-1 h-2 bg-gray-200 rounded-full gap-2">
+                        <div class="h-2 bg-green-500 rounded-full" style="width: 80%;"></div>
+                    
+                    </div>
+                    
+                    <div class="text-sm">2823</div>
+                </div>
+                <div class="flex items-center space-x-2 my-1">
+                    <div class="text-sm font-semibold">5.0</div>
+                    <div class="flex-1 h-2 bg-gray-200 rounded-full gap-2">
+                        <div class="h-2 bg-green-500 rounded-full" style="width: 80%;"></div>
+                    
+                    </div>
+                    
+                    <div class="text-sm">2823</div>
+                </div>
+                <!-- Repeat for other ratings... -->
+            </div>
+        </div>
+    
+        <!-- Filters and Tabs Section -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+            <!-- Sidebar for Filters (Collapses on smaller screens) -->
+            <aside class="p-4 bg-gray-100 rounded-lg shadow-md md:col-span-1">
+                <h2 class="text-lg font-semibold mb-4">Reviews Filter</h2>
+                <!-- Filter content... (This area can be customized with actual filter options) -->
+            </aside>
+    
+            <!-- Review List Section -->
+            <section class="md:col-span-2 space-y-4">
+                <!-- Tab Navigation -->
+                <div class="flex gap-2 mb-4 flex-wrap justify-center md:justify-start">
+                    <button onclick="changeTab('all')" class="tab-button px-4 py-2 bg-green-500 text-white rounded-lg focus:outline-none">All Reviews</button>
+                    <button onclick="changeTab('photo')" class="tab-button px-4 py-2 bg-gray-200 rounded-lg">With Photo & Video</button>
+                    <button onclick="changeTab('description')" class="tab-button px-4 py-2 bg-gray-200 rounded-lg">With Description</button>
+                </div>
+    
+                <!-- Reviews List -->
+                <div id="reviewList" class="space-y-4">
+                    <!-- Reviews will be rendered here dynamically -->
+                </div>
+    
+                <!-- Pagination Controls -->
+                <div class="flex justify-center mt-6 space-x-2">
+                    <button onclick="prevPage()" class="px-3 py-1 bg-gray-200 rounded-full">Prev</button>
+                    <span id="pageNumber" class="px-3 py-1">1</span>
+                    <button onclick="nextPage()" class="px-3 py-1 bg-gray-200 rounded-full">Next</button>
+                </div>
+            </section>
+        </div>
+    </div>
+  <script>
+     // Sample data
+     const reviews = [
+        { id: 1, content: "This is an amazing product I have.", user: "Darrell Steward", date: "July 2, 2020", likes: 128, type: "all" },
+        { id: 2, content: "Highly recommend this product.", user: "Darlene Robertson", date: "July 2, 2020", likes: 82, type: "photo" },
+        { id: 3, content: "Good quality for the price.", user: "Kathryn Murphy", date: "June 26, 2020", likes: 9, type: "description" },
+        { id: 4, content: "Great purchase!", user: "Ronald Richards", date: "July 7, 2020", likes: 124, type: "all" },
+        { id: 5, content: "This is an amazing product I have.", user: "Darrell Steward", date: "July 2, 2020", likes: 128, type: "all" },
+        { id: 6, content: "Highly recommend this product.", user: "Darlene Robertson", date: "July 2, 2020", likes: 82, type: "photo" },
+        { id: 7, content: "Good quality for the price.", user: "Kathryn Murphy", date: "June 26, 2020", likes: 9, type: "description" },
+        { id: 8, content: "Great purchase!", user: "Ronald Richards", date: "July 7, 2020", likes: 124, type: "all" },
+        { id: 9, content: "This is an amazing product I have.", user: "Darrell Steward", date: "July 2, 2020", likes: 128, type: "all" },
+        { id: 10, content: "Highly recommend this product.", user: "Darlene Robertson", date: "July 2, 2020", likes: 82, type: "photo" },
+        { id: 11, content: "Good quality for the price.", user: "Kathryn Murphy", date: "June 26, 2020", likes: 9, type: "description" },
+        { id: 12, content: "Great purchase!", user: "Ronald Richards", date: "July 7, 2020", likes: 124, type: "all" },
+        { id: 13, content: "This is an amazing product I have.", user: "Darrell Steward", date: "July 2, 2020", likes: 128, type: "all" },
+        { id: 14, content: "Highly recommend this product.", user: "Darlene Robertson", date: "July 2, 2020", likes: 82, type: "photo" },
+        { id: 15, content: "Good quality for the price.", user: "Kathryn Murphy", date: "June 26, 2020", likes: 9, type: "description" },
+        { id: 16, content: "Great purchase!", user: "Ronald Richards", date: "July 7, 2020", likes: 124, type: "all" },
+        // Add more reviews as needed
+    ];
+
+    let currentPage = 1;
+    const reviewsPerPage = 4;
+    let currentTab = "all";
+
+    // Function to change tab
+    function changeTab(tab) {
+        currentTab = tab;
+        currentPage = 1;
+        document.querySelectorAll(".tab-button").forEach(button => button.classList.remove("bg-green-500", "text-white"));
+        event.target.classList.add("bg-green-500", "text-white");
+        renderReviews();
+    }
+
+    // Pagination functions
+    function prevPage() {
+        if (currentPage > 1) {
+            currentPage--;
+            renderReviews();
+        }
+    }
+
+    function nextPage() {
+        if (currentPage < Math.ceil(getFilteredReviews().length / reviewsPerPage)) {
+            currentPage++;
+            renderReviews();
+        }
+    }
+
+    // Get reviews based on current tab
+    function getFilteredReviews() {
+        if (currentTab === "all") {
+            return reviews;
+        }
+        return reviews.filter(review => review.type === currentTab);
+    }
+
+    // Render reviews based on current page and tab
+    function renderReviews() {
+        const reviewList = document.getElementById("reviewList");
+        reviewList.innerHTML = "";
+
+        const filteredReviews = getFilteredReviews();
+        const start = (currentPage - 1) * reviewsPerPage;
+        const paginatedReviews = filteredReviews.slice(start, start + reviewsPerPage);
+
+        paginatedReviews.forEach(review => {
+            const reviewItem = document.createElement("div");
+            reviewItem.classList.add("p-4", "bg-gray-50", "rounded-lg", "shadow-md", "flex", "flex-col", "md:flex-row", "items-start", "gap-4");
+            reviewItem.innerHTML = `
+                <div class="flex-1">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-1 text-green-600">
+                            <span>⭐️⭐️⭐️⭐️⭐️</span>
+                        </div>
+                        <div class="text-sm text-gray-500">${review.date}</div>
+                    </div>
+                    <p class="text-gray-700 mt-2">${review.content}</p>
+                    <div class="flex items-center gap-4 mt-2">
+                        <button class="flex items-center gap-1 text-green-600">
+                            <span>👍</span>
+                            <span>${review.likes}</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+            reviewList.appendChild(reviewItem);
+        });
+
+        // Update pagination number
+        document.getElementById("pageNumber").innerText = currentPage;
+    }
+
+    // Initial render
+    renderReviews();
+  </script>
+</body>
+</html>

@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="../../dist/styles/output.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Most Popular Menu Listing -->
+    <div class="flex flex-col items-center justify-center max-w-screen-xl container mx-auto space-y-[48px] mt-[90px]">
+        <div>
+            <h1 class="lg:text-4xl text-2xl font-marcellus">Most Popular Product</h1>
+        </div>
+        <div class="flex">
+            <ul id="tabs"
+                class="flex items-center justify-center lg:space-x-[92px] md:space-x-[41px] sm:space-x-[20px] space-x-[16px] font-marcellus cursor-pointer">
+                <li data-tab="trees"
+                    class="tab lg:text-2xl hover:underline hover:text-primary duration-400 transition transform">Trees
+                </li>
+                <li data-tab="ferns"
+                    class="tab lg:text-2xl hover:underline hover:text-primary duration-400 transition transform">Ferns
+                </li>
+                <li data-tab="herbs"
+                    class="tab lg:text-2xl hover:underline hover:text-primary duration-400 transition transform">Herbs
+                </li>
+                <li data-tab="shrubs"
+                    class="tab lg:text-2xl hover:underline hover:text-primary duration-400 transition transform">Shrubs
+                </li>
+                <li data-tab="vines"
+                    class="tab lg:text-2xl hover:underline hover:text-primary duration-400 transition transform">Vines
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Product Card Category Listing Section -->
+    <div id="content"
+        class="max-w-screen-xl container mx-auto w-full gap-[16px] mt-[48px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 place-items-center">
+        <!-- Product cards will be loaded here dynamically -->
+    </div>
+
+    <script>
+        // Sample product data categorized by type
+        const products = {
+            trees: [
+            // 1st
+                {
+                    id: 1,
+                    name: "Tree Product 1",
+                    description: "Details about Tree Product 1",
+                    imageUrl: "https://images.unsplash.com/photo-1707932700096-db113d55a026?q=80&w=1983&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 300,
+                    discount: "30% off",
+                    newPrice: 210,
+                    rating: 4
+                },
+            // 2nd
+                {
+                    id: 1,
+                    name: "Tree Product 1",
+                    description: "Details about Tree Product 1",
+                    imageUrl: "https://images.unsplash.com/photo-1707932700096-db113d55a026?q=80&w=1983&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 300,
+                    discount: "30% off",
+                    newPrice: 210,
+                    rating: 4
+                },
+            // 3rd    
+                {
+                    id: 1,
+                    name: "Tree Product 1",
+                    description: "Details about Tree Product 1",
+                    imageUrl: "https://images.unsplash.com/photo-1707932700096-db113d55a026?q=80&w=1983&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 300,
+                    discount: "30% off",
+                    newPrice: 210,
+                    rating: 4
+                },
+            // 4th   
+                {
+                    id: 1,
+                    name: "Tree Product 1",
+                    description: "Details about Tree Product 1",
+                    imageUrl: "https://images.unsplash.com/photo-1707932700096-db113d55a026?q=80&w=1983&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 300,
+                    discount: "30% off",
+                    newPrice: 210,
+                    rating: 4
+                },
+            // 5th    
+                {
+                    id: 1,
+                    name: "Tree Product 1",
+                    description: "Details about Tree Product 1",
+                    imageUrl: "https://images.unsplash.com/photo-1707932700096-db113d55a026?q=80&w=1983&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 300,
+                    discount: "30% off",
+                    newPrice: 210,
+                    rating: 4
+                },
+            // 6th     
+                {
+                    id: 1,
+                    name: "Tree Product 1",
+                    description: "Details about Tree Product 1",
+                    imageUrl: "https://images.unsplash.com/photo-1707932700096-db113d55a026?q=80&w=1983&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 300,
+                    discount: "30% off",
+                    newPrice: 210,
+                    rating: 4
+                },
+            // 7th   
+                {
+                    id: 1,
+                    name: "Tree Product 1",
+                    description: "Details about Tree Product 1",
+                    imageUrl: "https://images.unsplash.com/photo-1707932700096-db113d55a026?q=80&w=1983&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 300,
+                    discount: "30% off",
+                    newPrice: 210,
+                    rating: 4
+                },
+            //8th   
+                {
+                    id: 1,
+                    name: "Tree Product 1",
+                    description: "Details about Tree Product 1",
+                    imageUrl: "https://images.unsplash.com/photo-1707932700096-db113d55a026?q=80&w=1983&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 300,
+                    discount: "30% off",
+                    newPrice: 210,
+                    rating: 4
+                },
+                // Add more tree products here
+            ],
+            ferns: [
+                {
+                    id: 2,
+                    name: "Fern Product 1",
+                    description: "Details about Fern Product 1",
+                    imageUrl: "https://images.pexels.com/photos/19128471/pexels-photo-19128471/free-photo-of-woman-decorating-living-room.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 250,
+                    discount: "20% off",
+                    newPrice: 200,
+                    rating: 5
+                },
+                {
+                    id: 2,
+                    name: "Fern Product 1",
+                    description: "Details about Fern Product 1",
+                    imageUrl: "https://images.pexels.com/photos/19128471/pexels-photo-19128471/free-photo-of-woman-decorating-living-room.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 250,
+                    discount: "20% off",
+                    newPrice: 200,
+                    rating: 5
+                },
+                {
+                    id: 2,
+                    name: "Fern Product 1",
+                    description: "Details about Fern Product 1",
+                    imageUrl: "https://images.pexels.com/photos/19128471/pexels-photo-19128471/free-photo-of-woman-decorating-living-room.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 250,
+                    discount: "20% off",
+                    newPrice: 200,
+                    rating: 5
+                },
+                {
+                    id: 2,
+                    name: "Fern Product 1",
+                    description: "Details about Fern Product 1",
+                    imageUrl: "https://images.pexels.com/photos/19128471/pexels-photo-19128471/free-photo-of-woman-decorating-living-room.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 250,
+                    discount: "20% off",
+                    newPrice: 200,
+                    rating: 5
+                },
+                {
+                    id: 2,
+                    name: "Fern Product 1",
+                    description: "Details about Fern Product 1",
+                    imageUrl: "https://images.pexels.com/photos/19128471/pexels-photo-19128471/free-photo-of-woman-decorating-living-room.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 250,
+                    discount: "20% off",
+                    newPrice: 200,
+                    rating: 5
+                },
+                {
+                    id: 2,
+                    name: "Fern Product 1",
+                    description: "Details about Fern Product 1",
+                    imageUrl: "https://images.pexels.com/photos/19128471/pexels-photo-19128471/free-photo-of-woman-decorating-living-room.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 250,
+                    discount: "20% off",
+                    newPrice: 200,
+                    rating: 5
+                },
+                {
+                    id: 2,
+                    name: "Fern Product 1",
+                    description: "Details about Fern Product 1",
+                    imageUrl: "https://images.pexels.com/photos/19128471/pexels-photo-19128471/free-photo-of-woman-decorating-living-room.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 250,
+                    discount: "20% off",
+                    newPrice: 200,
+                    rating: 5
+                },
+                {
+                    id: 2,
+                    name: "Fern Product 1",
+                    description: "Details about Fern Product 1",
+                    imageUrl: "https://images.pexels.com/photos/19128471/pexels-photo-19128471/free-photo-of-woman-decorating-living-room.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 250,
+                    discount: "20% off",
+                    newPrice: 200,
+                    rating: 5
+                },
+              
+
+                // Add more fern products here
+            ],
+            herbs: [
+                {
+                    id: 3,
+                    name: "Herb Product 1",
+                    description: "Details about Herb Product 1",
+                    imageUrl: "https://images.pexels.com/photos/1463186/pexels-photo-1463186.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 120,
+                    discount: "10% off",
+                    newPrice: 108,
+                    rating: 3
+                },
+                {
+                    id: 3,
+                    name: "Herb Product 1",
+                    description: "Details about Herb Product 1",
+                    imageUrl: "https://images.pexels.com/photos/1463186/pexels-photo-1463186.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 120,
+                    discount: "10% off",
+                    newPrice: 108,
+                    rating: 3
+                },
+                {
+                    id: 3,
+                    name: "Herb Product 1",
+                    description: "Details about Herb Product 1",
+                    imageUrl: "https://images.pexels.com/photos/1463186/pexels-photo-1463186.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 120,
+                    discount: "10% off",
+                    newPrice: 108,
+                    rating: 3
+                },
+                {
+                    id: 3,
+                    name: "Herb Product 1",
+                    description: "Details about Herb Product 1",
+                    imageUrl: "https://images.pexels.com/photos/1463186/pexels-photo-1463186.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 120,
+                    discount: "10% off",
+                    newPrice: 108,
+                    rating: 3
+                },
+                {
+                    id: 3,
+                    name: "Herb Product 1",
+                    description: "Details about Herb Product 1",
+                    imageUrl: "https://images.pexels.com/photos/1463186/pexels-photo-1463186.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 120,
+                    discount: "10% off",
+                    newPrice: 108,
+                    rating: 3
+                },
+                {
+                    id: 3,
+                    name: "Herb Product 1",
+                    description: "Details about Herb Product 1",
+                    imageUrl: "https://images.pexels.com/photos/1463186/pexels-photo-1463186.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 120,
+                    discount: "10% off",
+                    newPrice: 108,
+                    rating: 3
+                },
+                {
+                    id: 3,
+                    name: "Herb Product 1",
+                    description: "Details about Herb Product 1",
+                    imageUrl: "https://images.pexels.com/photos/1463186/pexels-photo-1463186.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 120,
+                    discount: "10% off",
+                    newPrice: 108,
+                    rating: 3
+                },
+                {
+                    id: 3,
+                    name: "Herb Product 1",
+                    description: "Details about Herb Product 1",
+                    imageUrl: "https://images.pexels.com/photos/1463186/pexels-photo-1463186.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    oldPrice: 120,
+                    discount: "10% off",
+                    newPrice: 108,
+                    rating: 3
+                },
+
+                // Add more herb products here
+            ],
+            shrubs: [
+                {
+                    id: 4,
+                    name: "Shrub Product 1",
+                    description: "Details about Shrub Product 1",
+                    imageUrl: "https://plus.unsplash.com/premium_photo-1680528165482-2b008fa8fa41?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 180,
+                    discount: "15% off",
+                    newPrice: 153,
+                    rating: 4
+                },
+                {
+                    id: 4,
+                    name: "Shrub Product 1",
+                    description: "Details about Shrub Product 1",
+                    imageUrl: "https://plus.unsplash.com/premium_photo-1680528165482-2b008fa8fa41?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 180,
+                    discount: "15% off",
+                    newPrice: 153,
+                    rating: 4
+                },
+                {
+                    id: 4,
+                    name: "Shrub Product 1",
+                    description: "Details about Shrub Product 1",
+                    imageUrl: "https://plus.unsplash.com/premium_photo-1680528165482-2b008fa8fa41?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 180,
+                    discount: "15% off",
+                    newPrice: 153,
+                    rating: 4
+                },
+                {
+                    id: 4,
+                    name: "Shrub Product 1",
+                    description: "Details about Shrub Product 1",
+                    imageUrl: "https://plus.unsplash.com/premium_photo-1680528165482-2b008fa8fa41?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 180,
+                    discount: "15% off",
+                    newPrice: 153,
+                    rating: 4
+                },
+                {
+                    id: 4,
+                    name: "Shrub Product 1",
+                    description: "Details about Shrub Product 1",
+                    imageUrl: "https://plus.unsplash.com/premium_photo-1680528165482-2b008fa8fa41?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 180,
+                    discount: "15% off",
+                    newPrice: 153,
+                    rating: 4
+                },
+                {
+                    id: 4,
+                    name: "Shrub Product 1",
+                    description: "Details about Shrub Product 1",
+                    imageUrl: "https://plus.unsplash.com/premium_photo-1680528165482-2b008fa8fa41?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 180,
+                    discount: "15% off",
+                    newPrice: 153,
+                    rating: 4
+                },
+                {
+                    id: 4,
+                    name: "Shrub Product 1",
+                    description: "Details about Shrub Product 1",
+                    imageUrl: "https://plus.unsplash.com/premium_photo-1680528165482-2b008fa8fa41?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 180,
+                    discount: "15% off",
+                    newPrice: 153,
+                    rating: 4
+                },
+                {
+                    id: 4,
+                    name: "Shrub Product 1",
+                    description: "Details about Shrub Product 1",
+                    imageUrl: "https://plus.unsplash.com/premium_photo-1680528165482-2b008fa8fa41?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    oldPrice: 180,
+                    discount: "15% off",
+                    newPrice: 153,
+                    rating: 4
+                },
+
+                // Add more shrub products here
+            ],
+            vines: [
+                {
+                    id: 5,
+                    name: "Vine Product 1",
+                    description: "Details about Vine Product 1",
+                    imageUrl: "https://images.pexels.com/photos/27407175/pexels-photo-27407175/free-photo-of-a-close-up-of-a-green-ivy-plant.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+                    oldPrice: 220,
+                    discount: "25% off",
+                    newPrice: 165,
+                    rating: 5
+                },
+                {
+                    id: 5,
+                    name: "Vine Product 1",
+                    description: "Details about Vine Product 1",
+                    imageUrl: "https://images.pexels.com/photos/27407175/pexels-photo-27407175/free-photo-of-a-close-up-of-a-green-ivy-plant.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+                    oldPrice: 220,
+                    discount: "25% off",
+                    newPrice: 165,
+                    rating: 5
+                },
+                {
+                    id: 5,
+                    name: "Vine Product 1",
+                    description: "Details about Vine Product 1",
+                    imageUrl: "https://images.pexels.com/photos/27407175/pexels-photo-27407175/free-photo-of-a-close-up-of-a-green-ivy-plant.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+                    oldPrice: 220,
+                    discount: "25% off",
+                    newPrice: 165,
+                    rating: 5
+                },
+                {
+                    id: 5,
+                    name: "Vine Product 1",
+                    description: "Details about Vine Product 1",
+                    imageUrl: "https://images.pexels.com/photos/27407175/pexels-photo-27407175/free-photo-of-a-close-up-of-a-green-ivy-plant.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+                    oldPrice: 220,
+                    discount: "25% off",
+                    newPrice: 165,
+                    rating: 5
+                },
+                {
+                    id: 5,
+                    name: "Vine Product 1",
+                    description: "Details about Vine Product 1",
+                    imageUrl: "https://images.pexels.com/photos/27407175/pexels-photo-27407175/free-photo-of-a-close-up-of-a-green-ivy-plant.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+                    oldPrice: 220,
+                    discount: "25% off",
+                    newPrice: 165,
+                    rating: 5
+                },
+                {
+                    id: 5,
+                    name: "Vine Product 1",
+                    description: "Details about Vine Product 1",
+                    imageUrl: "https://images.pexels.com/photos/27407175/pexels-photo-27407175/free-photo-of-a-close-up-of-a-green-ivy-plant.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+                    oldPrice: 220,
+                    discount: "25% off",
+                    newPrice: 165,
+                    rating: 5
+                },
+                {
+                    id: 5,
+                    name: "Vine Product 1",
+                    description: "Details about Vine Product 1",
+                    imageUrl: "https://images.pexels.com/photos/27407175/pexels-photo-27407175/free-photo-of-a-close-up-of-a-green-ivy-plant.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+                    oldPrice: 220,
+                    discount: "25% off",
+                    newPrice: 165,
+                    rating: 5
+                },
+                {
+                    id: 5,
+                    name: "Vine Product 1",
+                    description: "Details about Vine Product 1",
+                    imageUrl: "https://images.pexels.com/photos/27407175/pexels-photo-27407175/free-photo-of-a-close-up-of-a-green-ivy-plant.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+                    oldPrice: 220,
+                    discount: "25% off",
+                    newPrice: 165,
+                    rating: 5
+                },
+
+                // Add more vine products here
+            ]
+        };
+
+        const contentContainer = document.getElementById("content");
+
+        function renderProducts(category) {
+            contentContainer.innerHTML = ''; // Clear previous products
+            products[category].forEach(product => {
+                const productCard = document.createElement("div");
+                productCard.className = "w-64 sm:w-72 md:w-64 p-2 items-center flex-col bg-white rounded-xl transform shadow-md  mb-4 lg:mt-0";
+                productCard.innerHTML = `
+                    <img src="${product.imageUrl}" class="h-40 object-cover w-full rounded-xl flex items-center p-2 " alt="${product.name}" />
+                    <div class="p-2">
+                        <h1 class="font-semibold text-lg font-marcellus mb-2.4">${product.name}</h1>
+                        <span class="text-sm text-center text-[#636363] leading-3 font-marcellus">${product.description}</span>
+                        <div class="flex items-center gap-2 mt-2">
+                            <span class="text-md  flex items-center gap-1 line-through text-[#64748B] border-none border-blue-500">
+                            <svg width="10" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M6.66309 2.48047L6.34863 3.56055H0.00488281L0.319336 2.48047H6.66309ZM3.81934 10L0.203125 5.77539L0.196289 4.92773H1.86426C2.34733 4.92773 2.74609 4.84798 3.06055 4.68848C3.37956 4.52441 3.61882 4.30339 3.77832 4.02539C3.93783 3.7474 4.01758 3.43522 4.01758 3.08887C4.01758 2.7015 3.94238 2.36198 3.79199 2.07031C3.6416 1.77409 3.40462 1.54395 3.08105 1.37988C2.76204 1.21126 2.34277 1.12695 1.82324 1.12695H0.0185547L0.339844 0.046875H1.82324C2.61621 0.046875 3.27018 0.167643 3.78516 0.40918C4.30469 0.646159 4.69206 0.992513 4.94727 1.44824C5.20247 1.90397 5.33008 2.4554 5.33008 3.10254C5.33008 3.65853 5.22298 4.15755 5.00879 4.59961C4.79915 5.03711 4.45052 5.38118 3.96289 5.63184C3.47982 5.88249 2.82812 6.00781 2.00781 6.00781L5.37109 9.91797V10H3.81934ZM6.66309 0.046875L6.34863 1.12695H1.23535L1.5498 0.046875H6.66309Z"
+                                    fill="#64748B"
+                                    style="fill:#64748B;fill:color(display-p3 0.3922 0.4549 0.5451);fill-opacity:1;" />
+                            </svg>
+    
+                        ${product.oldPrice}</span>
+                            <span class="text-sm text-[#48AD4A]">
+                                
+                            ${product.discount}</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                             <span class="text-lg  font-bold text-black gap-1  flex items-center border-none border-blue-500">
+                            <svg width="10" height="12" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M6.66309 2.48047L6.34863 3.56055H0.00488281L0.319336 2.48047H6.66309ZM3.81934 10L0.203125 5.77539L0.196289 4.92773H1.86426C2.34733 4.92773 2.74609 4.84798 3.06055 4.68848C3.37956 4.52441 3.61882 4.30339 3.77832 4.02539C3.93783 3.7474 4.01758 3.43522 4.01758 3.08887C4.01758 2.7015 3.94238 2.36198 3.79199 2.07031C3.6416 1.77409 3.40462 1.54395 3.08105 1.37988C2.76204 1.21126 2.34277 1.12695 1.82324 1.12695H0.0185547L0.339844 0.046875H1.82324C2.61621 0.046875 3.27018 0.167643 3.78516 0.40918C4.30469 0.646159 4.69206 0.992513 4.94727 1.44824C5.20247 1.90397 5.33008 2.4554 5.33008 3.10254C5.33008 3.65853 5.22298 4.15755 5.00879 4.59961C4.79915 5.03711 4.45052 5.38118 3.96289 5.63184C3.47982 5.88249 2.82812 6.00781 2.00781 6.00781L5.37109 9.91797V10H3.81934ZM6.66309 0.046875L6.34863 1.12695H1.23535L1.5498 0.046875H6.66309Z"
+                                    fill="#64748B"
+                                    style="fill:#000205;fill:color(display-p3 0.3922 0.4549 0.5451);fill-opacity:100;" />
+                            </svg>
+                        ${product.newPrice}</span>
+                        </div>
+
+                         <!-- start rating -->
+                    <div class="flex items-center mt-2 gap-1 mb-[12px] border-none border-blue-500">
+                        <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+                        </svg>
+                        <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+                        </svg>
+                        <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+                        </svg>
+                        <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+                        </svg>
+                        <svg class="h-4 w-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
+                        </svg>
+                        <p class="font-bold text-xs border-none border-blue-500">(${product.rating})</p>
+                    </div>
+    
+
+              <!-- Add to cart and buy now button  -->
+                    <div class="lg:flex items-center justify-center w-full gap-[16px] mt-2 font-marcellus border-none border-blue-500">
+                        <button
+                            class="px-4 py-1 rounded bg-white text-primary border border-green-900 text-nowrap lg:w-1/2 w-full">Buy
+                            Now
+                            <button
+                                class="px-4 py-1 rounded text-white border border-green-900 bg-primary text-nowrap  lg:w-1/2 w-full md:mt-4 mt-4 lg:mt-0">Add
+                                to cart</button>
+                    </div>
+                        
+                    </div>
+                `;
+                contentContainer.appendChild(productCard);
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const tabs = document.querySelectorAll(".tab");
+
+            // Load initial category
+            renderProducts("trees");
+
+            // Set up tab click event
+            tabs.forEach(tab => {
+                tab.addEventListener("click", () => {
+                    const target = tab.getAttribute("data-tab");
+
+                    // Reset active class on tabs
+                    tabs.forEach(t => t.classList.remove("active-tab"));
+                    tab.classList.add("active-tab");
+
+                    // Render products for selected category
+                    renderProducts(target);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

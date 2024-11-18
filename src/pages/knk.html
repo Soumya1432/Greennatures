@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Testimonial Carousel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Smooth scrolling and hidden scrollbar for horizontal carousel */
+        .carousel-scroll {
+            scroll-behavior: smooth;
+            overflow-x: scroll;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Hide scrollbar */
+        .carousel-scroll::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body >
+
+    <div class="bg-gray-100 flex flex-col items-center justify-center max-w-screen-xl mx-auto">
+    <div class="text-center mb-8">
+        <h2 class="text-3xl font-semibold">Our Happy Clients</h2>
+    </div>
+
+    <div class="relative flex items-center overflow-hidden">
+        <!-- Left Button -->
+        <button id="prevButton" class=" left-2 z-10 p-4 bg-white rounded-full shadow-md">
+            &#9664;
+        </button>
+
+        <!-- Testimonial Cards Wrapper -->
+        <div id="carousel" class="flex space-x-4 carousel-scroll max-w-screen-lg px-4 snap-x snap-mandatory">
+            <!-- Cards will be dynamically added here -->
+        </div>
+
+        <!-- Right Button -->
+        <button id="nextButton" class=" right-2 z-10 p-4 bg-white rounded-full shadow-md">
+            &#9654;
+        </button>
+    </div>
+</div>
+    <script>
+        // Array of testimonials
+        const testimonials = [
+            {
+                name: "Ahmed Saimoon",
+                position: "CEO, Avito",
+                rating: 5,
+                imageUrl: "https://plus.unsplash.com/premium_photo-1661683653197-ca2d0aab80eb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fGdpcmwlMjBmYWNlfGVufDB8fDB8fHww",
+                review: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint."
+            },
+            {
+                name: "Ahmed Saimoon",
+                position: "CEO, Avito",
+                rating: 5,
+                imageUrl: "https://plus.unsplash.com/premium_photo-1661683653197-ca2d0aab80eb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fGdpcmwlMjBmYWNlfGVufDB8fDB8fHww",
+                review: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint."
+            },
+            {
+                name: "Ahmed Saimoon",
+                position: "CEO, Avito",
+                rating: 5,
+                imageUrl: "https://plus.unsplash.com/premium_photo-1661683653197-ca2d0aab80eb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fGdpcmwlMjBmYWNlfGVufDB8fDB8fHww",
+                review: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint."
+            },
+            {
+                name: "Ahmed Saimoon",
+                position: "CEO, Avito",
+                rating: 5,
+                imageUrl: "https://plus.unsplash.com/premium_photo-1661683653197-ca2d0aab80eb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fGdpcmwlMjBmYWNlfGVufDB8fDB8fHww",
+                review: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint."
+            },
+
+            // Additional testimonials can be added here
+        ];
+
+        const carousel = document.getElementById('carousel');
+
+        function createTestimonialCard(testimonial) {
+            const card = document.createElement('div');
+            card.classList.add(
+                'min-w-[70vw]', 'md:min-w-[33%]', 'lg:min-w-[25%]',
+                'snap-center', 'bg-white', 'shadow-md', 'rounded-lg', 'p-6', 'flex-shrink-0'
+            );
+            
+            card.innerHTML = `
+                <div class="flex items-center space-x-4">
+                    <img src="${testimonial.imageUrl}" alt="${testimonial.name}'s Picture" class="w-24 h-24 rounded-full object-cover">
+                    <div>
+                        <h2 class="text-lg font-semibold text-gray-900">${testimonial.name}</h2>
+                        <p class="text-sm text-gray-500">${testimonial.position}</p>
+                        <div class="flex items-center">
+                            ${generateStars(testimonial.rating)}
+                        </div>
+                    </div>
+                </div>
+                <p class="mt-4 text-gray-600 text-sm">
+                    ${testimonial.review}
+                </p>
+            `;
+            return card;
+        }
+
+        function generateStars(rating) {
+            let stars = '';
+            for (let i = 0; i < 5; i++) {
+                stars += `
+                    <svg class="w-5 h-5 ${i < rating ? 'text-green-500' : 'text-gray-300'}" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.478 4.554a1 1 0 00.95.69h4.786c.969 0 1.371 1.24.588 1.81l-3.874 2.815a1 1 0 00-.364 1.118l1.478 4.554c.3.921-.755 1.688-1.54 1.118l-3.874-2.815a1 1 0 00-1.176 0l-3.874 2.815c-.784.57-1.839-.197-1.54-1.118l1.478-4.554a1 1 0 00-.364-1.118L2.342 9.98c-.783-.57-.38-1.81.588-1.81h4.786a1 1 0 00.95-.69L9.049 2.927z" />
+                    </svg>
+                `;
+            }
+            return stars;
+        }
+
+        testimonials.forEach(testimonial => {
+            const card = createTestimonialCard(testimonial);
+            carousel.appendChild(card);
+        });
+
+        // Scroll buttons
+        document.getElementById('prevButton').addEventListener('click', () => {
+            carousel.scrollBy({
+                left: -carousel.clientWidth,
+                behavior: 'smooth'
+            });
+        });
+
+        document.getElementById('nextButton').addEventListener('click', () => {
+            carousel.scrollBy({
+                left: carousel.clientWidth,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+
+</body>
+</html>
