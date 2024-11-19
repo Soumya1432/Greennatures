@@ -2052,6 +2052,11 @@ video {
   padding-bottom: 6px;
 }
 
+.py-\[96px\]{
+  padding-top: 96px;
+  padding-bottom: 96px;
+}
+
 .pb-20{
   padding-bottom: 5rem;
 }
@@ -3402,6 +3407,14 @@ video {
 
   .lg\:pl-8{
     padding-left: 2rem;
+  }
+
+  .lg\:pt-\[48px\]{
+    padding-top: 48px;
+  }
+
+  .lg\:pb-\[48px\]{
+    padding-bottom: 48px;
   }
 
   .lg\:text-2xl{
