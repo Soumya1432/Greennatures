@@ -172,47 +172,52 @@
         </div>
     </div>
 
-
-    <div class="max-w-screen-xl font-marcellus container mx-auto flex flex-col gap-6 lg:flex-row mt-[48px]">
+    <!-- Profile Management-->
+    <div class="max-w-screen-xl font-marcellus container mx-auto my-[32px] lg:my-[96px] flex flex-col gap-4 lg:flex-row">
         <!-- Left section -->
-        <div class="w-full lg:w-1/4  bg-white shadow-md">
+        <div class="w-full lg:w-1/4  bg-white ">
             <div class="p-6">
-                <h2 class="text-xl font-semibold mb-6">User Dashboard</h2>
-                <ul>
-                    <li class="mb-4">
-                        <a href="#" class="block py-2 text-gray-700 hover:text-blue-600">Profile Information</a>
+                <h2 class="text-lg font-medium mb-6 pb-4 border-b">User Dashboard</h2>
+                <ul class="space-y-2" >
+                    <li >
+                        <a href="#" class="py-2 text-slate-500 hover:text-green-600">Profile Information</a>
                     </li>
-                    <li class="mb-4">
-                        <a href="#" class="block py-2 text-gray-700 hover:text-blue-600">Address Management</a>
+                    <li >
+                        <a href="#" class="py-2 text-slate-500 hover:text-green-600">Address Management</a>
                     </li>
-                    <li class="mb-4">
-                        <a href="#" class="block py-2 text-gray-700 hover:text-blue-600">Password Management</a>
+                    <li >
+                        <a href="#" class="py-2 text-slate-500 hover:text-green-600">Password Management</a>
                     </li>
-                    <li class="mb-4">
-                        <a href="#" class="block py-2 text-gray-700 hover:text-blue-600 font-semibold">Orders</a>
+                    <li >
+                        <a href="#" class="py-2 text-slate-500 hover:text-green-600 font-medium">Orders</a>
                     </li>
                 </ul>
             </div>
         </div>
     
         <!-- Right section -->
-        <!-- Right section -->
         <div class="flex justify-center items-center w-full">
-            <div class="w-full bg-white rounded-lg shadow-lg p-8 space-y-8">
+            <div class="w-full bg-white rounded-lg px-8 py-[32px] space-y-4">
+                <!-- Profile Header -->
                 <!-- Password Management Header -->
-                <div class="flex flex-col gap-4 mb-4">
-                    <div class="flex flex-col xs:flex-row xs:justify-between md:space-x-8">
-                        <div class="flex space-x-4 ">
-                            <!-- Profile Image -->
-                            <img class="w-10 h-10 sm:w-20 sm:h-20 border-2 border-red-600 rounded-full object-cover" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Profile Image">
+                <div class="flex flex-col gap-4">
+                        <div class="flex flex-col sm:flex-row justify-start sm:justify-between items-start sm:items-center gap-4">
+                            <div class="flex items-center justify-center gap-4" >
+                                <!-- Profile Image -->
+                            <img class="size-12 border-2 border-green-600 rounded-full object-cover" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Profile Image">
                             <!-- User Info -->
                             <div class="flex flex-col items-start">
-                                <h2 class="text-base xs:text-xl font-semibold">Alexa Rawles</h2>
-                                <p class="text-gray-500 text-xs sm:text-base">alexarawles@gmail.com</p>
+                                <h2 class="text-base xs:text-lg font-medium">Alexa Rawles</h2>
+                                <p class="text-slate-400 text-xs sm:text-sm">alexarawles@gmail.com</p>
                             </div>
+                            </div>
+                            <!-- Edit Button -->
+                            <button class="px-8 text-sm py-2 bg-primary text-white rounded hover:bg-textPrimary transition">
+                                Edit
+                            </button>
                         </div>
-                    </div>
-                    <h2 class="text-xl font-semibold">Address Management</h2>
+            
+                    <h2 class="text-base font-medium">Address Management</h2>
                 </div>
     
                 <!-- Form -->
@@ -220,44 +225,37 @@
                     <!-- Street Address -->
                     <div class="md:col-span-2">
                         <label class="block text-gray-700 font-medium mb-1">Street Address</label>
-                        <input type="text" placeholder="Enter Street Address" class="w-full p-3 border rounded-md bg-gray-100 text-gray-600 focus:outline-none">
+                        <input type="text" placeholder="Enter Street Address" class="w-full px-4 py-2 border rounded-md bg-gray-100 text-gray-600 focus:outline-none">
                     </div>
     
                     <!-- City -->
                     <div>
                         <label class="block text-gray-700 font-medium mb-1">City</label>
-                        <input type="text" placeholder="Enter City" class="w-full p-3 border rounded-md bg-gray-100 text-gray-600 focus:outline-none">
+                        <input type="text" placeholder="Enter City" class="w-full px-4 py-2 border rounded-md bg-gray-100 text-gray-600 focus:outline-none">
                     </div>
     
                     <!-- State -->
                     <div>
                         <label class="block text-gray-700 font-medium mb-1">State</label>
-                        <input type="text" placeholder="Enter State" class="w-full p-3 border rounded-md bg-gray-100 text-gray-600 focus:outline-none">
+                        <input type="text" placeholder="Enter State" class="w-full px-4 py-2 border rounded-md bg-gray-100 text-gray-600 focus:outline-none">
                     </div>
     
                     <!-- Postal Code -->
                     <div>
                         <label class="block text-gray-700 font-medium mb-1">Postal Code</label>
-                        <input type="text" placeholder="Enter Postal Code" class="w-full p-3 border rounded-md bg-gray-100 text-gray-600 focus:outline-none">
+                        <input type="text" placeholder="Enter Postal Code" class="w-full px-4 py-2 border rounded-md bg-gray-100 text-gray-600 focus:outline-none">
                     </div>
     
                     <!-- Country -->
                     <div>
                         <label class="block text-gray-700 font-medium mb-1">Country</label>
-                        <select class="w-full p-3 border rounded-md bg-gray-100 text-gray-600 focus:outline-none">
+                        <select class="w-full px-4 py-2 border rounded-md bg-gray-100 text-gray-600 focus:outline-none">
                             <option disabled selected>Select Country</option>
                             <option value="India">India</option>
                             <option value="Bangladesh">Bangladesh</option>
                             <option value="Nepal">Nepal</option>
                             <option value="Bhutan">Bhutan</option>
                         </select>
-                    </div>
-    
-                    <!-- Save Button -->
-                    <div class="md:col-span-2 flex justify-center sm:justify-end">
-                        <button type="submit" class="border-2 border-teal-700 px-8 py-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition text-nowrap">
-                            Save Changes
-                        </button>
                     </div>
                 </form>
             </div>

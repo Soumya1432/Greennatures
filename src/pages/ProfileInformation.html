@@ -17,53 +17,77 @@
             transition: transform 0.3s ease-in-out;
         }
 
+        #header {
+            transform: translateY(90deg);
+        }
         /* Hides scrollbar for a cleaner look */
         .carousel::-webkit-scrollbar {
             display: none;
         }
+
+        .carousel-transition {
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-scroll {
+            scroll-behavior: smooth;
+        }
+
+        /* Smooth scrolling and hidden scrollbar for horizontal carousel */
+        .carousel-scroll {
+            scroll-behavior: smooth;
+            overflow-x: scroll;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Hide scrollbar */
+        .carousel-scroll::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+    <style>
         /* Custom green shadow for the breadcrumb text */
         .breadcrumb-shadow {
-            text-shadow: 2px 2px 5px rgba(0, 128, 0, 0.7);
-        }
-           /* Responsive breadcrumb background image */
-           .breadcrumb-bg {
-            background-image: url('https://images.unsplash.com/photo-1599307690923-8ffea24780e0?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-            background-position: center;
-            background-size: cover;
-            background-repeat: no-repeat;
-            position: relative;
-            width: 100%;
-            /* Ensures full width */
-        }
-
-        /* Light green overlay */
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(15, 38, 15, 0.758);
-            z-index: 1;
-        }
-
-        /* Breadcrumb text above the overlay */
-        .breadcrumb-content {
-            position: relative;
-            z-index: 2;
-        }
+                 text-shadow: 2px 2px 5px rgba(0, 128, 0, 0.7);
+             }
+     
+             /* Responsive breadcrumb background image */
+             .breadcrumb-bg {
+                 background-image: url('https://images.unsplash.com/photo-1599307690923-8ffea24780e0?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+                 background-position: center;
+                 background-size: cover;
+                 background-repeat: no-repeat;
+                 position: relative;
+                 width: 100%;
+                 /* Ensures full width */
+             }
+     
+             /* Light green overlay */
+             .overlay {
+                 position: absolute;
+                 top: 0;
+                 left: 0;
+                 width: 100%;
+                 height: 100%;
+                 background-color: rgba(15, 38, 15, 0.758);
+                 z-index: 1;
+             }
+     
+             /* Breadcrumb text above the overlay */
+             .breadcrumb-content {
+                 position: relative;
+                 z-index: 2;
+             }
     </style>
 </head>
 
 <body class="bg-[#F6F6F6]">
 
-    <div class="">
+    <!-- Navbar  -->
+    <header class="inset-x-0 top-0 z-50  w-full border-0 bg-white border-red-500" id="header">
 
-    <!-- Navbar -->
-    <header class="inset-x-0 bg-white top-0 z-50 w-full border-0 border-red-500">
-
-        <div class=" mx-auto max-w-screen-xl border-0 border-slate-200 ">
-            <nav class="flex items-center max-w-screen-xl justify-between container mx-auto p-4 lg:py-4  font-marcellus border-0 border-blue-500"
+        <div class="block  border-0 border-slate-700 mx-auto max-w-screen-xl">
+            <nav class="flex items-center max-w-screen-xl justify-between container mx-auto p-2 lg:py-2  font-marcellus border-0 border-blue-500"
                 aria-label="Global">
                 <!-- Logo -->
                 <div class="border-0 border-blue-500">
@@ -75,9 +99,9 @@
                 <!-- Mobile menu button -->
                 <div class="flex lg:hidden border-0 border-blue-500" id="menu-btn">
                     <button type="button"
-                        class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            aria-hidden="true">
+                        class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-slate-500">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                         </svg>
@@ -86,20 +110,22 @@
 
                 <!-- Menu listing and Login/Cart for large screens -->
                 <div
-                    class="hidden lg:flex items-center space-x-8 font-marcellus flex-1 justify-end text-nowrap border-0 border-blue-500">
-                    <a href="/" class="text-lg leading-6 text-gray-900 border-0 border-blue-500">Home</a>
-                    <a href="Aboutus.html" class="text-lg leading-6 text-gray-900 border-0 border-blue-500">About us</a>
+                    class="hidden lg:flex items-center space-x-6 font-marcellus flex-1 justify-end text-nowrap border-0 border-blue-500">
+                    <a href="/" class="text-md leading-6 text-gray-900 border-0 border-blue-500">Home</a>
+                    <a href="Aboutus.html" class="text-md leading-6 text-gray-900 border-0 border-blue-500">About
+                        us</a>
                     <a href="ProductList01.html"
-                        class="text-lg leading-6 text-gray-900 border-0 border-blue-500">Products</a>
-                    <a href="Blog.html" class="text-lg leading-6 text-gray-900 border-0 border-blue-500">Blogs</a>
-                    <a href="Contactus.html" class="text-lg leading-6 text-gray-900 border-0 border-blue-500">Contact
+                        class="text-md leading-6 text-gray-900 border-0 border-blue-500">Products</a>
+                    <a href="Blog.html" class="text- leading-6 text-gray-900 border-0 border-blue-500">Blogs</a>
+                    <a href="Contactus.html" md
+                        class="text-md leading-6 text-gray-900 border-0 border-blue-500">Contact
                         us</a>
                     <div class="flex justify-center items-center gap-4 border-0 border-blue-500">
                         <a href="#"
-                            class="text-lg leading font-marcellus text-gray-900 underline border-0 border-red-500">Log
+                            class="text-md leading font-marcellus text-gray-900 underline border-0 border-red-500">Log
                             in</a>
                         <a href="#"
-                            class="flex gap-2 items-center text-lg leading font-marcellus text-gray-900 border-0 border-red-500">
+                            class="flex gap-2 items-center text-md leading font-marcellus text-gray-900 border-0 border-red-500">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -118,8 +144,9 @@
             <div class="fixed inset-y-0 left-0 w-64 bg-white px-6 py-6">
                 <div class="flex items-center justify-between">
                     <a href="#" class="text-2xl font-regular text-green-700">GreenNatures</a>
-                    <button id="menu-close-btn" type="button" class="-m-2.5 p-2.5 text-gray-700">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <button id="menu-close-btn" type="button" class="-m-2.5 p-2.5 text-slate-500">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
@@ -168,86 +195,90 @@
                                 stroke-linejoin="round" />
                         </svg>
                     </span>
-                    <a href="#" class="text-lg">Profile</a>
+                    <a href="#" class="text-lg">Product</a>
                 </nav>
             </div>
         </div>
     </div>
 
-
-    <div class="max-w-screen-xl font-marcellus my-[48px] container mx-auto flex flex-row gap-6 lg:flex-row mt-[48px]">
+    <!-- Profile Management-->
+    <div class="max-w-screen-xl font-marcellus container mx-auto my-[32px] lg:my-[96px] flex flex-col gap-4 lg:flex-row">
         <!-- Left section -->
-        <!-- Sidebar Navigation -->
-        <div class="w-full lg:w-1/4  bg-white shadow-md">
+        <div class="w-full lg:w-1/4  bg-white ">
             <div class="p-6">
-                <h2 class="text-xl font-semibold mb-6">User Dashboard</h2>
-                <ul>
-                    <li class="mb-4">
-                        <a href="#" class="block py-2 text-gray-700 hover:text-blue-600">Profile Information</a>
+                <h2 class="text-lg font-medium mb-6 pb-4 border-b">User Dashboard</h2>
+                <ul class="space-y-2" >
+                    <li >
+                        <a href="#" class="py-2 text-slate-500 hover:text-green-600">Profile Information</a>
                     </li>
-                    <li class="mb-4">
-                        <a href="#" class="block py-2 text-gray-700 hover:text-blue-600">Address Management</a>
+                    <li >
+                        <a href="#" class="py-2 text-slate-500 hover:text-green-600">Address Management</a>
                     </li>
-                    <li class="mb-4">
-                        <a href="#" class="block py-2 text-gray-700 hover:text-blue-600">Password Management</a>
+                    <li >
+                        <a href="#" class="py-2 text-slate-500 hover:text-green-600">Password Management</a>
                     </li>
-                    <li class="mb-4">
-                        <a href="#" class="block py-2 text-gray-700 hover:text-blue-600 font-semibold">Orders</a>
+                    <li >
+                        <a href="#" class="py-2 text-slate-500 hover:text-green-600 font-medium">Orders</a>
                     </li>
                 </ul>
             </div>
         </div>
     
         <!-- Right section -->
-        <div class="flex justify-center items-center w-full">
-            <div class="w-full bg-white rounded-lg shadow-lg p-8 space-y-8">
+        <div class="flex justify-center items-center w-full lg:w-3/4">
+            <div class="w-full bg-white rounded-lg px-8 py-[32px] space-y-4">
                 <!-- Profile Header -->
-                <div class="flex flex-col xs:flex-row items-center xs:justify-between md:space-x-8">
-                    <div class="flex items-center space-x-4">
-                        <!-- Profile Image -->
-                        <img class="w-10 h-10 sm:w-20 sm:h-20 border-2 border-red-600 rounded-full object-cover" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Profile Image">
-                        <!-- User Info -->
-                        <div class="flex flex-col items-start">
-                            <h2 class="text-base xs:text-xl font-semibold">Alexa Rawles</h2>
-                            <p class="text-gray-500 text-xs sm:text-base">alexarawles@gmail.com</p>
+                <!-- Password Management Header -->
+                <div class="flex flex-col gap-4">
+                        <div class="flex flex-col sm:flex-row justify-start sm:justify-between items-start sm:items-center gap-4">
+                            <div class="flex items-center justify-center gap-4" >
+                                <!-- Profile Image -->
+                            <img class="size-12 border-2 border-green-600 rounded-full object-cover" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Profile Image">
+                            <!-- User Info -->
+                            <div class="flex flex-col items-start">
+                                <h2 class="text-base xs:text-lg font-medium">Alexa Rawles</h2>
+                                <p class="text-slate-400 text-xs sm:text-sm">alexarawles@gmail.com</p>
+                            </div>
+                            </div>
+                            <!-- Edit Button -->
+                            <button class="px-8 text-sm py-2 bg-primary text-white rounded hover:bg-textPrimary transition">
+                                Edit
+                            </button>
                         </div>
-                    </div>
-                    <!-- Edit Button -->
-                    <button class="border-2 border-teal-700 px-16 xs:px-4 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition mt-4 md:mt-0">
-                        Edit
-                    </button>
+            
+                    <h2 class="text-base font-medium">Profile Management</h2>
                 </div>
     
                 <!-- Form -->
-                <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <form class="grid grid-cols-1 md:grid-cols-2 gap-6 ">
                     <!-- First Name -->
                     <div>
-                        <label class="block text-gray-700 font-medium mb-1">First Name</label>
-                        <input type="text" placeholder="Your First Name" class="w-full p-3 border rounded-md bg-gray-100 text-gray-600 focus:outline-none">
+                        <label class="block text-slate-500 font-medium mb-1">First Name</label>
+                        <input type="text" placeholder="Your First Name" class="w-full px-4 py-2 border rounded-md bg-gray-100 text-slate-400 focus:outline-none">
                     </div>
     
                     <!-- Last Name -->
                     <div>
-                        <label class="block text-gray-700 font-medium mb-1">Last Name</label>
-                        <input type="text" placeholder="Your Last Name" class="w-full p-3 border rounded-md bg-gray-100 text-gray-600 focus:outline-none">
+                        <label class="block text-slate-500 font-medium mb-1">Last Name</label>
+                        <input type="text" placeholder="Your Last Name" class="w-full px-4 py-2 border rounded-md bg-gray-100 text-slate-400 focus:outline-none">
                     </div>
     
                     <!-- Email Address -->
                     <div>
-                        <label class="block text-gray-700 font-medium mb-1">Email Address</label>
-                        <input type="email" placeholder="Your Email Address" class="w-full p-3 border rounded-md bg-gray-100 text-gray-600 focus:outline-none">
+                        <label class="block text-slate-500 font-medium mb-1">Email Address</label>
+                        <input type="email" placeholder="Your Email Address" class="w-full px-4 py-2 border rounded-md bg-gray-100 text-slate-400 focus:outline-none">
                     </div>
     
                     <!-- Phone Number -->
                     <div>
-                        <label class="block text-gray-700 font-medium mb-1">Phone Number</label>
-                        <input type="tel" placeholder="Your Phone Number" class="w-full p-3 border rounded-md bg-gray-100 text-gray-600 focus:outline-none">
+                        <label class="block text-slate-500 font-medium mb-1">Phone Number</label>
+                        <input type="tel" placeholder="Your Phone Number" class="w-full px-4 py-2 border rounded-md bg-gray-100 text-slate-400 focus:outline-none">
                     </div>
     
                     <!-- Gender -->
                     <div>
-                        <label class="block text-gray-700 font-medium mb-1">Gender</label>
-                        <select class="w-full p-3 border rounded-md bg-gray-100 text-gray-600 focus:outline-none">
+                        <label class="block text-slate-500 font-medium mb-1">Gender</label>
+                        <select class="w-full px-4 py-2 border rounded-md bg-gray-100 text-slate-400 focus:outline-none">
                             <option>Your Gender</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
@@ -256,8 +287,8 @@
     
                     <!-- Country -->
                     <div>
-                        <label class="block text-gray-700 font-medium mb-1">Country</label>
-                        <select class="w-full p-3 border rounded-md bg-gray-100 text-gray-600 focus:outline-none">
+                        <label class="block text-slate-500 font-medium mb-1">Country</label>
+                        <select class="w-full px-4 py-2 border rounded-md bg-gray-100 text-slate-400 focus:outline-none">
                             <option disabled selected>Your Country</option>
                             <option value="India">India</option>
                             <option value="Bangladesh">Bangladesh</option>
@@ -268,8 +299,8 @@
     
                     <!-- Language -->
                     <div>
-                        <label class="block text-gray-700 font-medium mb-1">Language</label>
-                        <select class="w-full p-3 border rounded-md bg-gray-100 text-gray-600 focus:outline-none">
+                        <label class="block text-slate-500 font-medium mb-1">Language</label>
+                        <select class="w-full px-4 py-2 border rounded-md bg-gray-100 text-slate-400 focus:outline-none">
                             <option disabled selected>Your Language</option>
                             <option value="English">English</option>
                             <option value="Hindi">Hindi</option>
@@ -280,8 +311,8 @@
     
                     <!-- Time Zone -->
                     <div>
-                        <label class="block text-gray-700 font-medium mb-1">Time Zone</label>
-                        <input type="time" class="w-full p-3 border rounded-md bg-gray-100 text-gray-600 focus:outline-none" placeholder="Select Time Zone">
+                        <label class="block text-slate-500 font-medium mb-1">Time Zone</label>
+                        <input type="time" class="w-full px-4 py-2 border rounded-md bg-gray-100 text-slate-400 focus:outline-none" placeholder="Select Time Zone">
                     </div>
                 </form>
             </div>
@@ -289,104 +320,181 @@
     </div>
     
 
-     <!-- footer -->
-     <footer class="bg-white text-gray-800    w-full  border-0 border-blue-700">
-        <div class="font-marcellus py-[24px] lg:h-[260px] p-4 max-w-screen-xl mx-auto border-0 border-blue-500">
-            <!-- Flexbox for large screens, stack on mobile -->
-            <div class="flex flex-col md:flex-row justify-between border-0 border-blue-500">
+     <!-- Footer -->
+     <footer class=" text-gray-800 w-full border-0 bg-white border-gray-800 font-marcellus backImage">
+        <div
+            class="font-sans lg:py-[96px] lg:px-0 px-4 md:py-[48px] py-[16px]  max-w-screen-xl mx-auto border-0 my-[0px] border-yellow-600">
+            <div class="flex flex-col lg:flex-row justify-between border-0">
+
                 <!-- Left Section: Company Info and Social Links -->
-                <div class="mb-8 md:mb-0 md:w-1/3 border-0 border-blue-500">
-                    <h3 class="text-2xl font-semi-bold text-green-900 mb-4">GreenNatures</h3>
-                    <p class="text-gray-600 mb-4 text-wrap lg:w-[296px] w-[198px] ">
-                        Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia
+                <div class="mb-0 lg:mb-0 md:w-1/4 border-0 flex flex-col justify-between border-blue-500">
 
-                    </p>
-                    <div class="flex space-x-4">
-                        <!-- Social Media Icons -->
-                        <a href="#" class="text-gray-500 hover:text-gray-900">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="text-gray-500 hover:text-gray-900">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="text-gray-500 hover:text-gray-900">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="text-gray-500 hover:text-gray-900">
-                            <i class="fab fa-instagram"></i>
-                        </a>
+                    <div class="flex flex-col gap-4">
+                        <div class="flex items-center">
+
+                            <h3 class="text-xl font-medium font-marcellus border-0 border-blue-600 text-green-700">
+                                GreenNatures</h3>
+                        </div>
+
+                        <div class="border-0 ">
+                            <p class="text-slate-400 text-xs mb-1">Address: 451 Wall Street, UK, London</p>
+                            <p class="text-slate-400 text-xs mb-1">Email: example@info.com</p>
+                            <p class="text-slate-400 text-xs mb-1">Phone: +919912121211</p>
+                        </div>
                     </div>
+
+                    <!-- Social Profiles -->
+                    <div class="flex space-x-4 mt-4 border-0 border-red-800 items-center justify-start ">
+                        <!-- facebook -->
+                        <a href="#" class="text-slate-400 hover:text-green-700">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13.5 21.888C18.311 21.164 22 17.013 22 12C22 6.477 17.523 2 12 2C6.477 2 2 6.477 2 12C2 17.013 5.689 21.165 10.5 21.888V15H9C8.60218 15 8.22064 14.842 7.93934 14.5607C7.65804 14.2794 7.5 13.8978 7.5 13.5C7.5 13.1022 7.65804 12.7206 7.93934 12.4393C8.22064 12.158 8.60218 12 9 12H10.5V10C10.5 9.07174 10.8687 8.1815 11.5251 7.52513C12.1815 6.86875 13.0717 6.5 14 6.5H14.5C14.8978 6.5 15.2794 6.65804 15.5607 6.93934C15.842 7.22064 16 7.60218 16 8C16 8.39782 15.842 8.77936 15.5607 9.06066C15.2794 9.34196 14.8978 9.5 14.5 9.5H14C13.8674 9.5 13.7402 9.55268 13.6464 9.64645C13.5527 9.74021 13.5 9.86739 13.5 10V12H15C15.3978 12 15.7794 12.158 16.0607 12.4393C16.342 12.7206 16.5 13.1022 16.5 13.5C16.5 13.8978 16.342 14.2794 16.0607 14.5607C15.7794 14.842 15.3978 15 15 15H13.5V21.888Z"
+                                    fill="black" style="fill:black;fill-opacity:1;" />
+                            </svg>
+                        </a>
+                        <!-- instagram -->
+                        <a href="#" class="text-slate-400 hover:text-green-700">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 8.75C11.138 8.75 10.3114 9.09241 9.7019 9.7019C9.09241 10.3114 8.75 11.138 8.75 12C8.75 12.862 9.09241 13.6886 9.7019 14.2981C10.3114 14.9076 11.138 15.25 12 15.25C12.862 15.25 13.6886 14.9076 14.2981 14.2981C14.9076 13.6886 15.25 12.862 15.25 12C15.25 11.138 14.9076 10.3114 14.2981 9.7019C13.6886 9.09241 12.862 8.75 12 8.75Z"
+                                    fill="black" style="fill:black;fill-opacity:1;" />
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M6.77061 3.08177C10.2466 2.6967 13.7546 2.6967 17.2306 3.08177C19.1296 3.29377 20.6606 4.78877 20.8836 6.69477C21.2955 10.2194 21.2955 13.7801 20.8836 17.3048C20.6606 19.2108 19.1296 20.7058 17.2316 20.9188C13.7552 21.3039 10.247 21.3039 6.77061 20.9188C4.87161 20.7058 3.34061 19.2108 3.11761 17.3058C2.70559 13.7808 2.70559 10.2198 3.11761 6.69477C3.34061 4.78877 4.87161 3.29377 6.77061 3.08177ZM17.0006 5.99977C16.7354 5.99977 16.481 6.10513 16.2935 6.29267C16.106 6.4802 16.0006 6.73456 16.0006 6.99977C16.0006 7.26499 16.106 7.51934 16.2935 7.70688C16.481 7.89442 16.7354 7.99977 17.0006 7.99977C17.2658 7.99977 17.5202 7.89442 17.7077 7.70688C17.8953 7.51934 18.0006 7.26499 18.0006 6.99977C18.0006 6.73456 17.8953 6.4802 17.7077 6.29267C17.5202 6.10513 17.2658 5.99977 17.0006 5.99977ZM7.25061 11.9998C7.25061 10.74 7.75105 9.53181 8.64185 8.64102C9.53265 7.75022 10.7408 7.24977 12.0006 7.24977C13.2604 7.24977 14.4686 7.75022 15.3594 8.64102C16.2502 9.53181 16.7506 10.74 16.7506 11.9998C16.7506 13.2596 16.2502 14.4677 15.3594 15.3585C14.4686 16.2493 13.2604 16.7498 12.0006 16.7498C10.7408 16.7498 9.53265 16.2493 8.64185 15.3585C7.75105 14.4677 7.25061 13.2596 7.25061 11.9998Z"
+                                    fill="black" style="fill:black;fill-opacity:1;" />
+                            </svg>
+                        </a>
+                        <!-- linkedin -->
+                        <a href="#" class="text-slate-400 hover:text-green-700">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M18 3C18.7956 3 19.5587 3.31607 20.1213 3.87868C20.6839 4.44129 21 5.20435 21 6V18C21 18.7956 20.6839 19.5587 20.1213 20.1213C19.5587 20.6839 18.7956 21 18 21H6C5.20435 21 4.44129 20.6839 3.87868 20.1213C3.31607 19.5587 3 18.7956 3 18V6C3 5.20435 3.31607 4.44129 3.87868 3.87868C4.44129 3.31607 5.20435 3 6 3H18ZM8 10C7.73478 10 7.48043 10.1054 7.29289 10.2929C7.10536 10.4804 7 10.7348 7 11V16C7 16.2652 7.10536 16.5196 7.29289 16.7071C7.48043 16.8946 7.73478 17 8 17C8.26522 17 8.51957 16.8946 8.70711 16.7071C8.89464 16.5196 9 16.2652 9 16V11C9 10.7348 8.89464 10.4804 8.70711 10.2929C8.51957 10.1054 8.26522 10 8 10ZM11 9C10.7348 9 10.4804 9.10536 10.2929 9.29289C10.1054 9.48043 10 9.73478 10 10V16C10 16.2652 10.1054 16.5196 10.2929 16.7071C10.4804 16.8946 10.7348 17 11 17C11.2652 17 11.5196 16.8946 11.7071 16.7071C11.8946 16.5196 12 16.2652 12 16V12.34C12.305 11.996 12.82 11.592 13.393 11.347C13.726 11.205 14.227 11.147 14.575 11.257C14.6904 11.2863 14.7933 11.3523 14.868 11.445C14.92 11.515 15 11.671 15 12V16C15 16.2652 15.1054 16.5196 15.2929 16.7071C15.4804 16.8946 15.7348 17 16 17C16.2652 17 16.5196 16.8946 16.7071 16.7071C16.8946 16.5196 17 16.2652 17 16V12C17 11.33 16.83 10.734 16.476 10.256C16.1503 9.82256 15.6944 9.50472 15.175 9.349C14.273 9.066 13.274 9.223 12.607 9.509C12.3935 9.60084 12.1854 9.70502 11.984 9.821C11.9421 9.59059 11.8206 9.3822 11.6408 9.23216C11.461 9.08213 11.2342 8.99996 11 9ZM8 7C7.73478 7 7.48043 7.10536 7.29289 7.29289C7.10536 7.48043 7 7.73478 7 8C7 8.26522 7.10536 8.51957 7.29289 8.70711C7.48043 8.89464 7.73478 9 8 9C8.26522 9 8.51957 8.89464 8.70711 8.70711C8.89464 8.51957 9 8.26522 9 8C9 7.73478 8.89464 7.48043 8.70711 7.29289C8.51957 7.10536 8.26522 7 8 7Z"
+                                    fill="black" style="fill:black;fill-opacity:1;" />
+                            </svg>
+                        </a>
+                        <!-- twiiter -->
+                        <a href="#" class="text-slate-400 hover:text-green-700">
+                            <svg width="24" height="24" viewBox="0 0 16 16" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M11.7915 2.04199L8.46087 5.84933L5.58087 2.04199H1.4082L6.39287 8.55933L1.66887 13.9587H3.69154L7.33754 9.79199L10.5242 13.9587H14.5922L9.3962 7.08933L13.8129 2.04199H11.7915ZM11.0822 12.7487L3.76954 3.18799H4.97154L12.2022 12.748L11.0822 12.7487Z"
+                                    fill="black" style="fill:black;fill-opacity:1;" />
+                            </svg>
+
+                        </a>
+
+                    </div>
+
                 </div>
 
-                <!-- Right Section: Links -->
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:w-2/3 border-0 border-blue-500">
-                    <!-- Column 1: Our Company -->
-                    <div class="border-0 border-blue-500">
-                        <h4 class="font-semibold text-gray-900 mb-4">Our Company</h4>
-                        <ul>
-                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Home</a></li>
-                            <li><a href="#" class="text-gray-600 hover:text-gray-900">About</a></li>
-                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Services</a></li>
-                            <li><a href="#" class="text-gray-600 hover:text-gray-900">News</a></li>
-                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Contact</a></li>
+                <!-- Features Section -->
+                <div class="grid border-0 border-red-500 grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 lg:w-3/4">
+
+                    <div class="flex flex-col border-0 border-blue-500">
+                        <h4 class="font-medium text-sm text-gray-900 mb-4 border-0 border-teal-600">Features</h4>
+                        <ul class="border-0">
+                            <li><a href="#" class="text-slate-400 hover:text-gray-900 text-xs">E-Money</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-gray-900 text-xs">Local Business</a>
+                            </li>
+                            <li><a href="#" class="text-slate-400 hover:text-gray-900 text-xs">Corporate</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-gray-900 text-xs">Internet Money</a>
+                            </li>
+                            <li><a href="#" class="text-slate-400 hover:text-gray-900 text-xs">Staking Ecosystem</a>
+                            </li>
                         </ul>
                     </div>
 
-                    <!-- Column 2: Services -->
-                    <div class="border-0 border-blue-500">
-                        <h4 class="font-semibold text-gray-900 mb-4">Services</h4>
-                        <ul>
-                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Market Research</a></li>
-                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Market Analysis</a></li>
-                            <li><a href="#" class="text-gray-600 hover:text-gray-900">SEO Consultancy</a></li>
-                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Page Ranking</a></li>
-                            <li><a href="#" class="text-gray-600 hover:text-gray-900">SMM</a></li>
+                    <div class="border-0 border-yellow-600">
+                        <h4 class="font-medium text-sm text-gray-900 mb-4 border-0 border-teal-600">Features</h4>
+                        <ul class="border-0">
+                            <li><a href="#" class="text-slate-400 hover:text-gray-900 text-xs">E-Money</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-gray-900 text-xs">Local Business</a>
+                            </li>
+                            <li><a href="#" class="text-slate-400 hover:text-gray-900 text-xs">Corporate</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-gray-900 text-xs">Internet Money</a>
+                            </li>
+                            <li><a href="#" class="text-slate-400 hover:text-gray-900 text-xs">Staking Ecosystem</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Column: Useful Links -->
+                    <div class="border-0 border-pink-400">
+                        <h4 class="font-medium text-sm text-gray-900 mb-4 border-0 border-teal-500 ">Useful Links
+                        </h4>
+                        <ul class="border-0">
+                            <li><a href="#" class="text-slate-400 hover:text-gray-900 text-xs">Privacy Policy</a>
+                            </li>
+                            <li><a href="#" class="text-slate-400 hover:text-gray-900 text-xs">Returns</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-gray-900 text-xs">Terms & Conditions</a>
+                            </li>
+                            <li><a href="#" class="text-slate-400 hover:text-gray-900 text-xs">Contact Us</a></li>
+                            <li><a href="#" class="text-slate-400 hover:text-gray-900 text-xs">Our Sitemap</a></li>
                         </ul>
                     </div>
 
-                    <!-- Column 3: Services -->
-                    <div class="border-0 border-blue-500">
-                        <h4 class="font-semibold text-gray-900 mb-4">Services</h4>
-                        <ul>
-                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Market Research</a></li>
-                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Market Analysis</a></li>
-                            <li><a href="#" class="text-gray-600 hover:text-gray-900">SEO Consultancy</a></li>
-                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Page Ranking</a></li>
-                            <li><a href="#" class="text-gray-600 hover:text-gray-900">SMM</a></li>
-                        </ul>
+                    <!-- Recent post -->
+
+                    <div class="text-slate-400 body-font border-0 col-span-1">
+                        <div class="flex flex-col text-start w-full border-0 border-orange-500">
+                            <h1 class="text-sm font-medium mb-4 text-green-900">Recent Post</h1>
+                        </div>
+
+                        <!-- Post Items -->
+                        <div class="space-y-4 border-0 border-blue-600 gap-2">
+                            <!-- Post 1 -->
+                            <div class="flex items-center border-b border-gray-200 pb-4">
+                                <img alt="Plant"
+                                    class="w-12 h-12 bg-gray-100 object-cover object-center flex-shrink-0 rounded-sm mr-4"
+                                    src="https://images.unsplash.com/photo-1727362123795-efcbc405d113?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Ym9uc2FpJTIwcGxhbnR8ZW58MHx8MHx8fDA%3D" />
+                                <div class="flex-grow">
+                                    <h2 class="text-gray-900 text-xs  font-medium">A journey through
+                                        plants</h2>
+                                    <p class="text-gray-500 text-xs ">14 November 2024</p>
+                                </div>
+                            </div>
+
+                            <!-- Post 2 -->
+                            <div class="flex items-center border-b border-gray-200 pb-4">
+                                <img alt="Plant"
+                                    class="w-12 h-12 bg-gray-100 object-cover object-center flex-shrink-0 rounded-sm mr-4"
+                                    src="https://images.unsplash.com/photo-1727362123795-efcbc405d113?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Ym9uc2FpJTIwcGxhbnR8ZW58MHx8MHx8fDA%3D" />
+                                <div class="flex-grow">
+                                    <h2 class="text-gray-900 text-xs font-medium">A journey through
+                                        plants</h2>
+                                    <p class="text-gray-500 text-xs ">14 November 2024</p>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
 
-                    <!-- Column 4: Features -->
-                    <div class="border-0 border-blue-500">
-                        <h4 class="font-semibold text-gray-900 mb-4">Features</h4>
-                        <ul>
-                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Brand Strategy</a></li>
-                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Audience Analytics</a></li>
-                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Copywriting</a></li>
-                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Team Training</a></li>
-                            <li><a href="#" class="text-gray-600 hover:text-gray-900">Email Marketing</a></li>
-                        </ul>
-                    </div>
+
                 </div>
+
             </div>
         </div>
 
-        <!-- Footer Bottom with Full Width Background -->
-        <div class="bg-green-800 w-full py-4 overflow-hidden border-0 border-blue-500">
-            <p class="text-center text-gray-200 lg:text-nowrap md:text-nowrap px-8 border-0 border-blue-500">All
-                Copyrights are reserved by
-                Mamdou Ghaneemy</p>
+
+        <!-- Bottom Section with  -->
+        <div class="bg-green-800 py-4">
+            <div
+                class="max-w-screen-xl mx-auto flex flex-col md:flex-row lg:flex-col  justify-center items-center text-center text-gray-100">
+                <p class="text-white text-xs"> All Rights Reserved © 2024 .</p>
+
+            </div>
         </div>
+
     </footer>
 
-</div>
+    <!-- side narvbar open and find plant category carousel -->
     <script>
+        // Navbar
         const menuBtn = document.getElementById('menu-btn');
         const menuList = document.getElementById('menu-list');
         const closeBtn = document.getElementById('menu-close-btn');
-
-
-
         // Show mobile menu
         menuBtn.addEventListener('click', () => {
             menuList.classList.remove('hidden');
@@ -401,6 +509,21 @@
             setTimeout(() => menuList.classList.add('hidden'), 300); // Delay hiding the menu to allow transition
         });
 
+    </script>
+
+
+    <!-- Navbar sticky logic -->
+    <script>
+        const header = document.getElementById("header");
+        window.addEventListener("scroll", () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 250) {
+                header.classList.add('sticky', 'shadow-md');
+
+            } else {
+                header.classList.remove('sticky');
+            }
+        });
     </script>
 </body>
 

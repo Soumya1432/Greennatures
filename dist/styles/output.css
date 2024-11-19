@@ -741,6 +741,11 @@ video {
   margin-bottom: 16px;
 }
 
+.my-\[32px\]{
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
 .my-\[48px\]{
   margin-top: 48px;
   margin-bottom: 48px;
@@ -749,6 +754,11 @@ video {
 .my-\[8px\]{
   margin-top: 8px;
   margin-bottom: 8px;
+}
+
+.my-\[96px\]{
+  margin-top: 96px;
+  margin-bottom: 96px;
 }
 
 .mb-0{
@@ -809,10 +819,6 @@ video {
 
 .mt-10{
   margin-top: 2.5rem;
-}
-
-.mt-12{
-  margin-top: 3rem;
 }
 
 .mt-2{
@@ -899,6 +905,11 @@ video {
 
 .aspect-video{
   aspect-ratio: 16 / 9;
+}
+
+.size-12{
+  width: 3rem;
+  height: 3rem;
 }
 
 .h-10{
@@ -1010,10 +1021,6 @@ video {
   min-height: 480px;
 }
 
-.min-h-full{
-  min-height: 100%;
-}
-
 .min-h-screen{
   min-height: 100vh;
 }
@@ -1040,10 +1047,6 @@ video {
 
 .w-4{
   width: 1rem;
-}
-
-.w-48{
-  width: 12rem;
 }
 
 .w-5{
@@ -1456,10 +1459,6 @@ video {
   border-width: 2px;
 }
 
-.border-\[2px\]{
-  border-width: 2px;
-}
-
 .border-\[1px\]{
   border-width: 1px;
 }
@@ -1804,6 +1803,16 @@ video {
   background-color: rgb(241 245 249 / var(--tw-bg-opacity));
 }
 
+.bg-slate-200{
+  --tw-bg-opacity: 1;
+  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
+}
+
+.bg-slate-800{
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 41 59 / var(--tw-bg-opacity));
+}
+
 .bg-transparent{
   background-color: transparent;
 }
@@ -1898,9 +1907,9 @@ video {
   padding-right: 0.25rem;
 }
 
-.px-16{
-  padding-left: 4rem;
-  padding-right: 4rem;
+.px-10{
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
 }
 
 .px-2{
@@ -2003,6 +2012,16 @@ video {
   padding-bottom: 24px;
 }
 
+.py-\[32px\]{
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+.py-\[48px\]{
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
 .py-\[64px\]{
   padding-top: 64px;
   padding-bottom: 64px;
@@ -2011,16 +2030,6 @@ video {
 .py-\[96px\]{
   padding-top: 96px;
   padding-bottom: 96px;
-}
-
-.py-\[\]{
-  padding-top: ;
-  padding-bottom: ;
-}
-
-.py-\[48px\]{
-  padding-top: 48px;
-  padding-bottom: 48px;
 }
 
 .pb-20{
@@ -2302,6 +2311,31 @@ video {
   color: rgb(30 72 31 / var(--tw-text-opacity));
 }
 
+.text-slate-400{
+  --tw-text-opacity: 1;
+  color: rgb(148 163 184 / var(--tw-text-opacity));
+}
+
+.text-slate-500{
+  --tw-text-opacity: 1;
+  color: rgb(100 116 139 / var(--tw-text-opacity));
+}
+
+.text-slate-600{
+  --tw-text-opacity: 1;
+  color: rgb(71 85 105 / var(--tw-text-opacity));
+}
+
+.text-slate-700{
+  --tw-text-opacity: 1;
+  color: rgb(51 65 85 / var(--tw-text-opacity));
+}
+
+.text-slate-800{
+  --tw-text-opacity: 1;
+  color: rgb(30 41 59 / var(--tw-text-opacity));
+}
+
 .text-white{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
@@ -2486,6 +2520,16 @@ video {
   background-color: rgb(5 46 22 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-slate-500:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(100 116 139 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-textPrimary:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(15 23 42 / var(--tw-bg-opacity));
+}
+
 .hover\:text-blue-600:hover{
   --tw-text-opacity: 1;
   color: rgb(37 99 235 / var(--tw-text-opacity));
@@ -2616,10 +2660,6 @@ video {
     margin-top: 0px;
   }
 
-  .sm\:h-20{
-    height: 5rem;
-  }
-
   .sm\:h-40{
     height: 10rem;
   }
@@ -2630,10 +2670,6 @@ video {
 
   .sm\:h-\[220px\]{
     height: 220px;
-  }
-
-  .sm\:w-20{
-    width: 5rem;
   }
 
   .sm\:w-4\/5{
@@ -2684,8 +2720,8 @@ video {
     align-items: center;
   }
 
-  .sm\:justify-end{
-    justify-content: flex-end;
+  .sm\:justify-between{
+    justify-content: space-between;
   }
 
   .sm\:space-x-2 > :not([hidden]) ~ :not([hidden]){
@@ -3039,6 +3075,11 @@ video {
     margin-bottom: 48px;
   }
 
+  .lg\:my-\[96px\]{
+    margin-top: 96px;
+    margin-bottom: 96px;
+  }
+
   .lg\:mb-0{
     margin-bottom: 0px;
   }
@@ -3091,10 +3132,6 @@ video {
     height: 15rem;
   }
 
-  .lg\:h-64{
-    height: 16rem;
-  }
-
   .lg\:h-\[260px\]{
     height: 260px;
   }
@@ -3137,10 +3174,6 @@ video {
 
   .lg\:w-64{
     width: 16rem;
-  }
-
-  .lg\:w-72{
-    width: 18rem;
   }
 
   .lg\:w-\[220px\]{
