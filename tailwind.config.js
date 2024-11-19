@@ -8,7 +8,7 @@ export default {
       marcellus: ['Marcellus', 'serif'],
       roboto: ['Roboto', 'sans-serif'],
   },
-
+  
     extend: {
       colors: {
         primary: '#1E481F',       // Primary color
@@ -17,6 +17,9 @@ export default {
         lightText: '#777777',     // Light text color
         background: '#F6F6F6',    // Background color
     },
+    screens:{
+      xs:'360px'
+    }
 
     },
   },
